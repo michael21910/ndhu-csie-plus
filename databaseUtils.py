@@ -21,3 +21,15 @@ class databaseUtils:
         except Exception as e:
             print(e)
             return False
+
+    def get_index_contents(self, connection):
+        try:
+            with connection.cursor() as cursor:
+                sql = "SELECT * FROM `questions`"
+                cursor.execute(sql)
+                result = cursor.fetchall()
+                result = tuple(tuple(row.values()) for row in result)
+                return result
+        except Exception as e:
+            print(e)
+            return 'False'

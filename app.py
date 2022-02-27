@@ -6,20 +6,21 @@ app = Flask(__name__, template_folder = 'templates')
 db = databaseUtils(
     '127.0.0.1',
     'root',
-    'root',
+    'michael319101823',
     'csieplus'
 )
 
 connection = db.connect(
     '127.0.0.1',
     'root',
-    'root',
+    'michael319101823',
     'csieplus'
 )
 
 @app.route('/')
 def index():
-    return render_template("index.html", question_list = ["hello world 1", "hello world 2"])
+    question_list = db.get_index_contents(connection)
+    return render_template("index.html", question_list = question_list)
 
 if __name__ == '__main__':
     app.run(debug = False, port = 1234)

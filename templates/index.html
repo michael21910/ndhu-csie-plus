@@ -1,14 +1,14 @@
 {% extends "template.html" %}
 {% block login %}
-  <div class = "log-in">
-    Login
-  </div>
-  <div class = "register">
-    Register
-  </div>
+<div class="log-in">
+  Login
+</div>
+<div class="register">
+  Register
+</div>
 {% endblock %}
 {% block questions %}
-  {% for question in question_list %}
-    {{ question }}
-  {% endfor %}
+{% for question in question_list %}
+{{ question }}
+{% endfor %}
 {% endblock %}
