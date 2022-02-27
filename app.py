@@ -1,10 +1,25 @@
 from flask import Flask, render_template
+from databaseUtils import databaseUtils
 
 app = Flask(__name__, template_folder = 'templates')
 
-@app.route("/")
+db = databaseUtils(
+    '127.0.0.1',
+    'root',
+    'root',
+    'csieplus'
+)
+
+connection = db.connect(
+    '127.0.0.1',
+    'root',
+    'root',
+    'csieplus'
+)
+
+@app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug = True)
