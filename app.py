@@ -6,14 +6,14 @@ app = Flask(__name__, template_folder = 'templates')
 db = databaseUtils(
     '127.0.0.1',
     'root',
-    'michael319101823',
+    'root',
     'csieplus'
 )
 
 connection = db.connect(
     '127.0.0.1',
     'root',
-    'michael319101823',
+    'root',
     'csieplus'
 )
 
