@@ -1,14 +1,36 @@
-{% extends "template.html" %}
+{% extends "base.html" %}
 {% block login %}
-<div class="log-in">
-  Login
-</div>
-<div class="register">
-  Register
-</div>
+  {% if username == '' %}
+    <div class="log-in">
+      Login
+    </div>
+    <div class="register">
+      Register
+    </div>
+  {% else %}
+    <div class="greet">
+      Hi, {{  username  }}
+    </div>
+    <div class="log-out">
+      Logout
+    </div>
+  {% endif %}
 {% endblock %}
-{% block questions %}
-{% for question in question_list %}
-{{ question }}
-{% endfor %}
+
+{% block content %}
+  <div class = "content_">
+    <div class = "questions">
+      </div>
+      {% for question_data in question_list %}
+        {% set outer_loop = loop %}
+        <div id = question-{{loop.index}}>
+          {% for key, val in question_data.items() %}
+            <div id = question-{{outer_loop.index}}-{{key}}>
+              {{  val  }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}
