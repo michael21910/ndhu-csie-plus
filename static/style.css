@@ -1,21 +1,15 @@
 .main-body {
-  background-color : gray;
+  background-color: gray;
 }
+
 .top {
-  background-color : blue;
+  background-color: cornflowerblue;
 }
-.nav {
-  background-color : green;
-}
-.title, .ask, .profile{
-  background-color : azure;
-}
-.rank, .about, .click{
-  background-color : yellow;
-}
-.user {
-  background-color : skyblue;
-}
+
 .mid {
-  background-color : red;
+  background-color: lightgray;
+}
+
+.footer {
+  background-color: darkkhaki;
 }
