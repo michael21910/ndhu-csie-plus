@@ -1,0 +1,21 @@
+.main-body {
+  background-color : gray;
+}
+.top {
+  background-color : blue;
+}
+.nav {
+  background-color : green;
+}
+.title, .ask, .profile{
+  background-color : azure;
+}
+.rank, .about, .click{
+  background-color : yellow;
+}
+.user {
+  background-color : skyblue;
+}
+.mid {
+  background-color : red;
+}

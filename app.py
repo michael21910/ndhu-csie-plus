@@ -20,7 +20,7 @@ connection = db.connect(
 @app.route('/')
 def index():
     question_list = db.get_index_contents(connection)
-    print(question_list)
+    #print(question_list)
     username = "Wilson"
     return render_template("index.html", question_list = question_list, username = username)
 

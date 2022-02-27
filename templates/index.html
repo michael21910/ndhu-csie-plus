@@ -20,7 +20,6 @@
 {% block content %}
   <div class = "content_">
     <div class = "questions">
-      </div>
       {% for question_data in question_list %}
         {% set outer_loop = loop %}
         <div id = question-{{loop.index}}>
