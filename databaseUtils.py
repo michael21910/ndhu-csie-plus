@@ -1,6 +1,10 @@
 import pymysql.cursors
 import copy
 
+
+def format_string(target_string):
+    return target_string.replace("'", "\\'")
+
 class databaseUtils:
     def __init__(self, host, username, password, database):
         self.host = host
@@ -37,7 +41,7 @@ class databaseUtils:
         try:
             with connection.cursor() as cursor:
                 sql = "INSERT INTO questions (asker, question, content, replies, likes) VALUE ('{}', '{}', '{}', 0, 0);".format(
-                    question_dict["asker"], question_dict["question"], question_dict["content"]
+                    format_string(question_dict["asker"]), format_string(question_dict["question"]), format_string(question_dict["content"])
                 )
                 cursor.execute(sql)
                 
@@ -95,7 +99,7 @@ class databaseUtils:
         try:
             with connection.cursor() as cursor:
                 sql = "INSERT INTO question_{} (replier, content) VALUE ('{}', '{}');".format(
-                    reply_dict["question_id"], reply_dict["replier"], reply_dict["reply_content"]    
+                    reply_dict["question_id"], format_string(reply_dict["replier"]), format_string(reply_dict["reply_content"])
                 )
                 cursor.execute(sql)
                 
@@ -116,18 +120,18 @@ class databaseUtils:
             with connection.cursor() as cursor:
                 
                 sql = "SELECT * FROM question_{}_upvoter WHERE (upvoter = '{}');".format(
-                    question_id, username    
+                    question_id, format_string(username)
                 )
                 cursor.execute(sql)
                 
                 if (len(cursor.fetchall()) == 0):
                     sql = "UPDATE questions SET likes = likes + 1 WHERE (id = {});".format(question_id)
                     cursor.execute(sql)
-                    sql = "INSERT INTO question_{}_upvoter (upvoter) VALUE ('{}');".format(question_id, username)
+                    sql = "INSERT INTO question_{}_upvoter (upvoter) VALUE ('{}');".format(question_id, format_string(username))
                 else:
                     sql = "UPDATE questions SET likes = likes - 1 WHERE (id = {});".format(question_id)
                     cursor.execute(sql)
-                    sql = "DELETE FROM question_{}_upvoter WHERE (upvoter = '{}');".format(question_id, username)
+                    sql = "DELETE FROM question_{}_upvoter WHERE (upvoter = '{}');".format(question_id, format_string(username))
                 cursor.execute(sql)
                 
                 connection.ping()
@@ -159,4 +163,3 @@ class databaseUtils:
             del modified_reply_list[idx]["id"]
             modified_reply_list[idx]["time"] = reply["time"].strftime("%Y/%m/%d")
         return modified_reply_list 
-    
