@@ -102,23 +102,24 @@
     var reply_content = document.getElementById("reply-content").value;
     var reply_dict = { "reply_content" : reply_content, "question_id" : question_id };
     console.log(reply_dict);
-    console.log("finished");
-
-    $.ajax({
-      url : "/post_reply",
-      type : "POST",
-      contentType : "application/json",
-      dataType : "json",
-      data : JSON.stringify(reply_dict),
-      success : (data) => {
-        alert(data["error_code"]);
-        window.location.href = "/question?qid=" + question_id;
-      },
-      error : () => {
-        alert("fail");
-        console.log("fail");
-      }
-    })
+    if (reply_content != "") {
+      console.log("finished");
+      $.ajax({
+        url : "/post_reply",
+        type : "POST",
+        contentType : "application/json",
+        dataType : "json",
+        data : JSON.stringify(reply_dict),
+        success : (data) => {
+          alert(data["error_code"]);
+          window.location.href = "/question?qid=" + question_id;
+        },
+        error : () => {
+          alert("fail");
+          console.log("fail");
+        }
+      })
+    }
   }
   function submit_like(question_id) {
     var content = { "question_id" : question_id };

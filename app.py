@@ -17,7 +17,7 @@ connection = db.connect(
     "csieplus"
 )
 
-username = "freak"
+username = ""
 
 @app.route("/")
 def index():

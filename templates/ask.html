@@ -68,25 +68,26 @@
     var question_dict = {"question" : question_title, "content" : question_content, "anonymous" : question_anonymous};
     console.log(question_dict);
     console.log("finished");
-
-    $.ajax({
-      url : "./post_question",
-      type : "POST",
-      contentType : "application/json",
-      dataType : "json",
-      data : JSON.stringify(question_dict),
-      success : function(data) {
-        alert(data["error_code"]);
-        console.log(data);
-        if (data["error_code"] != "please login first") {
-          window.location.href = "/";
+    if ((question_title != "") && (question_content != "")) {
+      $.ajax({
+        url : "./post_question",
+        type : "POST",
+        contentType : "application/json",
+        dataType : "json",
+        data : JSON.stringify(question_dict),
+        success : function(data) {
+          alert(data["error_code"]);
+          console.log(data);
+          if (data["error_code"] != "please login first") {
+            window.location.href = "/";
+          }
+        },
+        error : function() {
+          alert("fail");
+          console.log("fail");
         }
-      },
-      error : function() {
-        alert("fail");
-        console.log("fail");
-      }
-    })
+      })
+    }
   }
 </script>
 {% endblock %}

@@ -32,8 +32,9 @@ class databaseUtils:
             with connection.cursor() as cursor:
                 sql = "SELECT * FROM questions;"
                 cursor.execute(sql)
-                
-                return databaseUtils.format_question_lists(cursor.fetchall())
+                result = cursor.fetchall()
+                result.reverse()
+                return databaseUtils.format_question_lists(result)
         except Exception as e:
             print(e)
     
