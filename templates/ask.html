@@ -62,7 +62,6 @@
 <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script>
   function submit_form() {
-    //var asker = document.getElementById("");
     var question_title = document.getElementById("question-title").value;
     var question_content = document.getElementById("question-content").value;
     var question_anonymous = document.getElementById('anonymity').checked;
@@ -71,7 +70,7 @@
     console.log("finished");
 
     $.ajax({
-      url : "./post",
+      url : "./post_question",
       type : "POST",
       contentType : "application/json",
       dataType : "json",
@@ -79,7 +78,9 @@
       success : function(data) {
         alert(data["error_code"]);
         console.log(data);
-        window.location.href = "/";
+        if (data["error_code"] != "please login first") {
+          window.location.href = "/";
+        }
       },
       error : function() {
         alert("fail");

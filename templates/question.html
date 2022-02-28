@@ -20,13 +20,13 @@
 {% block content %}
 
 
-{% set asker = question_contents["question"]["asker"] %}
-{% set question_id = question_contents["question"]["id"] %}
-{% set question_content = question_contents["question"]["content"] %}
-{% set question_title = question_contents["question"]["question"] %}
-{% set question_date = question_contents["question"]["time"] %}
-{% set question_likes = question_contents["question"]["likes"] %}
-{% set question_replies = question_contents["question"]["replies"] %}
+{% set asker             = question_contents["question"]["question_data"]["asker"]    %}
+{% set question_id       = question_contents["question"]["question_id"]               %}
+{% set question_content  = question_contents["question"]["question_data"]["content"]  %}
+{% set question_title    = question_contents["question"]["question_data"]["question"] %}
+{% set question_date     = question_contents["question"]["question_data"]["time"]     %}
+{% set question_likes    = question_contents["question"]["question_data"]["likes"]    %}
+{% set question_replies  = question_contents["question"]["question_data"]["replies"]  %}
 
 {% set reply_list = question_contents["replies"] %}
 
@@ -49,8 +49,8 @@
     </div>
     <div class = "question-likes">
       <div>
-        <div class = "heart-block">
-          IMG
+        <div class = "heart-block" onclick = "submit_like({{question_id}})">
+          ❤️
         </div>
         <div class = "like-count">
           <label>{{  question_likes  }}</label>
@@ -71,9 +71,9 @@
     </div>
     <div class = "question-replies-middle">
       {% for reply in reply_list %}
-        {% set rid = loop.index %}
-        {% set replier = reply["replier"] %}
-        {% set reply_time = reply["time"] %}
+        {% set rid           = loop.index       %}
+        {% set replier       = reply["replier"] %}
+        {% set reply_time    = reply["time"]    %}
         {% set reply_content = reply["content"] %}
         <div class = reply-{{rid}}>
           <div class = reply-{{rid}}-content>
@@ -84,25 +84,6 @@
           </div>
         </div>
       {% endfor %}
-
-      <!--
-      <div class = "reply-1">
-        <div class = "reply-1-content">
-          <p>Jerry: 跟教授討論更改test case?</p>
-        </div>
-        <div class = "reply-1-date">
-          <label>2022/02/27</label>
-        </div>
-      </div>
-      <div class = "reply-2">
-        <div class = "reply-2-content">
-          <p>Mikki: 換個演算法試試?</p>
-        </div>
-        <div class = "reply-2-date">
-          <label>2022/02/28</label>
-        </div>
-      </div>
-      -->
     </div>
     <div class = "question-replies-bottom">
       <div class = "question-replies-bottom-left">
@@ -118,9 +99,8 @@
 <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script>
   function submit_reply(question_id) {
-    //var asker = document.getElementById("");
     var reply_content = document.getElementById("reply-content").value;
-    var reply_dict = {"reply_content" : reply_content, "question_id" : question_id};
+    var reply_dict = { "reply_content" : reply_content, "question_id" : question_id };
     console.log(reply_dict);
     console.log("finished");
 
@@ -130,12 +110,29 @@
       contentType : "application/json",
       dataType : "json",
       data : JSON.stringify(reply_dict),
-      success : function(data) {
+      success : (data) => {
         alert(data["error_code"]);
-        //window.location.href = "/";
-        window.location.href = "/question/" + question_id;
+        window.location.href = "/question?qid=" + question_id;
       },
-      error : function() {
+      error : () => {
+        alert("fail");
+        console.log("fail");
+      }
+    })
+  }
+  function submit_like(question_id) {
+    var content = { "question_id" : question_id };
+    $.ajax({
+      url : "/upvote_question",
+      type : "POST",
+      contentType : "application/json",
+      dataType : "json",
+      data : JSON.stringify(content),
+      success : (data) => {
+        alert(data["error_code"]);
+        window.location.href = "/question?qid=" + question_id;
+      },
+      error : () => {
         alert("fail");
         console.log("fail");
       }
