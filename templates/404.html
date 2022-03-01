@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    404
-  </body>
-</html>
+{% extends "base.html" %}
+{% block login %}
+{% if username == "" %}
+<div class="log-in">
+    <a href="{{ url_for('login') }}">Login</a>
+</div>
+<div class="register">
+    Register
+</div>
+{% else %}
+<div class="greet">
+    Hi, {{ username }}
+</div>
+<div class="log-out">
+    Logout
+</div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+404！
+{% endblock %}

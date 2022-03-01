@@ -1,18 +1,19 @@
 {%  extends "base.html" %}
 {% block login %}
 {% if username == "" %}
-<div class="log-in">
-  Login
+<div>
+  <a href="{{ url_for('login') }}">Login</a>
 </div>
-<div class="register">
-  Register
+<div>
+  <a href="{{ url_for('register') }}">Register</a>
 </div>
-{% else %}
+{% endif %}
+{% if username != "" %}
 <div class="greet">
   Hi, {{ username }}
 </div>
 <div class="log-out">
-  Logout
+  <a href="/logout">Logout</a>
 </div>
 {% endif %}
 {% endblock %}
@@ -47,7 +48,7 @@
       <div class = "form-right">
         <div class = "form-submit">
           <div>
-            <button name = "question-submit" id = "question-submit" onclick = "submit_form()">發布</button>
+            <button type = "submit" name = "question-submit" id = "question-submit" onclick = "submit_form()">發布</button>
           </div>
           <div>
             <input type = "checkbox" name = "anonymity" id = "anonymity">
@@ -80,6 +81,9 @@
           console.log(data);
           if (data["error_code"] != "please login first") {
             window.location.href = "/";
+          }
+          else {
+            window.location.href = "/login";
           }
         },
         error : function() {

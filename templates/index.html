@@ -1,18 +1,20 @@
 {% extends "base.html" %}
+
 {% block login %}
 {% if username == "" %}
-<div class="log-in">
-  Login
+<div>
+  <a href="{{ url_for('login') }}">Login</a>
 </div>
-<div class="register">
-  Register
+<div>
+  <a href="{{ url_for('register') }}">Register</a>
 </div>
-{% else %}
+{% endif %}
+{% if username != "" %}
 <div class="greet">
   Hi, {{ username }}
 </div>
 <div class="log-out">
-  Logout
+  <a href="/logout">Logout</a>
 </div>
 {% endif %}
 {% endblock %}
