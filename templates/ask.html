@@ -2,96 +2,65 @@
 {% block login %}
 {% if username == "" %}
 <div>
-  <a href="{{ url_for('login') }}">Login</a>
+  <a href = "{{ url_for('login') }}">Login</a>
 </div>
 <div>
-  <a href="{{ url_for('register') }}">Register</a>
+  <a href = "{{ url_for('register') }}">Register</a>
 </div>
 {% endif %}
 {% if username != "" %}
-<div class="greet">
+<div class = "greet">
   Hi, {{ username }}
 </div>
-<div class="log-out">
-  <a href="/logout">Logout</a>
+<div class = "log-out">
+  <a href = "{{  url_for('log_out')  }}">Logout</a>
 </div>
 {% endif %}
 {% endblock %}
 
 {% block content %}
-<div class="content_">
-  <div class="question-form">
-    <div class = "form-upper">
-      <div class = "question-label">
-        <label>問問題</label>
-      </div>
-    </div>
-    <div class = "form-lower">
-      <div class = "form-left">
-        <div class = "form-title">
-          <div class = "form-title-label">
-            <label>標題</label>
-          </div>
-          <div class = "form-title-entry">
-            <input type = "text" name = "question-title" id = "question-title" placeholder = "問題標題" value = "Test title">
-          </div>
-        </div>
-        <div class = "form-content">
-          <div class = "form-content-label">
-            <label>內容</label>
-          </div>
-          <div class = "form-content-entry">
-            <input type = "text" name = "question-content" id = "question-content" placeholder = "問題內容" value = "Test content">
-          </div>
-        </div>
-      </div>
-      <div class = "form-right">
-        <div class = "form-submit">
-          <div>
-            <button type = "submit" name = "question-submit" id = "question-submit" onclick = "submit_form()">發布</button>
-          </div>
-          <div>
-            <input type = "checkbox" name = "anonymity" id = "anonymity">
-            <label for = "anonymity">匿名發布</label>
-          </div>
-        </div>
-      </div>
+
+<div class = "question_block">
+  <div class = "question_block_top">
+    <div class = "question_block_top_label">
+      <label>我要問問題!</label>
     </div>
   </div>
+  <form class = "question_block_bot" action = "{{  url_for('post_question')  }}" method = "post">
+    <div class = "question_block_bot_left">
+      <div class = "question_block_bot_left_top">
+        <div>
+          <div>
+            <label>標題</label>
+          </div>
+        </div>
+        <div>
+          <input type = "text" name = "question-title" placeholder = "問題標題" value = "{{  title_default_value  }}">
+        </div>
+      </div>
+      <div class = "question_block_bot_left_bot">
+        <div>
+          <div>
+            <label>內容</label>
+          </div>
+        </div>
+        <div>
+          <input type = "text" name = "question-content" placeholder = "問題內容" value = "{{  content_default_value  }}">
+        </div>
+      </div>
+    </div>
+    <div class = "question_block_bot_right">
+      <div>
+        <div>
+          <input type = "submit" name = "post-button" value = "發布">
+        </div>
+        <div>
+          <input type = "checkbox" name = "anonymous" value = "匿名發布" {{  anonymous_checked | safe  }}>
+          <label for = "anonymous">匿名發布</label>
+        </div>
+        {{  message  }}
+      </div>
+    </div>
+  </form>
 </div>
-
-<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<script>
-  function submit_form() {
-    var question_title = document.getElementById("question-title").value;
-    var question_content = document.getElementById("question-content").value;
-    var question_anonymous = document.getElementById('anonymity').checked;
-    var question_dict = {"question" : question_title, "content" : question_content, "anonymous" : question_anonymous};
-    console.log(question_dict);
-    console.log("finished");
-    if ((question_title != "") && (question_content != "")) {
-      $.ajax({
-        url : "./post_question",
-        type : "POST",
-        contentType : "application/json",
-        dataType : "json",
-        data : JSON.stringify(question_dict),
-        success : function(data) {
-          alert(data["error_code"]);
-          console.log(data);
-          if (data["error_code"] != "please login first") {
-            window.location.href = "/";
-          }
-          else {
-            window.location.href = "/login";
-          }
-        },
-        error : function() {
-          alert("fail");
-          console.log("fail");
-        }
-      })
-    }
-  }
-</script>
 {% endblock %}

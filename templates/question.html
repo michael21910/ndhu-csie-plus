@@ -2,18 +2,18 @@
 {% block login %}
 {% if username == "" %}
 <div>
-  <a href="{{ url_for('login') }}">Login</a>
+  <a href = "{{ url_for('login') }}">Login</a>
 </div>
 <div>
-  <a href="{{ url_for('register') }}">Register</a>
+  <a href = "{{ url_for('register') }}">Register</a>
 </div>
 {% endif %}
 {% if username != "" %}
-<div class="greet">
+<div class = "greet">
   Hi, {{ username }}
 </div>
-<div class="log-out">
-  <a href="/logout">Logout</a>
+<div class = "log-out">
+  <a href = "{{  url_for('log_out')  }}">Logout</a>
 </div>
 {% endif %}
 {% endblock %}
@@ -32,45 +32,37 @@
 {% set reply_list = question_contents["replies"] %}
 
 <div class="content_">
-  <div class = "question-title">
-    <div class = "question-brief">
-      <div class = "question-brief-upper">
+  <div class = "upper">
+    <div class = "upper-left">
+      <div class = "upper-left-upper">
         <label>{{  question_title  }}</label>
       </div>
-      <div class = "question-brief-lower">
-        <div class = "asker-info">
-          <div class = "asker-name">
-            <label>{{  asker  }}</label>
-          </div>
-          <div class = "asked-date">
-            <label>{{  question_date  }}</label>
-          </div>
-        </div>
+      <div class = "upper-left-lower">
+        <label>{{  asker  }} {{  question_date  }}</label>
       </div>
     </div>
-    <div class = "question-likes">
-      <div>
-        <div class = "heart-block" onclick = "submit_like({{question_id}})">
-          ❤️
-        </div>
-        <div class = "like-count">
-          <label>{{  question_likes  }}</label>
-        </div>
+    <div class = "upper-right">
+      <div class = "heart-block" onclick = "submit_like()">
+        ❤️
+      </div>
+      <div class = "like-count">
+        <label>{{  question_likes  }}</label>
       </div>
     </div>
   </div>
-  <div class = "question-content">
-    <div class = "question-content-content">
-      <p>{{  question_content  }}</p>
-    </div>
+  <div class = "middle">
+    <p>{{  question_content  }}</p>
   </div>
-  <div class = "question-replies">
-    <div class = "question-replies-upper">
-      <div>
-        <label>留言</label>
+  <form class = "lower" action = "{{  url_for('post_reply')  }}" method = "post">
+    <div class = "lower-upper">
+      <div class = "lower-upper-left">
+        <label>Comments</label>
+      </div>
+      <div class = "lower-upper-right">
+        <label>{{  question_replies  }}</label>
       </div>
     </div>
-    <div class = "question-replies-middle">
+    <div class = "lower-middle">
       {% for reply in reply_list %}
         {% set rid           = loop.index       %}
         {% set replier       = reply["replier"] %}
@@ -86,67 +78,26 @@
         </div>
       {% endfor %}
     </div>
-    <div class = "question-replies-bottom">
-      <div class = "question-replies-bottom-left">
-        <input type = "text" name = "reply-content" id = "reply-content" placeholder = "回覆">
+    <div class = "lower-lower">
+      <div class = "lower-lower-left">
+        <input type = "text" name = "reply_entry_box" placeholder = "comments..." value = "{{  reply_default_value  }}">
       </div>
-      <div class = "question-replies-bottom-right">
-        <button type = "button" name = "submit-button" onclick = "submit_reply({{question_id}})">發布</button>
+      <div class = "lower-lower-right">
+        <input type = "submit" name = "submit_button" value = "Post">
       </div>
     </div>
-  </div>
+  </form>
 </div>
 
-<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<script>
-  function submit_reply(question_id) {
-    var reply_content = document.getElementById("reply-content").value;
-    var reply_dict = { "reply_content" : reply_content, "question_id" : question_id };
-    console.log(reply_dict);
-    if (reply_content != "") {
-      console.log("finished");
-      $.ajax({
-        url : "/post_reply",
-        type : "POST",
-        contentType : "application/json",
-        dataType : "json",
-        data : JSON.stringify(reply_dict),
-        success : (data) => {
-          alert(data["error_code"]);
-          if (data["error_code"] != "please login first") {
-            window.location.href = "/question?qid=" + question_id;
-          }
-          else {
-            window.location.href = "/login";
-          }
-        },
-        error : () => {
-          alert("fail");
-          console.log("fail");
-        }
-      })
-    }
-  }
-  function submit_like(question_id) {
-    var content = { "question_id" : question_id };
+<script src = "{{  url_for('static', filename = 'jquery.js')}}"></script>
+<script defer>
+  function submit_like() {
     $.ajax({
       url : "/upvote_question",
       type : "POST",
       contentType : "application/json",
-      dataType : "json",
-      data : JSON.stringify(content),
       success : (data) => {
-        alert(data["error_code"]);
-        if (data["error_code"] != "please login first") {
-          window.location.href = "/question?qid=" + question_id;
-        }
-        else {
-          window.location.href = "/login";
-        }
-      },
-      error : () => {
-        alert("fail");
-        console.log("fail");
+        window.location.href = data["error_code"];
       }
     })
   }
