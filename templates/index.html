@@ -14,24 +14,53 @@
   Hi, {{ username }}
 </div>
 <div class="log-out">
-  <a href="./">Logout</a>
+  <a href="{{  url_for('log_out')  }}">Logout</a>
 </div>
 {% endif %}
 {% endblock %}
 
 {% block content %}
 <div class="content_">
+  <div>
+    <label>Newest</label>
+  </div>
+  <br>
   <div class="questions">
     {% for question_data in question_list %}
-    {% set outer_loop = loop %}
-    <div id=question-{{loop.index}}>
-      {% for key, val in question_data.items() %}
-      <div id=question-{{outer_loop.index}}-{{key}}>
-        {{ val }}
-      </div>
-      {% endfor %}
-    </div>
+      {% set question_id = question_data["question_id"] %}
+
+      <a id=question-{{loop.index}} href = "/question?qid={{question_id}}">
+        {% set question_title   = question_data["question_data"]["question"] %}
+        {% set question_asker   = question_data["question_data"]["asker"]    %}
+        {% set question_likes   = question_data["question_data"]["likes"]    %}
+        {% set question_replies = question_data["question_data"]["replies"]  %}
+        {% set question_time    = question_data["question_data"]["time"]     %}
+
+        <div id = question-{{loop.index}}-left>
+          <div id = question-{{loop.index}}-left-left">
+            <label>{{  question_replies  }}</label>
+          </div>
+          <div id = question-{{loop.index}}-left-right>
+            <div id = question-{{loop.index}}-left-right-left>
+              <label>{{  question_title  }}</label>
+            </div>
+            <div id = question-{{loop.index}}-left-right-right>
+              <label>{{  question_asker  }} - {{  question_time  }}</label>
+            </div>
+          </div>
+        </div>
+        <div id = question-{{loop.index}}-right>
+          <div id = question-{{loop.index}}-right-top">
+            ❤️
+          </div>
+          <div id = question-{{loop.index}}-right-bot>
+            {{  question_likes  }}
+          </div>
+        </div>
+      </a>
+      <br>
     {% endfor %}
   </div>
 </div>
+
 {% endblock %}

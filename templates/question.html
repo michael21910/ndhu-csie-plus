@@ -1,0 +1,105 @@
+{%  extends "base.html" %}
+{% block login %}
+{% if username == "" %}
+<div>
+  <a href = "{{ url_for('login') }}">Login</a>
+</div>
+<div>
+  <a href = "{{ url_for('register') }}">Register</a>
+</div>
+{% endif %}
+{% if username != "" %}
+<div class = "greet">
+  Hi, {{ username }}
+</div>
+<div class = "log-out">
+  <a href = "{{  url_for('log_out')  }}">Logout</a>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+
+{% set asker             = question_contents["question"]["question_data"]["asker"]    %}
+{% set question_id       = question_contents["question"]["question_id"]               %}
+{% set question_content  = question_contents["question"]["question_data"]["content"]  %}
+{% set question_title    = question_contents["question"]["question_data"]["question"] %}
+{% set question_date     = question_contents["question"]["question_data"]["time"]     %}
+{% set question_likes    = question_contents["question"]["question_data"]["likes"]    %}
+{% set question_replies  = question_contents["question"]["question_data"]["replies"]  %}
+
+{% set reply_list = question_contents["replies"] %}
+
+<div class="content_">
+  <div class = "upper">
+    <div class = "upper-left">
+      <div class = "upper-left-upper">
+        <label>{{  question_title  }}</label>
+      </div>
+      <div class = "upper-left-lower">
+        <label>{{  asker  }} {{  question_date  }}</label>
+      </div>
+    </div>
+    <div class = "upper-right">
+      <div class = "heart-block" onclick = "submit_like()">
+        ❤️
+      </div>
+      <div class = "like-count">
+        <label>{{  question_likes  }}</label>
+      </div>
+    </div>
+  </div>
+  <div class = "middle">
+    <p>{{  question_content  }}</p>
+  </div>
+  <form class = "lower" action = "{{  url_for('post_reply')  }}" method = "post">
+    <div class = "lower-upper">
+      <div class = "lower-upper-left">
+        <label>Comments</label>
+      </div>
+      <div class = "lower-upper-right">
+        <label>{{  question_replies  }}</label>
+      </div>
+    </div>
+    <div class = "lower-middle">
+      {% for reply in reply_list %}
+        {% set rid           = loop.index       %}
+        {% set replier       = reply["replier"] %}
+        {% set reply_time    = reply["time"]    %}
+        {% set reply_content = reply["content"] %}
+        <div class = reply-{{rid}}>
+          <div class = reply-{{rid}}-content>
+            <p>{{  replier  }}: {{  reply_content  }}</p>
+          </div>
+          <div class = reply-{{rid}}-date>
+            <label>{{  reply_time  }}</label>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class = "lower-lower">
+      <div class = "lower-lower-left">
+        <input type = "text" name = "reply_entry_box" placeholder = "comments..." value = "{{  reply_default_value  }}">
+      </div>
+      <div class = "lower-lower-right">
+        <input type = "submit" name = "submit_button" value = "Post">
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src = "{{  url_for('static', filename = 'jquery.js')}}"></script>
+<script defer>
+  function submit_like() {
+    $.ajax({
+      url : "/upvote_question",
+      type : "POST",
+      contentType : "application/json",
+      success : (data) => {
+        window.location.href = data["error_code"];
+      }
+    })
+  }
+</script>
+{% endblock %}
