@@ -165,31 +165,28 @@ def post_reply():
     
     if (reply_contents["reply_content"] == ""):
         err = 3
-        return redirect(previous_page)
     elif (username == ""):
         err = 2
-        session["reply_default_value"] = reply_contents["reply_content"]
-        return redirect(url_for("login"))
     else:
         err = db.insert_reply(connection, reply_contents)
-        return redirect(previous_page)
     
     if (err == -1):
         print("\n\nMYSQL ERROR\n\n")
-        redirect_to = url_for("")
+        redirect_to = previous_page
     elif (err == 1):
         print("\n\nSUCCESS\n\n")
-        redirect_to = url_for("")
+        redirect_to = previous_page
     elif (err == 2):
         print("\n\nUSER NOT LOGGED IN\n\n")
-        redirect_to = url_for("")
+        session["reply_default_value"] = reply_contents["reply_content"]
+        redirect_to = url_for("login")
     elif (err == 3):
         print("\n\nBLANK FIELD DETECTED\n\n")
         redirect_to = previous_page
     else:
         redirect_to = url_for("FOF")
 
-    redirect(redirect_to)
+    return redirect(redirect_to)
     
 @app.route("/upvote_question", methods = [ "POST", "GET" ])
 def upvote_question():
