@@ -162,13 +162,7 @@ def post_reply():
     }
     previous_page = SGET(session.get("previous_page"), "/")
     reply_contents["question_id"] = SGET(session.get("question_id"), 1)
-    if ((username == "") and (reply_contents["reply_content"] != "")):
-        session["reply_default_value"] = reply_contents["reply_content"]
-        redirect_to = url_for("login")
-    else:
-        redirect_to = previous_page
     
-        
     if (reply_contents["reply_content"] == ""):
         err = 3
         return redirect(previous_page)
