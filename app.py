@@ -20,6 +20,14 @@ connection = db.connect(
 app.secret_key = "super secret key"
 app.config["SESSION_TYPE"] = "filesystem"
 
+"""
+    Error Code:
+        (1) -1 => internal error (MySQL)
+        (2)  1 => success
+        (3)  2 => login warning 
+        (4)  3 => blank field warning
+"""
+
 def SGET(value, default):
     return default if (value == None) else value
 
@@ -29,13 +37,12 @@ def index():
     question_list = db.get_index_contents(connection)
     
     if request.method == "POST":
-        print(request.values)
         
         username = request.values["username"]
         password = request.values["password"]
         
         if db.login_user_check(connection, username, password) == "True":
-            print("username:", username)
+            
             session["username"] = username
             
             previous_page = SGET(session.get("previous_page"), "index")
@@ -91,38 +98,38 @@ def post_question():
         "asker"     : SGET(session.get("username"), "")
     }
     
-    print(question_dict)
-    if (question_dict["question"] == ""):
+    if (question_dict["question"] == ""): 
         err = 3
-    elif (session.get("username") == None):
+    elif (session.get("username") == None): 
         err = 2
     else:
-        print(request.values)
-        print(question_dict["question"] == "")
         if ("anonymous" in list(request.values.keys())):
             question_dict["asker"] = ""
-        err = db.insert_question(connection, question_dict)
-    print(err)
+        err, qid = db.insert_question(connection, question_dict)
+        
     if (err == 1):
-        print("success")
-        return redirect(url_for("index"))
-    elif (err == -1):
-        print("fail")
-        return redirect(url_for("FOF"))
-    elif (err == 2):
-        print("login")
-        session["previous_page"]         = url_for("ask_question")
+        print("\n\nSUCCESS\n\n")
+        redirect_to = "/question?qid={}".format(qid)
+    else:
         session["title_default_value"]   = question_dict["question"]
         session["content_default_value"] = question_dict["content"]
         session["anonymous_checked"]     = ("checked" if (question_dict["asker"] == "") else None) 
-        return redirect(url_for("login"))
-    elif (err == 3):
-        print("empty")
-        session["title_default_value"]   = question_dict["question"]
-        session["content_default_value"] = question_dict["content"]
-        session["anonymous_checked"]     = ("checked" if (question_dict["asker"] == "") else None) 
-        session["default_message"]       = "Question title must not be blank!"
-        return redirect(url_for("ask_question"))
+        if (err == -1):
+            print("\n\nMYSQL ERROR\n\n")
+            session["default_message"] = "Your request cannot be processed right now, please try again later!"
+            redirect_to = url_for("ask_question")
+        elif (err == 2):
+            print("\n\nUSER NOT LOGGED IN\n\n")
+            session["previous_page"] = url_for("ask_question")
+            redirect_to = url_for("login")
+        elif (err == 3):
+            print("\n\nEMPTY FIELD DETECTED\n\n")
+            session["default_message"] = "Question title must not be blank!"
+            redirect_to = url_for("ask_question")
+        else:
+            redirect_to = url_for("FOF")
+        
+    return redirect(redirect_to)
 
 @app.route("/question", methods = ["GET"])
 def redirect_question():
@@ -134,6 +141,7 @@ def redirect_question():
     session["reply_default_value"] = None
     
     session["previous_page"] = "/question?qid={}".format(question_id)
+    session["question_id"]   = question_id
     
     if (question_contents == None):
         return redirect(url_for("FOF"))
@@ -148,41 +156,71 @@ def redirect_question():
 def post_reply():
     
     username = SGET(session.get("username"), "")
-    
     reply_contents = {
         "reply_content" : request.values["reply_entry_box"],
         "replier"       : username
     }
-    
     previous_page = SGET(session.get("previous_page"), "/")
+    reply_contents["question_id"] = SGET(session.get("question_id"), 1)
+    if ((username == "") and (reply_contents["reply_content"] != "")):
+        session["reply_default_value"] = reply_contents["reply_content"]
+        redirect_to = url_for("login")
+    else:
+        redirect_to = previous_page
     
-    reply_contents["question_id"] = int(previous_page[14:])
-    
-    #session["previous_page"] = None
-    print(previous_page)
+        
     if (reply_contents["reply_content"] == ""):
+        err = 3
         return redirect(previous_page)
     elif (username == ""):
+        err = 2
         session["reply_default_value"] = reply_contents["reply_content"]
         return redirect(url_for("login"))
     else:
         err = db.insert_reply(connection, reply_contents)
-        print(err)
         return redirect(previous_page)
-
-@app.route("/upvote_question", methods = ["POST"])
-def upvote_question():
     
+    if (err == -1):
+        print("\n\nMYSQL ERROR\n\n")
+        redirect_to = url_for("")
+    elif (err == 1):
+        print("\n\nSUCCESS\n\n")
+        redirect_to = url_for("")
+    elif (err == 2):
+        print("\n\nUSER NOT LOGGED IN\n\n")
+        redirect_to = url_for("")
+    elif (err == 3):
+        print("\n\nBLANK FIELD DETECTED\n\n")
+        redirect_to = previous_page
+    else:
+        redirect_to = url_for("FOF")
+
+    redirect(redirect_to)
+    
+@app.route("/upvote_question", methods = [ "POST", "GET" ])
+def upvote_question():
     username = SGET(session.get("username"), "")
     previous_page = SGET(session.get("previous_page"), "/")
-    
     if (username == ""):
         err = 2
     else:
-        question_id = int(previous_page[14:])
+        question_id = SGET(session.get("question_id"), 1)
         err = db.upvote_question(connection, question_id, username)
-        print(err)
-    return jsonify({ "error_code" : previous_page } if (err == 1) else { "error_code" : url_for("FOF") } if (err == -1) else { "error_code" : "login" })
+    
+    if (err == -1):
+        print("\n\nMYSQL ERROR\n\n")
+        redirect_to = previous_page
+    elif (err == 1):
+        print("\n\nSUCCESS\n\n")
+        redirect_to = previous_page
+    elif (err == 2):
+        print("\n\nUSER NOT LOGGED IN\n\n")
+        redirect_to = url_for("login")
+    else:
+        redirect_to = url_for("FOF")
+    
+    return redirect(redirect_to)
+    
 
 @app.route("/login")
 def login():

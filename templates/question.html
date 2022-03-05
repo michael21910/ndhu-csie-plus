@@ -42,9 +42,9 @@
       </div>
     </div>
     <div class = "upper-right">
-      <div class = "heart-block" onclick = "submit_like()">
+      <a class = "heart-block" href = "{{  url_for('upvote_question')  }}">
         ❤️
-      </div>
+      </a>
       <div class = "like-count">
         <label>{{  question_likes  }}</label>
       </div>
@@ -88,18 +88,4 @@
     </div>
   </form>
 </div>
-
-<script src = "{{  url_for('static', filename = 'jquery.js')}}"></script>
-<script defer>
-  function submit_like() {
-    $.ajax({
-      url : "/upvote_question",
-      type : "POST",
-      contentType : "application/json",
-      success : (data) => {
-        window.location.href = data["error_code"];
-      }
-    })
-  }
-</script>
 {% endblock %}
