@@ -52,17 +52,17 @@ class databaseUtils:
 
                 sql = "SELECT LAST_INSERT_ID();"
                 cursor.execute(sql)
-                qid = cursor.fetchall()
+                qid = cursor.fetchall()[0]["LAST_INSERT_ID()"]
 
-                if (self.construct_question_table(connection, qid[0]["LAST_INSERT_ID()"]) == -1):
-                    return -1
+                if (self.construct_question_table(connection, qid) == -1):
+                    return -1, None
 
                 connection.ping()
                 connection.commit()
-                return 1
+                return 1, qid
         except Exception as e:
             print(e)
-            return -1
+            return -1, None
 
     def construct_question_table(self, connection, question_id):
         try:

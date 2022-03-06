@@ -23,7 +23,7 @@
 <div class = "question_block">
   <div class = "question_block_top">
     <div class = "question_block_top_label">
-      <label>我要問問題!</label>
+      <label>Ask Question!</label>
     </div>
   </div>
   <form class = "question_block_bot" action = "{{  url_for('post_question')  }}" method = "post">
@@ -31,32 +31,32 @@
       <div class = "question_block_bot_left_top">
         <div>
           <div>
-            <label>標題</label>
+            <label>Title</label>
           </div>
         </div>
         <div>
-          <input type = "text" name = "question-title" placeholder = "問題標題" value = "{{  title_default_value  }}">
+          <input type = "text" name = "question-title" placeholder = "Title of question..." value = "{{  title_default_value  }}">
         </div>
       </div>
       <div class = "question_block_bot_left_bot">
         <div>
           <div>
-            <label>內容</label>
+            <label>Content</label>
           </div>
         </div>
         <div>
-          <input type = "text" name = "question-content" placeholder = "問題內容" value = "{{  content_default_value  }}">
+          <input type = "text" name = "question-content" placeholder = "Content of question..." value = "{{  content_default_value  }}">
         </div>
       </div>
     </div>
     <div class = "question_block_bot_right">
       <div>
         <div>
-          <input type = "submit" name = "post-button" value = "發布">
+          <input type = "submit" name = "post-button" value = "Post">
         </div>
         <div>
-          <input type = "checkbox" name = "anonymous" value = "匿名發布" {{  anonymous_checked | safe  }}>
-          <label for = "anonymous">匿名發布</label>
+          <input type = "checkbox" name = "anonymous" value = "Anonymous" {{  anonymous_checked | safe  }}>
+          <label for = "anonymous">Anonymous</label>
         </div>
         {{  message  }}
       </div>
