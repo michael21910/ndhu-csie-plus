@@ -34,7 +34,14 @@ def SGET(value, default):
 @app.route("/", methods = ["GET", "POST"])
 def index():
     
-    question_list = db.get_index_contents(connection)
+    question_list = SGET(session.get("search_result"), db.get_index_contents(connection))
+    session["search_result"] = None
+    
+    search_bar_default_value = SGET(session.get("search_bar_default_value"), "")
+    session["search_bar_default_value"] = None
+    
+    search_count_message = SGET(session.get("search_count_message"), "")
+    session["search_count_message"] = None
     
     if request.method == "POST":
         
@@ -61,7 +68,9 @@ def index():
     else:
         return render_template("index.html", 
             question_list = SGET(question_list, []), 
-            username = SGET(session.get("username"), "")
+            username = SGET(session.get("username"), ""),
+            search_bar_default_value = search_bar_default_value,
+            search_count_message = search_count_message
         )
     
 @app.route("/logout")
@@ -88,6 +97,18 @@ def ask_question():
         anonymous_checked     = anonymous_checked,
         message               = default_message
     )
+
+@app.route("/search", methods = [ "GET", "POST" ])
+def search_question():
+    search_string = request.values["search_bar"]
+    question_list = databaseUtils.filter_contents(db.get_index_contents(connection), search_string)
+    if (question_list == -1):
+        session["search_result"] = session["search_count_message"] = None
+    else:
+        session["search_result"] = question_list
+        session["search_count_message"] = "Found {} results".format(len(question_list))
+    session["search_bar_default_value"] = search_string
+    return redirect(url_for("index"))
 
 @app.route("/post_question", methods = [ "GET", "POST" ])
 def post_question():
@@ -121,6 +142,7 @@ def post_question():
         elif (err == 2):
             print("\n\nUSER NOT LOGGED IN\n\n")
             session["previous_page"] = url_for("ask_question")
+            session["login_default_message"] = "You must login before posting!"
             redirect_to = url_for("login")
         elif (err == 3):
             print("\n\nEMPTY FIELD DETECTED\n\n")
@@ -215,7 +237,9 @@ def upvote_question():
 
 @app.route("/login")
 def login():
-    return render_template("login.html", message = "")
+    login_default_message = SGET(session.get("login_default_message"), "")
+    session["login_default_message"] = None
+    return render_template("login.html", message = login_default_message)
 
 @app.route("/register", methods = ["GET", "POST"])
 def register():

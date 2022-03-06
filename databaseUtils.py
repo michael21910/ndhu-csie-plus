@@ -31,6 +31,20 @@ class databaseUtils:
             print(e)
             return False
 
+    def get_leaderboard(self, connection):
+        pass
+
+    def filter_contents(question_list, search_string = ""):
+        if (question_list != -1):
+            search_string = list(filter(("").__ne__, search_string.lower().replace("?", " ").split(" ")))
+            filtered_questions = []
+            for question in question_list:
+                question_string = [ str(question["question_id"]), question["question_data"]["question"].lower(), 
+                                   question["question_data"]["content"].lower(), question["question_data"]["asker"].lower() ]
+                if all([  any([  string in qs for qs in question_string  ]) for string in search_string  ]):
+                    filtered_questions.append(copy.deepcopy(question))
+            return filtered_questions
+
     def get_index_contents(self, connection):
         try:
             with connection.cursor() as cursor:
