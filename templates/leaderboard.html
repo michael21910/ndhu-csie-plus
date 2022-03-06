@@ -26,7 +26,22 @@
     </div>
   </div>
   <div class = "board_bot">
-
+    <div>
+      <div class = "board_bot_top">
+        <label>Rank Username Points</label>
+      </div>
+      <div class = "board_bot_bot">
+        {% for user_content in user_contents %}
+          {% set user_point = user_content[0] %}
+          {% set user_name  = user_content[1] %}
+          <div class = board_bot_bot_content_{{loop.index}}>
+            <label> {{  loop.index  }}</label>
+            <label> {{  user_name  }}</label>
+            <label> {{  user_point  }}</label>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}
