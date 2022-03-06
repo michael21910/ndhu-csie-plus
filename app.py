@@ -52,7 +52,7 @@ def index():
             
             session["username"] = username
             
-            previous_page = SGET(session.get("previous_page"), "index")
+            previous_page = SGET(session.get("previous_page"), "/")
             
             session["previous_page"] = None
             
@@ -210,7 +210,7 @@ def post_reply():
 
     return redirect(redirect_to)
     
-@app.route("/upvote_question", methods = [ "POST", "GET" ])
+@app.route("/upvote_question", methods = [ "GET", "POST" ])
 def upvote_question():
     username = SGET(session.get("username"), "")
     previous_page = SGET(session.get("previous_page"), "/")
@@ -266,7 +266,6 @@ def register():
 @app.route("/forgotpassword", methods = ["GET", "POST"])
 def forgotpassword():
     if request.method == "POST":
-        print("POSTTTTT")
         username = request.values["username"]
         token = request.values["token"]
         newPassword = request.values["new-password"]
@@ -286,6 +285,23 @@ def forgotpassword():
             elif db.change_password_user_check(connection, username, token) == "False":
                 return redirect(url_for("FOF"))
     return render_template("forgotpassword.html", message = "")
+
+@app.route('/profile')
+def profile():
+    username = SGET(session.get("username"), "")
+    if username == "":
+        session["login_default_message"] == "Please login to view your profile."
+        return redirect(url_for("login"))
+    else:
+        username, email, password, points, posts, answers = db.get_user_info(connection, username)
+        return render_template("profile.html",
+            username = username,
+            email = email,
+            password = len(password) * "*",
+            points = points, 
+            posts = posts,
+            answers = answers
+        )
 
 @app.route("/404")
 def FOF():
