@@ -25,6 +25,12 @@
     <label>Newest</label>
   </div>
   <br>
+  <form action = "{{  url_for('search_question')  }}">
+    <input type = "text" name = "search_bar" placeholder = "Search Here" value = "{{  search_bar_default_value  }}">
+  </form>
+  {{  search_count_message  }}
+  <br>
+  <br>
   <div class="questions">
     {% for question_data in question_list %}
       {% set question_id = question_data["question_id"] %}
