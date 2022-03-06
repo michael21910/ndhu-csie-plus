@@ -1,50 +1,50 @@
 <!DOCTYPE html>
-<html lang = "en" dir = "ltr">
+<html lang="en" dir="ltr">
 
 <head>
-  <meta charset = "UTF-8">
-  <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
-  <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NDHU CSIEplus</title>
 
-  <link rel = "stylesheet" href = "{{  url_for('static', filename = 'style.css')  }}">
+  <link rel="stylesheet" href="{{  url_for('static', filename = 'style.css')  }}">
 
 </head>
 
 <body>
-  <div class = "main-body">
-    <div class = "top">
-      <div class = "nav">
-        <div class = "title">
-          <a href = "{{  url_for('index')  }}"> CSIE plus+ </a>
+  <div class="main-body">
+    <div class="top">
+      <div class="nav">
+        <div class="title">
+          <a href="{{  url_for('index')  }}"> CSIE plus+ </a>
         </div>
-        <div class = "click">
-          <div class = "ask">
-            <a href = "{{  url_for('ask_question')  }}"> Ask </a>
+        <div class="click">
+          <div class="ask">
+            <a href="{{  url_for('ask_question')  }}"> Ask </a>
           </div>
-          <div class = "rank">
+          <div class="rank">
             Rank
           </div>
-          <div class = "profile">
-            Profile
+          <div class="profile">
+            <a href="{{  url_for('profile')  }}"> Profile </a>
           </div>
-          <div class = "about">
+          <div class="about">
             About
           </div>
         </div>
-        <div class = "user">
+        <div class="user">
           {% block login %}
           {% endblock %}
         </div>
       </div>
     </div>
-    <div class = "mid">
-      <div class = "mid-mid">
+    <div class="mid">
+      <div class="mid-mid">
         {% block content %}
         {% endblock %}
       </div>
     </div>
-    <div class = "footer">
+    <div class="footer">
       © 2022 CSIEplus development team. All rights reserved.
     </div>
   </div>

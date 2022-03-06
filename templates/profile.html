@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block login %}
+<div class="greet">
+    Hi, {{ username }}
+</div>
+<div class="log-out">
+    <a href="{{  url_for('log_out')  }}">Logout</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+        <div>
+
+        </div>
+        <div>
+            Profile
+        </div>
+    </div>
+    <div>
+
+    </div>
+    <div>
+        <div>
+            <div>
+                Personal Information
+            </div>
+            <div>
+                <div>
+                    Username: {{ username }}
+                </div>
+                <div>
+                    Email: {{ email }}
+                </div>
+                <div>
+                    Password: {{ password }}
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                Your Records
+            </div>
+            <div>
+                <div>
+                    Points: {{ points }}
+                </div>
+                <div>
+                    Posts: {{ posts }}
+                </div>
+                <div>
+                    Answers: {{ answers }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

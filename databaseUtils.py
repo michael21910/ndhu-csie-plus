@@ -59,6 +59,14 @@ class databaseUtils:
 
                 connection.ping()
                 connection.commit()
+
+                # user posts + 1, points - 10
+                sql = "UPDATE users SET posts = posts + 1, points = points - 10 WHERE (username = '{}');".format(
+                    format_string(question_dict["asker"])
+                )
+                cursor.execute(sql)
+                connection.commit()
+
                 return 1, qid
         except Exception as e:
             print(e)
@@ -115,6 +123,24 @@ class databaseUtils:
 
                 connection.ping()
                 connection.commit()
+
+                # user answers + 1, points + 15 if first time reply
+                sql = "SELECT * FROM question_{} WHERE (replier = '{}');".format(
+                    reply_dict["question_id"], format_string(reply_dict["replier"])
+                )
+                cursor.execute(sql)
+                if (len(cursor.fetchall()) == 1):
+                    sql = "UPDATE users SET answers = answers + 1, points = points + 15 WHERE (username = '{}');".format(
+                        format_string(reply_dict["replier"])
+                    )
+                    cursor.execute(sql)
+                else:
+                    sql = "UPDATE users SET answers = answers + 1 WHERE (username = '{}');".format(
+                        format_string(reply_dict["replier"])
+                    )
+                    cursor.execute(sql)
+                connection.commit()
+
                 return 1
         except Exception as e:
             print(e)
@@ -254,6 +280,20 @@ This token is needed to change the password, please keep it safe.
                 cursor.execute(sql, (password, username))
                 connection.commit()
                 return "True"
+        except Exception as e:
+            print(e)
+            return "False"
+
+    def get_user_info(self, connection, username):
+        try:
+            with connection.cursor() as cursor:
+                sql = "SELECT * FROM `users` WHERE `username` = %s"
+                cursor.execute(sql, (username, ))
+                result = cursor.fetchone()
+                if result is not None:
+                    return result['username'], result['email'], result['password'], result['points'], result['posts'], result['answers']
+                else:
+                    return "DNE"
         except Exception as e:
             print(e)
             return "False"
