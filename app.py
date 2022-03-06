@@ -110,6 +110,25 @@ def search_question():
     session["search_bar_default_value"] = search_string
     return redirect(url_for("index"))
 
+@app.route("/leaderboard", methods = [ "GET", "POST" ])
+def leaderboard():
+    
+    username = SGET(session.get("username"), "")
+    
+    user_contents = db.get_leaderboard(connection)
+    
+    if (user_contents != None):
+    
+        user_contents.sort()
+        
+        user_contents.reverse()
+        
+    else:
+        
+        user_contents = ""
+    
+    return render_template("leaderboard.html", username = username, user_contents = user_contents)
+
 @app.route("/post_question", methods = [ "GET", "POST" ])
 def post_question():
     

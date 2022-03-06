@@ -32,7 +32,21 @@ class databaseUtils:
             return False
 
     def get_leaderboard(self, connection):
-        pass
+        
+        try:
+            with connection.cursor() as cursor:
+                sql = "SELECT (username) FROM `users`"
+                cursor.execute(sql)
+                result = cursor.fetchall()
+                if (result == None):
+                    return None
+                result = [ _result["username"] for _result in result  ]
+                result = [ self.get_user_info(connection, username) for username in result  ]
+                result = [  (_result[3], _result[0]) for _result in result  ]
+                return result
+        except Exception as e:
+            print(e)
+            return None
 
     def filter_contents(question_list, search_string = ""):
         if (question_list != -1):
@@ -241,7 +255,7 @@ class databaseUtils:
         try:
             with connection.cursor() as cursor:
                 token = ''.join(random.sample(string.ascii_letters + string.digits, 10))
-                sql = "INSERT INTO `users` (`username`, `email`, `password`, `token`) VALUES (%s, %s, %s, %s)"
+                sql = "INSERT INTO `users` (`username`, `email`, `password`, `token`, `points`) VALUES (%s, %s, %s, %s, 100)"
                 cursor.execute(sql, (username, email, password, token))
                 connection.commit()
                 databaseUtils.send_email(email, token)
