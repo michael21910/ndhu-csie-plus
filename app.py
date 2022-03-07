@@ -394,5 +394,15 @@ def profile():
 def FOF():
     return render_template("404.html")
 
+@app.route("/rules")
+def rules():
+    username = SGET(session.get("username"), "")
+    return render_template("rules.html", username = username)
+
+@app.route("/about")
+def about():
+    username = SGET(session.get("username"), "")
+    return render_template("about.html", username = username)
+
 if __name__ == "__main__":
     app.run(debug = False, port = 1234)

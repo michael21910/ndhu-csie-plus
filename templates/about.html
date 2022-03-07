@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block login %}
+{% if username == "" %}
+<div>
+    <a href="{{ url_for('login') }}">Login</a>
+</div>
+<div>
+    <a href="{{ url_for('register') }}">Register</a>
+</div>
+{% endif %}
+{% if username != "" %}
+<div class="greet">
+    Hi, {{ username }}
+</div>
+<div class="log-out">
+    <a href="{{  url_for('log_out')  }}">Logout</a>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+        <div>
+            About us
+        </div>
+        <div>
+            NDHU CSIEplus is a question-and-answer website created in 2022. As developers, we do our best to create a
+            platform where NDHU students can ask questions and answer questions about Computer Science. We hope you all
+            have a good user experience and find answers to the questions you want to ask.
+        </div>
+    </div>
+    <div>
+        <div>
+            Develop team
+        </div>
+        <div>
+            <div>
+                Team Leader
+            </div>
+            <a href="https://github.com/michael21910">
+                <img src="" alt="">
+            </a>
+            <div>
+                Tsu En Hsueh
+            </div>
+            <div>
+                My motto.
+            </div>
+        </div>
+        <div>
+            <div>
+                Team Member
+            </div>
+            <a href="https://github.com/keywind127">
+                <img src="" alt="">
+            </a>
+            <div>
+                徐向廷
+            </div>
+            <div>
+                My motto.
+            </div>
+        </div>
+        <div>
+            <div>
+                Team Member
+            </div>
+            <a href="https://github.com/wilsonchang17">
+                <img src="" alt="">
+            </a>
+            <div>
+                張宸瑋
+            </div>
+            <div>
+                My motto.
+            </div>
+        </div>
+        <div>
+            <div>
+                Team Member
+            </div>
+            <a href="https://github.com/jerry0424">
+                <img src="" alt="">
+            </a>
+            <div>
+                葉耀中
+            </div>
+            <div>
+                My motto.
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
