@@ -52,11 +52,28 @@ class databaseUtils:
         if (question_list != -1):
             search_string = list(filter(("").__ne__, search_string.lower().replace("?", " ").split(" ")))
             filtered_questions = []
+            # get the keyword with "#"
+            tags_list = ["general", "freshman", "sophomore", "junior", "multimedia", "network"]
+            tag_target_index = 0
+            for i in range(len(search_string)):
+                if "#" in search_string[i]:
+                    if search_string[i][1:].lower() in tags_list:
+                        tag_target_index = tags_list.index((search_string[i].replace("#", ""))) + 1
+                        del search_string[i]
+                        break
+                        
             for question in question_list:
                 question_string = [ str(question["question_id"]), question["question_data"]["question"].lower(), 
                                    question["question_data"]["content"].lower(), question["question_data"]["asker"].lower() ]
+
+                # if the tag_target_index is different from the tag of the question, skip
+                if (tag_target_index != 0) and (tag_target_index != question["question_data"]["tag"]):
+                    continue
+                
+                # if (tag_target_index == question["question_data"]["tag"]):
                 if all([  any([  string in qs for qs in question_string  ]) for string in search_string  ]):
                     filtered_questions.append(copy.deepcopy(question))
+            
             return filtered_questions
 
     def get_index_contents(self, connection):
@@ -70,17 +87,21 @@ class databaseUtils:
         except Exception as e:
             print(e)
 
-    def insert_question(self, connection, question_dict):
+    def insert_question(self, connection, question_dict, targetTag):
         try:
+            tags_list = ["General", "Freshman", "Sophomore", "Junior", "Multimedia", "Network"]
             with connection.cursor() as cursor:
-                sql = "INSERT INTO questions (asker, question, content, replies, likes) VALUE ('{}', '{}', '{}', 0, 0);".format(
-                    format_string(question_dict["asker"]), format_string(question_dict["question"]), format_string(question_dict["content"])
+                sql = "INSERT INTO questions (asker, question, content, replies, likes, tag) VALUE ('{}', '{}', '{}', 0, 0, {});".format(
+                    format_string(question_dict["asker"]), format_string(question_dict["question"]), format_string(question_dict["content"]), tags_list.index(targetTag) + 1
                 )
                 cursor.execute(sql)
 
                 sql = "SELECT LAST_INSERT_ID();"
                 cursor.execute(sql)
                 qid = cursor.fetchall()[0]["LAST_INSERT_ID()"]
+
+                sql = "INSERT INTO %s (qid) VALUE (%s);" % (targetTag, qid)
+                cursor.execute(sql)
 
                 if (self.construct_question_table(connection, qid) == -1):
                     return -1, None

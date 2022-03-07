@@ -42,17 +42,41 @@
                     <input type="text" name="question-content" placeholder="Content of question..." value="{{  content_default_value  }}">
                 </div>
             </div>
-        </div>
-        <div class="question_block_bot_right">
-            <div>
+            <div class="tags">
                 <div>
-                    <input type="submit" name="post-button" value="Post">
+                    Please choose your tags
                 </div>
                 <div>
-                    <input type="checkbox" name="anonymous" value="Anonymous" {{ anonymous_checked | safe }}>
-                    <label for="anonymous">Anonymous</label>
+                    <input type="checkbox" name="General" value="General">
+                    <span>General</span>
+                    <input type="checkbox" name="Freshman" value="Freshman">
+                    <span>Freshman</span>
+                    <input type="checkbox" name="Sophomore" value="Sophomore">
+                    <span>Sophomore</span>
+                    <input type="checkbox" name="Junior" value="Junior">
+                    <span>Junior</span>
+                    <input type="checkbox" name="Multimedia" value="Multimedia">
+                    <span>Multimedia</span>
+                    <input type="checkbox" name="Network" value="Network">
+                    <span>Network</span>
                 </div>
-                {{ message }}
+                {% if tagMessage != "" %}
+                <div>
+                    {{ tagMessage }}
+                </div>
+                {% endif %}
+            </div>
+            <div class="question_block_bot_right">
+                <div>
+                    <div>
+                        <input type="submit" name="post-button" value="Post">
+                    </div>
+                    <div>
+                        <input type="checkbox" name="anonymous" value="Anonymous" {{ anonymous_checked | safe }}>
+                        <label for="anonymous">Anonymous</label>
+                    </div>
+                    {{ message }}
+                </div>
             </div>
         </div>
     </form>

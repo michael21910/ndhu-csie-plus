@@ -22,6 +22,9 @@ connection = db.connect(
 app.secret_key = "super secret key"
 app.config["SESSION_TYPE"] = "filesystem"
 
+# global variable
+tags_list = ["General", "Freshman", "Sophomore", "Junior", "Multimedia", "Network"]
+
 """
     Error Code:
         (1) -1 => internal error (MySQL)
@@ -93,23 +96,26 @@ def log_out():
 @app.route("/ask_question")
 def ask_question():
     # fetch all the informations from the ask question page
-    title_default_value   = SGET(session.get("title_default_value"),   "")
-    content_default_value = SGET(session.get("content_default_value"), "")
-    anonymous_checked     = SGET(session.get("anonymous_checked"),     "")
-    default_message       = SGET(session.get("default_message"),       "")
+    title_default_value          = SGET(session.get("title_default_value"),          "")
+    content_default_value        = SGET(session.get("content_default_value"),        "")
+    anonymous_checked            = SGET(session.get("anonymous_checked"),            "")
+    default_message              = SGET(session.get("default_message"),              "")
+    ask_question_default_message = SGET(session.get("ask_question_default_message"), "")
     
     # set all the session variables to None
-    session["title_default_value"]   = None
-    session["content_default_value"] = None
-    session["anonymous_checked"]     = None
-    session["default_message"]       = None
+    session["title_default_value"]          = None
+    session["content_default_value"]        = None
+    session["anonymous_checked"]            = None
+    session["default_message"]              = None
+    session["ask_question_default_message"] = None
     
     return render_template("ask.html", 
         username = SGET(session.get("username"), ""),
         title_default_value   = title_default_value, 
         content_default_value = content_default_value,
         anonymous_checked     = anonymous_checked,
-        message               = default_message
+        message               = default_message,
+        tagMessage            = ask_question_default_message
     )
 
 @app.route("/search", methods = [ "GET", "POST" ])
@@ -119,6 +125,7 @@ def search_question():
 
     # fetch question list in the search result
     question_list = databaseUtils.filter_contents(db.get_index_contents(connection), search_string)
+
     if (question_list == -1):
         session["search_result"] = session["search_count_message"] = None
     else:
@@ -160,9 +167,20 @@ def post_question():
         err = 2
     # if the question title is not empty and the user has logged in, set err to 1 or -1 according to the MySql connection result
     else:
-        if ("anonymous" in list(request.values.keys())):
+        request_list = list(request.values.keys())
+        tags_count = 0
+        targetTag = ""
+        for tag in tags_list:
+            if (tag in request_list):
+                targetTag = tag
+                tags_count += 1
+        # the user checked over 1 tags or no tags
+        if (tags_count != 1):
+            session["ask_question_default_message"] = "You can only choose 1 tag."
+            return redirect(url_for("ask_question"))
+        if ("anonymous" in request_list):
             question_dict["asker"] = ""
-        err, qid = db.insert_question(connection, question_dict)
+        err, qid = db.insert_question(connection, question_dict, targetTag)
     
     # if err is 1, redirect to the question page that the user just posted
     if (err == 1):
@@ -216,7 +234,8 @@ def redirect_question():
         return render_template("question.html", 
             username = username, 
             question_contents = question_contents,
-            reply_default_value = reply_default_value
+            reply_default_value = reply_default_value,
+            tag = tags_list[ question_contents["question"]["question_data"]["tag"] - 1 ]
         )
 
 @app.route("/post_reply", methods = [ "GET", "POST" ])
@@ -405,4 +424,4 @@ def about():
     return render_template("about.html", username = username)
 
 if __name__ == "__main__":
-    app.run(debug = False, port = 1234)
+    app.run(debug = True, port = 1234)
