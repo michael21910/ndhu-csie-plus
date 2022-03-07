@@ -2,10 +2,10 @@
 
 {% block login %}
 <div>
-    <a href = "{{ url_for('login') }}">Login</a>
+    <a href="{{ url_for('login') }}">Login</a>
 </div>
 <div>
-    <a href = "{{ url_for('register') }}">Register</a>
+    <a href="{{ url_for('register') }}">Register</a>
 </div>
 {% endblock %}
 
@@ -15,19 +15,19 @@
         Login
     </div>
     <div>
-        <form action = "{{ url_for('index') }}" method = "post">
+        <form action="{{ url_for('index') }}" method="post">
             <div>
                 <div>
-                    <input type = "text" name = "username" max = "20" placeholder = "Username">
+                    <input type="text" name="username" max="20" placeholder="Username">
                 </div>
             </div>
             <div>
                 <div>
-                    <input type = "password" name = "password" max = "16" placeholder = "Password">
+                    <input type="password" name="password" max="16" placeholder="Password">
                 </div>
             </div>
             <div>
-                <a href = "{{ url_for('forgotpassword') }}">Forgot Password?</a>
+                <a href="{{ url_for('forgotpassword') }}">Forgot Password?</a>
             </div>
             {% if message != "" %}
             <div>
@@ -36,11 +36,11 @@
             {% endif %}
             <div>
                 <div>
-                    <input type = "submit" name = "send" value = "Login">
+                    <input type="submit" name="send" value="Login">
                 </div>
             </div>
             <div>
-                Don't have an account? <a href = "{{ url_for('register') }}">Register</a>
+                Don't have an account? <a href="{{ url_for('register') }}">Register</a>
             </div>
         </form>
     </div>
