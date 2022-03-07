@@ -1,47 +1,39 @@
-{% extends "base.html" %}
-{% block login %}
-{% if username == "" %}
+{% extends "base.html" %} {% block login %} {% if username == "" %}
 <div>
-  <a href="{{ url_for('login') }}">Login</a>
+    <a href="{{ url_for('login') }}">Login</a>
 </div>
 <div>
-  <a href="{{ url_for('register') }}">Register</a>
+    <a href="{{ url_for('register') }}">Register</a>
 </div>
-{% endif %}
-{% if username != "" %}
+{% endif %} {% if username != "" %}
 <div class="greet">
-  Hi, {{ username }}
+    Hi, {{ username }}
 </div>
 <div class="log-out">
-  <a href="{{  url_for('log_out')  }}">Logout</a>
+    <a href="{{  url_for('log_out')  }}">Logout</a>
 </div>
-{% endif %}
-{% endblock %}
-
-{% block content %}
+{% endif %} {% endblock %} {% block content %}
 <div class="board">
-  <div class="board_top">
-    <div>
-      <label>Leaderboard</label>
-    </div>
-  </div>
-  <div class="board_bot">
-    <div>
-      <div class="board_bot_top">
-        <label>Rank Username Points</label>
-      </div>
-      <div class="board_bot_bot">
-        {% for user_content in user_contents %}
-        {% set user_point = user_content[0] %}
-        {% set user_name = user_content[1] %}
-        <div class=board_bot_bot_content_{{loop.index}}>
-          <label> {{ loop.index }}</label>
-          <label> {{ user_name }}</label>
-          <label> {{ user_point }}</label>
+    <div class="board_top">
+        <div>
+            <label>Leaderboard</label>
         </div>
-        {% endfor %}
-      </div>
     </div>
-  </div>
+    <div class="board_bot">
+        <div>
+            <div class="board_bot_top">
+                <label>Rank Username Points</label>
+            </div>
+            <div class="board_bot_bot">
+                {% for user_content in user_contents %} {% set user_point = user_content[0] %} {% set user_name = user_content[1] %}
+                <div class=board_bot_bot_content_{{loop.index}}>
+                    <label> {{ loop.index }}</label>
+                    <label> {{ user_name }}</label>
+                    <label> {{ user_point }}</label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

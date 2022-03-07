@@ -1,6 +1,4 @@
-{% extends "base.html" %}
-{% block login %}
-{% if username == "" %}
+{% extends "base.html" %} {% block login %} {% if username == "" %}
 <div class="log-in">
     <a href="{{ url_for('login') }}">Login</a>
 </div>
@@ -14,9 +12,4 @@
 <div class="log-out">
     Logout
 </div>
-{% endif %}
-{% endblock %}
-
-{% block content %}
-404！
-{% endblock %}
+{% endif %} {% endblock %} {% block content %} 404！ {% endblock %}

@@ -1,68 +1,60 @@
-{% extends "base.html" %}
-{% block login %}
-{% if username == "" %}
+{% extends "base.html" %} {% block login %} {% if username == "" %}
 <div>
-  <a href="{{ url_for('login') }}">Login</a>
+    <a href="{{ url_for('login') }}">Login</a>
 </div>
 <div>
-  <a href="{{ url_for('register') }}">Register</a>
+    <a href="{{ url_for('register') }}">Register</a>
 </div>
-{% endif %}
-{% if username != "" %}
+{% endif %} {% if username != "" %}
 <div class="greet">
-  Hi, {{ username }}
+    Hi, {{ username }}
 </div>
 <div class="log-out">
-  <a href="{{  url_for('log_out')  }}">Logout</a>
+    <a href="{{  url_for('log_out')  }}">Logout</a>
 </div>
-{% endif %}
-{% endblock %}
-
-{% block content %}
+{% endif %} {% endblock %} {% block content %}
 
 <div class="question_block">
-  <div class="question_block_top">
-    <div class="question_block_top_label">
-      <label>Ask a Question</label>
+    <div class="question_block_top">
+        <div class="question_block_top_label">
+            <label>Ask a Question</label>
+        </div>
     </div>
-  </div>
-  <form class="question_block_bot" action="{{  url_for('post_question')  }}" method="post">
-    <div class="question_block_bot_left">
-      <div class="question_block_bot_left_top">
-        <div>
-          <div>
-            <label>Title</label>
-          </div>
+    <form class="question_block_bot" action="{{  url_for('post_question')  }}" method="post">
+        <div class="question_block_bot_left">
+            <div class="question_block_bot_left_top">
+                <div>
+                    <div>
+                        <label>Title</label>
+                    </div>
+                </div>
+                <div>
+                    <input type="text" name="question-title" placeholder="Title of question..." value="{{  title_default_value  }}">
+                </div>
+            </div>
+            <div class="question_block_bot_left_bot">
+                <div>
+                    <div>
+                        <label>Content</label>
+                    </div>
+                </div>
+                <div>
+                    <input type="text" name="question-content" placeholder="Content of question..." value="{{  content_default_value  }}">
+                </div>
+            </div>
         </div>
-        <div>
-          <input type="text" name="question-title" placeholder="Title of question..."
-            value="{{  title_default_value  }}">
+        <div class="question_block_bot_right">
+            <div>
+                <div>
+                    <input type="submit" name="post-button" value="Post">
+                </div>
+                <div>
+                    <input type="checkbox" name="anonymous" value="Anonymous" {{ anonymous_checked | safe }}>
+                    <label for="anonymous">Anonymous</label>
+                </div>
+                {{ message }}
+            </div>
         </div>
-      </div>
-      <div class="question_block_bot_left_bot">
-        <div>
-          <div>
-            <label>Content</label>
-          </div>
-        </div>
-        <div>
-          <input type="text" name="question-content" placeholder="Content of question..."
-            value="{{  content_default_value  }}">
-        </div>
-      </div>
-    </div>
-    <div class="question_block_bot_right">
-      <div>
-        <div>
-          <input type="submit" name="post-button" value="Post">
-        </div>
-        <div>
-          <input type="checkbox" name="anonymous" value="Anonymous" {{ anonymous_checked | safe }}>
-          <label for="anonymous">Anonymous</label>
-        </div>
-        {{ message }}
-      </div>
-    </div>
-  </form>
+    </form>
 </div>
 {% endblock %}

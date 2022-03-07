@@ -1,40 +1,32 @@
-{% extends "base.html" %}
-
-{% block login %}
-{% if username == "" %}
+{% extends "base.html" %} {% block login %} {% if username == "" %}
 <div>
-  <a href="{{ url_for('login') }}">Login</a>
+    <a href="{{ url_for('login') }}">Login</a>
 </div>
 <div>
-  <a href="{{ url_for('register') }}">Register</a>
+    <a href="{{ url_for('register') }}">Register</a>
 </div>
-{% endif %}
-{% if username != "" %}
+{% endif %} {% if username != "" %}
 <div class="greet">
-  Hi, {{ username }}
+    Hi, {{ username }}
 </div>
 <div class="log-out">
-  <a href="{{  url_for('log_out')  }}">Logout</a>
+    <a href="{{  url_for('log_out')  }}">Logout</a>
 </div>
-{% endif %}
-{% endblock %}
-
-{% block content %}
+{% endif %} {% endblock %} {% block content %}
 <div class="content_">
-  <div>
-    <label>Newest</label>
-  </div>
-  <br>
-  <form action="{{  url_for('search_question')  }}">
-    <input type="text" name="search_bar" placeholder="Search Here" value="{{  search_bar_default_value  }}">
-  </form>
-  {{ search_count_message }}
-  <br>
-  <div class="questions">
-    {% for question_data in question_list %}
-    {% set question_id = question_data["question_id"] %}
+    <div>
+        <label>Newest</label>
+    </div>
+    <br>
+    <form action="{{  url_for('search_question')  }}">
+        <input type="text" name="search_bar" placeholder="Search Here" value="{{  search_bar_default_value  }}">
+    </form>
+    {{ search_count_message }}
+    <br>
+    <div class="questions">
+        {% for question_data in question_list %} {% set question_id = question_data["question_id"] %}
 
-    <a id=question-{{loop.index}} href="/question?qid={{question_id}}">
+        <a id=question-{{loop.index}} href="/question?qid={{question_id}}">
       {% set question_title = question_data["question_data"]["question"] %}
       {% set question_asker = question_data["question_data"]["asker"] %}
       {% set question_likes = question_data["question_data"]["likes"] %}
@@ -63,9 +55,8 @@
         </div>
       </div>
     </a>
-    <br>
-    {% endfor %}
-  </div>
+        <br> {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

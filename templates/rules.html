@@ -1,56 +1,41 @@
-{% extends "base.html" %}
-{% block login %}
-{% if username == "" %}
+{% extends "base.html" %} {% block login %} {% if username == "" %}
 <div>
     <a href="{{ url_for('login') }}">Login</a>
 </div>
 <div>
     <a href="{{ url_for('register') }}">Register</a>
 </div>
-{% endif %}
-{% if username != "" %}
+{% endif %} {% if username != "" %}
 <div class="greet">
     Hi, {{ username }}
 </div>
 <div class="log-out">
     <a href="{{  url_for('log_out')  }}">Logout</a>
 </div>
-{% endif %}
-{% endblock %}
-
-{% block content %}
+{% endif %} {% endblock %} {% block content %}
 <div>
     <div>
         <div>
             Q: What is NDHU CSIEplus?
         </div>
         <div>
-            NDHU CSIEplus is a question-and-answer website. You can watch the questions and answers from everyone on
-            this platform.
-            <br>
-            For those who like to answer questions from others, there are always endless questions on the website; for
-            those who have questions to ask, there are always enthusiastic students on NDHU CSIEplus to help them out.
-            Moreover, if there is an in-depth question, there will often be many intense and exciting discussions about
-            the question, which is a lot for the questioner.
-            <br>
-            What's even better, since NDHU CSIEplus is very close to students' university life, for some answers that
-            only students at NDHU know, you cannot find a feature like this on any other websites!
-            <br>
-            Become a member to ask and answer questions!
+            NDHU CSIEplus is a question-and-answer website. You can watch the questions and answers from everyone on this platform.
+            <br> For those who like to answer questions from others, there are always endless questions on the website; for those who have questions to ask, there are always enthusiastic students on NDHU CSIEplus to help them out. Moreover, if there is
+            an in-depth question, there will often be many intense and exciting discussions about the question, which is a lot for the questioner.
+            <br> What's even better, since NDHU CSIEplus is very close to students' university life, for some answers that only students at NDHU know, you cannot find a feature like this on any other websites!
+            <br> Become a member to ask and answer questions!
         </div>
         <div>
             Q: What is the difference between before and after logging in?
         </div>
         <div>
-            If you log in, you can ask and answer questions on NDHU CSIEplus! However, whether you log in, you can watch
-            all the questions and answers on NDHU CSIEplus!
+            If you log in, you can ask and answer questions on NDHU CSIEplus! However, whether you log in, you can watch all the questions and answers on NDHU CSIEplus!
         </div>
         <div>
             Q: What does the token do send to me by email after registration?
         </div>
         <div>
-            You will use the token if you want to change your user password. Therefore, please keep it safe and don't
-            let anyone know!
+            You will use the token if you want to change your user password. Therefore, please keep it safe and don't let anyone know!
         </div>
         <div>
             Q: What type of question is available in NDHU CSIEplus?
@@ -62,15 +47,13 @@
             Q: What do points do?
         </div>
         <div>
-            You will get 100 points after registration. If you answer a question, you will gain 15 points. If you ask a
-            question, your points will be deducted by 10. See you on the leaderboard!
+            You will get 100 points after registration. If you answer a question, you will gain 15 points. If you ask a question, your points will be deducted by 10. See you on the leaderboard!
         </div>
         <div>
             Q: Do I have to pay for this?
         </div>
         <div>
-            No, you don't have to pay for this question-and-answer website! Start your journey and be our member right
-            now!
+            No, you don't have to pay for this question-and-answer website! Start your journey and be our member right now!
         </div>
     </div>
 
