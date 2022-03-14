@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.backBlockMargin {
+    margin-top: 7.5vh;
+}
+
+input{
+    width: 46.5vmin;
+    height: 7vmin;
+    left: 89.55vmin;
+    bottom: 76.88vmin;
+    border-radius: 3.6vmin;
+    border: transparent;
+}
+    
+input::placeholder{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.16vmin;
+    line-height: 3.24vmin;
+    display: flex;
+    align-items: center;
+    color: #555555;
+}
+
+.inputText{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.16vmin;
+    line-height: 3.24vmin;
+    display: flex;
+    align-items: center;
+    background-color: #EEEEEE;
+}
+
+.sendButtom{
+    width: 26.1248vmin;
+    height: 7.9927vmin;
+    left: 102.1608vmin;
+    bottom: 48.5498vmin;
+    background: #5D8F8A;
+    border-radius: 3.6vmin;
+    border-color: transparent;
+}
+
+.sendWord{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 3.8895vmin;
+    color: #FFFFFF;
+}
+
+.hintSentence{
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-size: 1.92vmin;
+    line-height: 2.28vmin;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #555555;
+}
+
+.title{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 5.4vmin;
+    line-height: 8.16vmin;
+    color: #000000;
+}
+
+.link{
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.92vmin;
+    line-height: 2.28vmin;
+    color: #5D8F8A;
+}  

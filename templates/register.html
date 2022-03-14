@@ -1,51 +1,54 @@
-{% extends "base.html" %} {% block login %}
-<div>
-    <a href="{{ url_for('login') }}">Login</a>
-</div>
-<div>
-    <a href="{{ url_for('register') }}">Register</a>
-</div>
+{% extends "base.html" %} {% block linkCSS %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'register.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'input.css')  }}">
+{% endblock %} {% block login %}
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a></button>
 {% endblock %} {% block content %}
-<div>
-    <div>
-        Register
-    </div>
-    <div>
+<div class="container mt-3">
+   <div class="backBlockStyle mx-auto overflow-auto">
+        <div class="d-flex justify-content-center ">
+            <span class="title mt-3">Register</span>
+        </div>
+
+        
         <form action="{{ url_for('register') }}" method="post">
-            <div>
-                <div>
-                    <input type="text" name="username" max="20" placeholder="Username">
-                </div>
+            
+            <div class="d-flex justify-content-center mt-5">
+                <input type="text" name="username" max="20" placeholder="Username" class="inputText">
             </div>
-            <div>
-                <div>
-                    <input type="email" name="email" max="30" placeholder="Email">
-                </div>
+            
+            
+            <div class="d-flex justify-content-center mt-4">
+                <input type="email" name="email" max="30" placeholder="Email" class="inputText">
             </div>
-            <div>
-                <div>
-                    <input type="password" name="password" max="16" placeholder="Password">
-                </div>
+            
+            
+            <div class="d-flex justify-content-center mt-4">
+                <input type="password" name="password" max="16" placeholder="Password" class="inputText">
             </div>
-            <div>
-                <div>
-                    <input type="password" name="repeat-password" max="16" placeholder="Repeat password">
-                </div>
+            
+            
+            <div class="d-flex justify-content-center mt-4">
+                <input type="password" name="repeat-password" max="16" placeholder="Repeat password" class="inputText">
             </div>
+            
             {% if message != "" %}
-            <div>
+            <span class="d-flex justify-content-center hintsentence mt-4">
                 {{ message }}
-            </div>
+            </span>
             {% endif %}
-            <div>
-                <div>
-                    <input type="submit" name="send" value="Register">
-                </div>
+            
+            <div class="d-flex justify-content-center mt-4">
+                <input type="submit" name="send" value="Register" class="sendButtom sendWord">
             </div>
-            <div>
-                Already have an account? <a href="{{ url_for('login') }}">Login</a>
+            
+            <div class="d-flex justify-content-around mt-4">
+                <span class="hintsentence">Already have an account? <a href="{{ url_for('login') }}" class="link">Login</a></span>
             </div>
         </form>
     </div>
+    
 </div>
 {% endblock %}

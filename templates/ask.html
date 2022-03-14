@@ -1,28 +1,30 @@
-{% extends "base.html" %} {% block login %} {% if username == "" %}
-<div>
-    <a href="{{ url_for('login') }}">Login</a>
-</div>
-<div>
-    <a href="{{ url_for('register') }}">Register</a>
-</div>
+{% extends "base.html" %} {% block linkCSS %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
+{% endblock %} {% block login %} {% if username == "" %}
+<button class="btn ">
+    <a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a>
+</button>
+<button class="btn ">
+    <a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a>
+</button>
 {% endif %} {% if username != "" %}
-<div class="greet">
+<div>
     Hi, {{ username }}
 </div>
-<div class="log-out">
+<div>
     <a href="{{  url_for('log_out')  }}">Logout</a>
 </div>
 {% endif %} {% endblock %} {% block content %}
 
-<div class="question_block">
-    <div class="question_block_top">
-        <div class="question_block_top_label">
+<div>
+    <div>
+        <div>
             <label>Ask a Question</label>
         </div>
     </div>
-    <form class="question_block_bot" action="{{  url_for('post_question')  }}" method="post">
-        <div class="question_block_bot_left">
-            <div class="question_block_bot_left_top">
+    <form action="{{  url_for('post_question')  }}" method="post">
+        <div>
+            <div>
                 <div>
                     <div>
                         <label>Title</label>
@@ -32,7 +34,7 @@
                     <input type="text" name="question-title" placeholder="Title of question..." value="{{  title_default_value  }}">
                 </div>
             </div>
-            <div class="question_block_bot_left_bot">
+            <div>
                 <div>
                     <div>
                         <label>Content</label>
@@ -42,7 +44,7 @@
                     <input type="text" name="question-content" placeholder="Content of question..." value="{{  content_default_value  }}">
                 </div>
             </div>
-            <div class="tags">
+            <div>
                 <div>
                     Please choose your tags
                 </div>
@@ -66,7 +68,7 @@
                 </div>
                 {% endif %}
             </div>
-            <div class="question_block_bot_right">
+            <div>
                 <div>
                     <div>
                         <input type="submit" name="post-button" value="Post">

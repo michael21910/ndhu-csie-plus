@@ -1,88 +1,83 @@
-{% extends "base.html" %} {% block login %} {% if username == "" %}
-<div>
-    <a href="{{ url_for('login') }}">Login</a>
-</div>
-<div>
-    <a href="{{ url_for('register') }}">Register</a>
-</div>
+{% extends "base.html" %} {% block linkCSS %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'abour&rule.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
+{% endblock %} {% block login %} {% if username == "" %}
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a></button>
 {% endif %} {% if username != "" %}
-<div class="greet">
+<div>
     Hi, {{ username }}
 </div>
-<div class="log-out">
+<div>
     <a href="{{  url_for('log_out')  }}">Logout</a>
 </div>
 {% endif %} {% endblock %} {% block content %}
-<div>
-    <div>
-        <div>
+
+    <div class="container">
+
+        <div class="Qstyle justify-content-center d-flex mt-2">
             About us
         </div>
-        <div>
-            NDHU CSIEplus is a question-and-answer website created in 2022. As developers, we do our best to create a platform where NDHU students can ask questions and answer questions about Computer Science. We hope you all have a good user experience and find
+        <div class="Astyle mt-2 ">
+            NDHU CSIEplus is a question-and-answer website created in 2022.As developers, we do our best to create a platform where NDHU students can ask questions and answer questions about Computer Science. We hope you all have a good user experience and find
             answers to the questions you want to ask.
         </div>
-    </div>
-    <div>
-        <div>
+        <div class="Qstyle justify-content-center d-flex mt-3">
             Develop team
         </div>
-        <div>
-            <div>
-                Team Leader
+
+
+        <div class="row row-cols-1 row-cols-md-2 g-5 mt-4">
+
+            <div class="col">
+                <div class="card" >
+                    <h5 class="card-title d-flex justify-content-center mt-3 title">Team  Leader</h5>
+                    <img src="https://picsum.photos/100/100?random=50" class=" card-img p-4 rounded-circle mx-auto ">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center mt-3 name">薛祖恩</div>     
+                        <p class="card-text mt-3 content">My motto.</p>
+                        <a href="https://github.com/michael21910"></a>
+                    </div>
+                </div>
             </div>
-            <a href="https://github.com/michael21910">
-                <img src="" alt="">
-            </a>
-            <div>
-                Tsu En Hsueh
+
+            <div class="col">
+                <div class="card">
+                    <h5 class="card-title d-flex justify-content-center mt-3 title">Team Member</h5>
+                    <img src="https://picsum.photos/100/100?random=30" class=" card-img p-4 rounded-circle mx-auto ">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center mt-3 name">徐向廷</div>     
+                        <p class="card-text mt-3 content">My motto.</p>
+                        <a href="https://github.com/keywind127"></a>
+                    </div>
+                </div>
             </div>
-            <div>
-                My motto.
-            </div>
+
+              <div class="col">
+                <div class="card">
+                  <h5 class="card-title d-flex justify-content-center mt-3 title">Team Member</h5>
+                  <img src="https://picsum.photos/100/100?random=20" class=" card-img p-4 rounded-circle mx-auto ">
+                  <div class="card-body">
+                      <div class="d-flex justify-content-center mt-3 name">張宸瑋</div>     
+                      <p class="card-text mt-3 content">My motto.</p>
+                      <a href="https://github.com/wilsonchang17"></a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card">
+                  <h5 class="card-title d-flex justify-content-center mt-3 title">Team Member</h5>
+                  <img src="https://picsum.photos/100/100?random=40" class=" card-img p-4 rounded-circle mx-auto ">
+                  <div class="card-body">
+                      <div class="d-flex justify-content-center mt-3 name">葉耀中</div>     
+                      <p class="card-text mt-3 content">My motto.</p>
+                      <a href="https://github.com/jerry0424"></a>
+                  </div>
+                </div>
+              </div>
+    
         </div>
-        <div>
-            <div>
-                Team Member
-            </div>
-            <a href="https://github.com/keywind127">
-                <img src="" alt="">
-            </a>
-            <div>
-                徐向廷
-            </div>
-            <div>
-                My motto.
-            </div>
-        </div>
-        <div>
-            <div>
-                Team Member
-            </div>
-            <a href="https://github.com/wilsonchang17">
-                <img src="" alt="">
-            </a>
-            <div>
-                張宸瑋
-            </div>
-            <div>
-                My motto.
-            </div>
-        </div>
-        <div>
-            <div>
-                Team Member
-            </div>
-            <a href="https://github.com/jerry0424">
-                <img src="" alt="">
-            </a>
-            <div>
-                葉耀中
-            </div>
-            <div>
-                My motto.
-            </div>
-        </div>
+        
     </div>
-</div>
 {% endblock %}

@@ -1,0 +1,60 @@
+.four0four{
+   
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-size: 260px;
+    line-height: 390px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+    color: #606060;
+}
+
+.oopsword{
+    
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-size: 64px;
+    line-height: 96px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #606060;
+
+}
+
+.errorsentence{
+    
+    padding-top: vmin;
+    padding-bottom: vmin; 
+    padding-left: vmin;
+    padding-right: vmin;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-size: 36px;
+    line-height: 54px;
+    display: flex;
+    align-items: center;
+
+    color: #606060;
+}
+
+.buttonstyle{
+   
+    text-decoration: none;
+    background: #FFFEFE;
+    border-radius: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #555555;
+
+    
+}

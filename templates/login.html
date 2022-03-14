@@ -1,42 +1,44 @@
-{% extends "base.html" %} {% block login %}
-<div>
-    <a href="{{ url_for('login') }}">Login</a>
-</div>
-<div>
-    <a href="{{ url_for('register') }}">Register</a>
-</div>
+{% extends "base.html" %} {% block linkCSS %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'login.css')  }}">
+{% endblock %} {% block login %}
+<button class="btn">
+    <a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a>
+</button>
+<button class="btn">
+    <a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a>
+</button>
 {% endblock %} {% block content %}
-<div>
-    <div>
-        Login
-    </div>
-    <div>
+<div class="container backBlockMargin">
+    <div class="backBlockStyle mx-auto overflow-auto">
+        <div class="d-flex justify-content-center ">
+            <span class = "title mt-5 mb-5">Login</span>
+        </div>
+
         <form action="{{ url_for('index') }}" method="post">
-            <div>
-                <div>
-                    <input type="text" name="username" max="20" placeholder="Username">
-                </div>
+            <div class=" d-flex justify-content-center mt-2" >
+                <input type="text" name="username" max="20" placeholder="        Username" class="inputText">
             </div>
-            <div>
-                <div>
-                    <input type="password" name="password" max="16" placeholder="Password">
-                </div>
+            
+            <div class="  d-flex justify-content-center mt-3">
+                <input type="password" name="password" max="16" placeholder="        Password" class="inputText">
             </div>
-            <div>
-                <a href="{{ url_for('forgotpassword') }}">Forgot Password?</a>
+            
+            <div class="d-flex  justify-content-around mt-2">
+                <a href="{{ url_for('forgotpassword') }}" class="link">Forgot Password?</a>
             </div>
             {% if message != "" %}
-            <div>
+            <div class="hintsentence d-flex justify-content-center mt-3">
                 {{ message }}
             </div>
             {% endif %}
-            <div>
-                <div>
-                    <input type="submit" name="send" value="Login">
-                </div>
+            
+            <div class="d-flex justify-content-center mt-5">
+                <input type="submit" name="send" value="Login" class="sendButtom sendWord">
             </div>
-            <div>
-                Don't have an account? <a href="{{ url_for('register') }}">Register</a>
+            
+            <div class="d-flex justify-content-around mt-3 mb-5">
+                <span class="hintsentence fw-bold">Don't have an account?<a href="{{ url_for('register') }}" class="link">&nbsp;&nbsp;Register</a></span>
             </div>
         </form>
     </div>

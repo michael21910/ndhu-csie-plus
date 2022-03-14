@@ -1,0 +1,7 @@
+.backBlockStyle{
+    width: 31.25vw;    
+    height: 65vh;
+    background: #FFFFFF;
+    box-shadow: 0vmin 0.48vmin 0.48vmin rgba(0, 0, 0, 0.25);
+    border-radius: 1.5vmin;
+}

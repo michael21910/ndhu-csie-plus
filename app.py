@@ -1,5 +1,4 @@
 from flask import Flask, render_template, jsonify, session, request, redirect, url_for
-from markupsafe import re
 from databaseUtils import databaseUtils
 
 app = Flask(__name__, template_folder = "templates")
@@ -8,14 +7,14 @@ app = Flask(__name__, template_folder = "templates")
 db = databaseUtils(
     "127.0.0.1",
     "root",
-    "root",
+    "",
     "csieplus"
 )
 
 connection = db.connect(
     "127.0.0.1",
     "root",
-    "root",
+    "",
     "csieplus"
 )
 
@@ -423,5 +422,9 @@ def about():
     username = SGET(session.get("username"), "")
     return render_template("about.html", username = username)
 
+@app.errorhandler(404)
+def error_handler(_):
+    return redirect(url_for("FOF"))
+
 if __name__ == "__main__":
-    app.run(debug = True, port = 1234)
+    app.run(debug = True, port = 5000)

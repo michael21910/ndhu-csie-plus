@@ -1,29 +1,23 @@
-{% extends "base.html" %} {% block login %} {% if username == "" %}
-<div>
-    <a href="{{ url_for('login') }}">Login</a>
-</div>
-<div>
-    <a href="{{ url_for('register') }}">Register</a>
-</div>
+{% extends "base.html" %} {% block linkCSS %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'error.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
+{% endblock %} {% block login %} {% if username == "" %}
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a></button>
 {% endif %} {% if username != "" %}
-<div class="greet">
+<div>
     Hi, {{ username }}
 </div>
-<div class="log-out">
+<div>
     <a href="{{  url_for('log_out')  }}">Logout</a>
 </div>
 {% endif %} {% endblock %} {% block content %}
-<div>
-    <div>
-        <div>404</div>
-    </div>
-    <div>
-        <div>Oops!</div>
-        <div>The Page You're Looking For</div>
-        <div>Was Not Found</div>
-        <div>
-            <a href="{{ url_for('index') }}">Back To Home</a>
-        </div>
-    </div>
+<div class="container">
+    
+    <p class="four0four d-flex">404</p>
+    <p class="oopsword d-flex">Oops!</p>
+    <p class="errorsentence d-flex">The Page You're Looking For<br>Was Not Found</p>
+    <button class="btn buttonposition d-flex"><a href="{{ url_for('index') }}" class="buttonstyle justify-content-center">Back To Home</a></button>
+    
 </div>
 {% endblock %}
