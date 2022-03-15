@@ -1,6 +1,7 @@
 {% extends "base.html" %} {% block linkCSS %}
 <link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
 <link rel="stylesheet" href="{{  url_for('static', filename = 'login.css')  }}">
+
 {% endblock %} {% block login %}
 <button class="btn">
     <a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a>
@@ -28,7 +29,7 @@
                 <a href="{{ url_for('forgotpassword') }}" class="link">Forgot Password?</a>
             </div>
             {% if message != "" %}
-            <div class="hintsentence d-flex justify-content-center mt-3">
+            <div class="hintSentence d-flex justify-content-center mt-3">
                 {{ message }}
             </div>
             {% endif %}
@@ -38,7 +39,7 @@
             </div>
             
             <div class="d-flex justify-content-around mt-3 mb-5">
-                <span class="hintsentence fw-bold">Don't have an account?<a href="{{ url_for('register') }}" class="link">&nbsp;&nbsp;Register</a></span>
+                <span class="hintSentence fw-bold">Don't have an account?<a href="{{ url_for('register') }}" class="link">&nbsp;&nbsp;Register</a></span>
             </div>
         </form>
     </div>

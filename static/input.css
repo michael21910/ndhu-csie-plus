@@ -6,6 +6,8 @@
 }
 
 input{
+    font-style: normal;
+    font-weight: 700;
     width: 46.5vmin;
     height: 7vmin;
     left: 89.55vmin;
@@ -34,6 +36,7 @@ input::placeholder{
     display: flex;
     align-items: center;
     background-color: #EEEEEE;
+    color: #555555;
 }
 
 .sendButtom{
@@ -49,7 +52,7 @@ input::placeholder{
 .sendWord{
     font-family: 'Poppins', sans-serif;
     font-style: normal;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 3.8895vmin;
     color: #FFFFFF;
 }
@@ -58,6 +61,7 @@ input::placeholder{
     text-decoration: none;
     font-family: 'Roboto', sans-serif;
     font-style: normal;
+    font-weight: 700;
     font-size: 1.92vmin;
     line-height: 2.28vmin;
     display: flex;
@@ -77,6 +81,7 @@ input::placeholder{
 .link{
     text-decoration: none;
     font-family: 'Roboto', sans-serif;
+
     font-size: 1.92vmin;
     line-height: 2.28vmin;
     color: #5D8F8A;

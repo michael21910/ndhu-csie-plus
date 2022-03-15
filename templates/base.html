@@ -21,39 +21,41 @@
         <nav class="navbar navbar-expand-xl top">
             <div class="container-fluid new-width d-flex flex-row justify-content-center align-content-center">
                 <div>
-                    <a class="brand" href="{{  url_for('index')  }}">CSIE plus+</a>
+                    <a class="brand navbar-brand" href="{{  url_for('index')  }}">CSIE plus+</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="d-flex flex-row justify-content-center align-content-center">
-                    <ul class="navbar-nav seperate-line">
-                        <li class="nav-item ps-5"></li>
-                        <li class="nav-item">
-                            <a href="{{  url_for('ask_question')  }}" class="nav-link navOption"> Ask </a>
-                        </li>
-                        <li class="nav-item ps-5"></li>
-                        <li class="nav-item">
-                            <a href="{{  url_for('profile')  }}" class="nav-link navOption"> Profile </a>
-                        </li>
-                        <li class="nav-item ps-5"></li>
-                        <li class="nav-item">
-                            <a href="{{  url_for('leaderboard')  }}" class="nav-link navOption">Rank</a>
-                        </li>
-                        <li class="nav-item ps-5"></li>
-                        <li class="nav-item">
-                            <a href="{{  url_for('about')  }}" class="nav-link navOption"> About </a>
-                        </li>
-                        <li class="nav-item ps-5"></li>
-                        <!--
-                        <li class="nav-item ps-5 ">
-                            <a href="{{  url_for('rules')  }}" class="nav-link navOption"> Rules </a>
-                        </li>
-                        -->
-                    </ul>
-                    <form class="nav-item align-middle">
-                        {% block login %}{% endblock %}
-                    </form>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="d-flex flex-row justify-content-center align-content-center" >
+                        <ul class="navbar-nav seperate-line">
+                            <li class="nav-item ps-5"></li>
+                            <li class="nav-item">
+                                <a href="{{  url_for('ask_question')  }}" class="nav-link navOption"> Ask </a>
+                            </li>
+                            <li class="nav-item ps-5"></li>
+                            <li class="nav-item">
+                                <a href="{{  url_for('profile')  }}" class="nav-link navOption"> Profile </a>
+                            </li>
+                            <li class="nav-item ps-5"></li>
+                            <li class="nav-item">
+                                <a href="{{  url_for('leaderboard')  }}" class="nav-link navOption">Rank</a>
+                            </li>
+                            <li class="nav-item ps-5"></li>
+                            <li class="nav-item">
+                                <a href="{{  url_for('about')  }}" class="nav-link navOption"> About </a>
+                            </li>
+                            <li class="nav-item ps-5"></li>
+                            <!--
+                            <li class="nav-item ps-5 ">
+                                <a href="{{  url_for('rules')  }}" class="nav-link navOption"> Rules </a>
+                            </li>
+                            -->
+                        </ul>
+                        <form class="nav-item align-middle">
+                            {% block login %}{% endblock %}
+                        </form>
+                    </div>
                 </div>
             </div>
         </nav>

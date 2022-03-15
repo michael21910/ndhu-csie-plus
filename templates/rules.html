@@ -1,12 +1,9 @@
 {% extends "base.html" %} {% block linkCSS %}
 <link rel="stylesheet" href="{{  url_for('static', filename = 'about&rule.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
 {% endblock %} {% block login %} {% if username == "" %}
-<div>
-    <a href="{{ url_for('login') }}">Login</a>
-</div>
-<div>
-    <a href="{{ url_for('register') }}">Register</a>
-</div>
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a></button>
 {% endif %} {% if username != "" %}
 <div>
     Hi, {{ username }}

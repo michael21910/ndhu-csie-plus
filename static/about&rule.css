@@ -4,12 +4,16 @@
 .Qstyle{
     color:#000000;
     font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 700;
     font-size: 3.2vmin;
     line-height: 6.4825vmin;
 }
 
 .Astyle{
     font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 700;
     font-size: 2.1608vmin;
     line-height: 3.2412vmin;
     color:#484848;
@@ -22,6 +26,8 @@ img{
 .title{
     font-family: 'Poppins', sans-serif;
     font-style: normal;
+    font-weight: 700;
+    font-style: normal;
     font-size: 2vmin;
     line-height: 3.8415vmin;
     display: flex;
@@ -32,6 +38,8 @@ img{
 
 .name{
     font-family: 'Yaldevi', sans-serif;
+    font-style: normal;
+    font-weight: 700;
     font-style: normal;
     font-size: 2.1608vmin;
     line-height: 2.8811vmin;
