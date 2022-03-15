@@ -12,12 +12,16 @@
     <a href="{{  url_for('log_out')  }}">Logout</a>
 </div>
 {% endif %} {% endblock %} {% block content %}
-<div class="container">
+<div class="container backMargin">
     
-    <p class="four0four d-flex">404</p>
-    <p class="oopsword d-flex">Oops!</p>
-    <p class="errorsentence d-flex">The Page You're Looking For<br>Was Not Found</p>
-    <button class="btn buttonposition d-flex"><a href="{{ url_for('index') }}" class="buttonstyle justify-content-center">Back To Home</a></button>
-    
+    <div class="row row-cols-2">
+        <div class="four0four col seperate-line">404</div>
+        <div class="col ">
+            <div class="oopsWord mt-5 ms-5">Oops!</div>
+            <div class="mt-4 sentence ms-5">The Page You're Looking For<br>Was Not Found</div>
+            <button class="btn mt-4 ms-5"><a href="{{ url_for('index') }}" class="backButton justify-content-center "> < Back To Home</a></button>
+        </div>
+    </div>
+
 </div>
 {% endblock %}

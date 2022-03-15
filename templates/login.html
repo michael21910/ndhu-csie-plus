@@ -13,7 +13,7 @@
 <div class="container backBlockMargin">
     <div class="backBlockStyle mx-auto overflow-auto">
         <div class="d-flex justify-content-center ">
-            <span class = "title mt-5 mb-5">Login</span>
+            <span class = "title mt-5 mb-5 ">Login</span>
         </div>
 
         <form action="{{ url_for('index') }}" method="post">
@@ -26,10 +26,10 @@
             </div>
             
             <div class="d-flex  justify-content-around mt-2">
-                <a href="{{ url_for('forgotpassword') }}" class="link">Forgot Password?</a>
+                <a href="{{ url_for('forgotpassword') }}" class="link fw-bold">Forgot Password?</a>
             </div>
             {% if message != "" %}
-            <div class="hintSentence d-flex justify-content-center mt-3">
+            <div class="fw-bold hintSentence d-flex justify-content-center mt-3">
                 {{ message }}
             </div>
             {% endif %}

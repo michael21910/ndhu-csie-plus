@@ -60,7 +60,6 @@ input::placeholder{
 .hintSentence{
     text-decoration: none;
     font-family: 'Roboto', sans-serif;
-    font-style: normal;
     font-weight: 700;
     font-size: 1.92vmin;
     line-height: 2.28vmin;
@@ -85,4 +84,5 @@ input::placeholder{
     font-size: 1.92vmin;
     line-height: 2.28vmin;
     color: #5D8F8A;
-}  
+}
+

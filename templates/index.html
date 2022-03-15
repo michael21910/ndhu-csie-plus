@@ -1,8 +1,9 @@
 {% extends "base.html" %} {% block linkCSS %}
 <link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'input.css')  }}">
 {% endblock %} {% block login %} {% if username == "" %}
-  <button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a></button>
-  <button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a></button>
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a></button>
 {% endif %} {% if username != "" %}
 <div>
     Hi, {{ username }}
@@ -11,13 +12,14 @@
     <a href="{{  url_for('log_out')  }}">Logout</a>
 </div>
 {% endif %} {% endblock %} {% block content %}
-<div>
+<div class="container">
     <div>
         <label>Newest</label>
     </div>
     <br>
     <form action="{{  url_for('search_question')  }}">
-        <input type="text" name="search_bar" placeholder="Search Here" value="{{  search_bar_default_value  }}">
+        <input class="form-control  inputText boxRadius shadow" type="text" name="search_bar" placeholder="        Search Here" value="{{  search_bar_default_value  }}">
+
     </form>
     {{ search_count_message }}
     <br>

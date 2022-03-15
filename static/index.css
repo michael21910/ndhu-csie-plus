@@ -40,3 +40,12 @@
     text-align: center;
     color: #FFFFFF;
 }
+
+
+
+.boxRadius{
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 3.6vmin;
+}
