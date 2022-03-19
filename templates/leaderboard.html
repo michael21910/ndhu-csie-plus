@@ -18,29 +18,25 @@
 {% endif %} {% endblock %} {% block content %}
 <div class="container backBlockMargin">
 
-        <div class="leaderboard d-flex justify-content-center bottomLine">
-            <label>Leaderboard</label>
+        
+        <label class="leaderboard d-flex justify-content-center bottomLine">Leaderboard</label>
+        
+
+        <div class="d-flex justify-content-evenly mt-4">
+            <label class="d-flex topic justify-content-center">Rank</label>
+            <label class="d-flex topic justify-content-center">Username</label>
+            <label class="d-flex topic justify-content-center">Points</label>
         </div>
 
 
 
-            <div class="d-flex justify-content-evenly">
-                <label class="d-flex topic">Rank</label>
-                <label class="d-flex topic">Username</label>
-                <label class="d-flex topic">Points</label>
-            </div>
-
-
-
-            {% for user_content in user_contents %} {% set user_point = user_content[0] %} {% set user_name = user_content[1] %}
-            <div class=board_bot_bot_content_{{loop.index}} class="d-flex justify-content-evenly">
-                <label class="d-flex topic"> {{ loop.index }}</label>
-                <label class="d-flex topic"> {{ user_name }}</label>
-                <label class="d-flex topic"> {{ user_point }}</label>
-            </div>
-            {% endfor %}
-
-
-
+        {% for user_content in user_contents %} {% set user_point = user_content[0] %} {% set user_name = user_content[1] %}
+        <div class="board_bot_bot_content_{{loop.index}} d-flex justify-content-evenly mt-4">
+            <label class="d-flex userStyle justify-content-center"> {{ loop.index }}</label>
+            <label class="d-flex userStyle justify-content-center"> {{ user_name }}</label>
+            <label class="d-flex userStyle justify-content-center"> {{ user_point }}</label>
+        </div>
+        {% endfor %}
+    
 </div>
 {% endblock %}

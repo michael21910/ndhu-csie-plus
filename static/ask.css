@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+.backBlockStyle{
+    width: 100%;    
+    height: 65vh;
+    background: #FFFFFF;
+    box-shadow: 0vmin 0.48vmin 0.48vmin rgba(0, 0, 0, 0.25);
+    border-radius: 1.5vmin;
+}
+
+
+
+.titleStyle{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 5.763vh;
+    line-height:  8.645vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+
+.subtitleStyle{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 3.842vh;
+    line-height: 5.763vh;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+}
+
+.hintStyle{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.561vh;
+    line-height: 3.842vh;
+    display: flex;
+    align-items: center;
+
+    color: #363636;
+}
+
+.form-check-label{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size:  1.921vh;
+    line-height: 2.882vh;
+    display: flex;
+    align-items: center;
+    color: #555555;
+}
+
+.btnStyle{
+    width: 10.321vh;
+    height: 4.696vh;
+    background: #888280;
+    border-color: transparent;
+}
+
+
+.btnWord{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.494vh;
+    line-height: 2.241vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+
+}
+
+
+.postBtn{
+    width:17.411vh;
+    height: 6.403vh;
+    border-color: transparent;
+    background: #5D8F8A;
+    border-radius: 3.6vmin;
+}
+
+
+.postWord{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 3.202vh;
+    line-height: 4.803vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+}

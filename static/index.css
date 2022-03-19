@@ -44,8 +44,99 @@
 
 
 .boxRadius{
+    width: 125.614vh;
     background: #FFFFFF;
-    border: 1px solid #000000;
+    border: 0.107vh solid #000000;
     box-sizing: border-box;
     border-radius: 3.6vmin;
 }
+
+
+
+.questionBlock{
+    width: 125.614vh;
+    left: calc(50% - 125.614vh/2 -  0.0534vh);
+    background: #FFFFFF;
+    border-radius: 1.601vh;
+}
+
+.questionTitle{
+    width: 896.48px;
+    height: 30.68px;
+    left: 493.79px;
+    top: 361.14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 42px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.heart{
+    font-size: 45px;
+    width: 6.1792vh;
+    height: 53.18px;
+    background-color: transparent;
+}
+
+.heartNumber{
+    width:  3.196vh;
+    height: 2.838vh;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size:  2.561vh;
+    line-height: 2.988vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+
+.questionTime{
+    width: 21.345vh;
+    height: 2.182vh;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size:  1.281vh;
+    line-height: 2.241vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+.questionReply{
+    width: 5.54vh;
+    height: 5.021vh;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 2.988vh;
+    line-height: 3.522vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+
+.questionreply{
+    width: 5.54vh;
+    height: 3vh;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size:  1.494vh;
+    line-height: 1.75vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+
+

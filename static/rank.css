@@ -5,8 +5,8 @@
 .leaderboard{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 82px;
-    line-height: 123px;
+    font-size: 8.751vh;
+    line-height: 13.127vh;
     display: flex;
     align-items: center;
     text-align: center;
@@ -21,12 +21,28 @@
 
 .topic{
     font-family: 'Poppins', sans-serif;
+    width: 5.123vh; 
+    height: 5.123vh;
     font-weight: 700;
-    font-size: 48px;
-    line-height: 72px;
+    font-size: 5.123vh;
+    line-height:  7.684vh;
     display: flex;
     align-items: center;
     text-align: center;
 
     color: #363636;
+}
+
+.userStyle{
+    width: 5.123vh; 
+    height: 5.123vh;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 3.842vh;
+    line-height: 5.763vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #484848;
 }

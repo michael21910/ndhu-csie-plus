@@ -1,9 +1,8 @@
 {% extends "base.html" %} {% block linkCSS %}
 <link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
-<link rel="stylesheet" href="{{  url_for('static', filename = 'input.css')  }}">
 {% endblock %} {% block login %} {% if username == "" %}
 <button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a></button>
-<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a></button>
+<button class="btn justify-content-end"><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a></button>
 {% endif %} {% if username != "" %}
 <div>
     Hi, {{ username }}
@@ -12,50 +11,66 @@
     <a href="{{  url_for('log_out')  }}">Logout</a>
 </div>
 {% endif %} {% endblock %} {% block content %}
-<div class="container">
-    <div>
-        <label>Newest</label>
-    </div>
+<div class="container backBlockMargin ">
+   <div class="mx-auto">
     <br>
     <form action="{{  url_for('search_question')  }}">
-        <input class="form-control  inputText boxRadius shadow" type="text" name="search_bar" placeholder="        Search Here" value="{{  search_bar_default_value  }}">
+        <input class="form-control inputText boxRadius shadow " type="text" name="search_bar" placeholder="        Search Here" value="{{  search_bar_default_value  }}">
     </form>
     {{ search_count_message }}
     <br>
-    <div>
-        {% for question_data in question_list %} {% set question_id = question_data["question_id"] %}
 
-        <a id=question-{{loop.index}} href="/question?qid={{question_id}}">
-      {% set question_title = question_data["question_data"]["question"] %}
-      {% set question_asker = question_data["question_data"]["asker"] %}
-      {% set question_likes = question_data["question_data"]["likes"] %}
-      {% set question_replies = question_data["question_data"]["replies"] %}
-      {% set question_time = question_data["question_data"]["time"] %}
+    {% for question_data in question_list %} {% set question_id = question_data["question_id"] %}
 
-      <div id=question-{{loop.index}}-left>
-        <div id=question-{{loop.index}}-left-left>
-          <label>{{ question_replies }}</label>
-        </div>
-        <div id=question-{{loop.index}}-left-right>
-          <div id=question-{{loop.index}}-left-right-left>
-            <label>{{ question_title }}</label>
+    <a style="text-decoration: none;" id=question-{{loop.index}} href="/question?qid={{question_id}}">
+    {% set question_title = question_data["question_data"]["question"] %}
+    {% set question_asker = question_data["question_data"]["asker"] %}
+    {% set question_likes = question_data["question_data"]["likes"] %}
+    {% set question_replies = question_data["question_data"]["replies"] %}
+    {% set question_time = question_data["question_data"]["time"] %}
+    <div class="d-flex questionBlock shadow  mt-3 bd-highlight">
+      <div id=question-{{loop.index}}-left class="p-2 w-100 bd-highlight">
+        <div class="d-flex bd-highlight"> 
+          <div id=question-{{loop.index}}-left-left class="me-3 p-2 flex-shrink-1 bd-highlight " >
+           <!-- <label class="questionReply mt-2" >{{ question_replies }}</label>-->
+           {% set number = question_replies.split(" ")[0] %}
+           {% set text = question_replies.split(" ")[1] %}
+           <div style="border-right:0.1vw solid #A49B9B">
+               <div class="questionReply mt-1 ms-4">
+                   {{number}}
+               </div>
+               <div class="questionreply ms-3">
+                   {{text}}
+               </div>
+            </div>
           </div>
-          <div id=question-{{loop.index}}-left-right-right>
-            <label>{{ question_asker }} - {{ question_time }}</label>
+          <div id=question-{{loop.index}}-left-right class="d-flex  w-100 bd-highlight bd-highlight ms-3">
+            <div id=question-{{loop.index}}-left-right-left class="questionTitle  w-100 bd-highlight my-auto">
+              <label>{{ question_title }}</label>
+            </div>
+            <div id=question-{{loop.index}}-left-right-right class="p-2 flex-shrink-1 bd-highlight align-self-end questionTime mt-5">
+              <label>{{ question_asker }} - {{ question_time }}</label>
+            </div>
           </div>
         </div>
       </div>
-      <div id=question-{{loop.index}}-right>
-        <div id=question-{{loop.index}}-right-top>
-          ❤️
+      <div id=question-{{loop.index}}-right class="flex-shrink-1 bd-highlight ">
+        <div id=question-{{loop.index}}-right-top >
+          <div class="heart  me-5 ">❤️</div>
         </div>
-        <div id=question-{{loop.index}}-right-bot>
-          {{ question_likes }}
+        <div id=question-{{loop.index}}-right-bot class=" ms-4 mt-3">
+          <div class="heartNumber"> {{ question_likes }}</div>
         </div>
       </div>
-    </a>
-        <br> {% endfor %}
     </div>
+  </a>
+      <br> {% endfor %}
+  </div>
+
+  
 </div>
 
 {% endblock %}
+
+
+<img src="https://picsum.photos/100/100?random=50" class="heart shadow me-5">
