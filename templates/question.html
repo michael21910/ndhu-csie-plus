@@ -1,75 +1,66 @@
-{% extends "base.html" %} {% block login %} {% if username == "" %}
-<div>
-    <a href="{{ url_for('login') }}">Login</a>
-</div>
-<div>
-    <a href="{{ url_for('register') }}">Register</a>
-</div>
+{% extends "base.html" %} {% block linkCSS %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'question.css')  }}">
+{% endblock %}{% block login %} {% if username == "" %}
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a></button>
+<button class="btn justify-content-end"><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a></button>
 {% endif %} {% if username != "" %}
-<div>
-    Hi, {{ username }}
-</div>
-<div>
-    <a href="{{  url_for('log_out')  }}">Logout</a>
-</div>
+<button class="btn ">
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;">Hi, {{ username }}</a>
+</button>
+<button class="btn ">
+    <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center">Logout</a>
+</button>
 {% endif %} {% endblock %} {% block content %} {% set asker = question_contents["question"]["question_data"]["asker"] %} {% set question_id = question_contents["question"]["question_id"] %} {% set question_content = question_contents["question"]["question_data"]["content"]
 %} {% set question_title = question_contents["question"]["question_data"]["question"] %} {% set question_date = question_contents["question"]["question_data"]["time"] %} {% set question_likes = question_contents["question"]["question_data"]["likes"] %}
 {% set question_replies = question_contents["question"]["question_data"]["replies"] %} {% set reply_list = question_contents["replies"] %}
 
-<div>
-    <div>
-        <div>
-            <div>
-                <label>{{ question_title }}</label>
-            </div>
-            <div>
-                <label>{{ asker }} {{ question_date }}</label>
-            </div>
-            <div>
-                <label>{{ tag }}</label>
-            </div>
-        </div>
-        <div>
-            <a href="{{  url_for('upvote_question')  }}">
-        ❤️
-      </a>
-            <div>
-                <label>{{ question_likes }}</label>
-            </div>
-        </div>
-    </div>
-    <div>
-        <p>{{ question_content }}</p>
-    </div>
-    <form action="{{  url_for('post_reply')  }}" method="post">
-        <div>
-            <div>
-                <label>Comments</label>
-            </div>
-            <div>
-                <label>{{ question_replies }}</label>
-            </div>
-        </div>
-        <div>
-            {% for reply in reply_list %} {% set rid = loop.index %} {% set replier = reply["replier"] %} {% set reply_time = reply["time"] %} {% set reply_content = reply["content"] %}
-            <div class=reply-{{rid}}>
-                <div class=reply-{{rid}}-content>
-                    <p>{{ replier }}: {{ reply_content }}</p>
-                </div>
-                <div class=reply-{{rid}}-date>
-                    <label>{{ reply_time }}</label>
+
+
+
+
+<div class="container backBlockMargin">
+    <div class="d-flex flex-column bd-highlight">
+        <div class="bd-highlight d-flex flex-row">
+            <div class="d-flex flex-column bd-highlight bg-light titleBackground">
+                <label class="bd-highlight Qtitle">{{ question_title }}</label>
+                <div class="bd-highlight d-flex flex-row">
+                        <label class=" bd-highlight Qrelative">{{ asker}}</label>
+                        <label class=" bd-highlight Qrelative ms-3">{{ question_date }}</label>
+                        <label class="ms-3 bd-highlight Qbutton justify-content-center">{{ tag }}</label>
                 </div>
             </div>
-            {% endfor %}
-        </div>
-        <div>
-            <div>
-                <input type="text" name="reply_entry_box" placeholder="comments..." value="{{  reply_default_value  }}">
-            </div>
-            <div>
-                <input type="submit" name="submit_button" value="Post">
+            <div class="d-flex flex-column bd-highlight ">
+                <div class="justify-content-center"><a style="text-decoration: none" href="{{  url_for('upvote_question')  }}" class="bd-highlight heartSize "> ❤️</a></div>
+                <label class="bd-highlight likeTimes justify-content-center mt-2">{{ question_likes }}</label>
             </div>
         </div>
-    </form>
+        <div class="bd-highlight Qbackground mt-5" contenteditable="true">
+            <p class="Qcontent ">{{ question_content }}</p>
+        </div>
+        <form class="bd-highlight d-flex flex-column" action="{{  url_for('post_reply')  }}" method="post">
+            <div class="bd-highlight d-flex flex-row mb-2" style="border-bottom:0.1vw solid #A49B9B">
+                <label class="bd-highlight   comment">Comments</label>
+                <label class="bd-highlight  justify-content-bottom justify-content-end reply nowrap">{{ question_replies }}</label>
+            </div>
+            <div class="bd-highlight">
+                {% for reply in reply_list %} {% set rid = loop.index %} {% set replier = reply["replier"] %} {% set reply_time = reply["time"] %} {% set reply_content = reply["content"] %}
+                <div class="reply-{{rid}}  d-flex flex-column">
+                    <div class="reply-{{rid}}-content bd-highlight">
+                        <p class="">{{ replier }}:</p>
+                        <p class="">{{ reply_content }}</p>
+                    </div>
+                    <div class="reply-{{rid}}-date bd-highlight">
+                        <label class="dateReply"><{{ reply_time }}></label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="bd-highlight d-flex flex-row">
+                <input class="bd-highlight form-control boxRadius  box me-2 inputText" type="text" name="reply_entry_box" placeholder="      comments..." value="{{  reply_default_value  }}">
+                <input class="bd-highlight flex-shrink-1 post my-auto postWord justify-content-center" type="submit" name="submit_button" value="Post">
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

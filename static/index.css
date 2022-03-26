@@ -63,8 +63,7 @@
 .questionTitle{
     width: 896.48px;
     height: 30.68px;
-    left: 493.79px;
-    top: 361.14px;
+
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 28px;
@@ -139,4 +138,16 @@
 }
 
 
+
+.hiMember{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: #F1EFE6;
+}
 

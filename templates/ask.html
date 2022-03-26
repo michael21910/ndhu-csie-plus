@@ -11,73 +11,91 @@
     <a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a>
 </button>
 {% endif %} {% if username != "" %}
-<div>
-    Hi, {{ username }}
-</div>
-<div>
-    <a href="{{  url_for('log_out')  }}">Logout</a>
-</div>
+<button class="btn ">
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;">Hi, {{ username }}</a>
+</button>
+<button class="btn ">
+    <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center">Logout</a>
+</button>
 {% endif %} {% endblock %} {% block content %}
 
 
 
 
+
+
+
 <div class="container backBlockMargin">
-    <form class= "backBlockStyle mx-auto overflow-auto" action="{{  url_for('post_question')  }}" method="post">
-        <label class="d-flex justify-content-center titleStyle">Ask a Question</label>
-        
-        <label class=" mt-5 subtitleStyle ms-4">Title</label>
+    <form class= "backBlockStyle mx-auto d-flex flex-column bd-highlight" action="{{  url_for('post_question')  }}" method="post">
+        <label class="d-flex justify-content-center titleStyle p-2 bd-highlight">Ask a Question</label>
 
-        <div class="d-flex justify-content-center">
-            <input class="form-control inputText boxRadius shadow"type="text" name="question-title" placeholder="        Title of question..." value="{{  title_default_value  }}">
+        <div class=" bd-highlight d-flex flex-column bd-highlight">
+            <label class=" d-flex mt-5 subtitleStyle  bd-highlight ms_auto">Title</label>
+
+            <div class="d-flex justify-content-center  bd-highlight ">
+                <input class="form-control titleText boxRadius shadow inputText"type="text" name="question-title" placeholder="        Title of question..." value="{{  title_default_value  }}">
+            </div>
+
         </div>
 
 
-        <label class="d-flex mt-3 subtitleStyle ms-4">Content</label>
-        <div class="d-flex justify-content-center">
-            <input class="form-control inputText boxRadius shadow" type="text" name="question-content" placeholder="        Content of question..." value="{{  content_default_value  }}">
+        <div class="bd-highlight d-flex flex-column ">
+            <label class="d-flex mt-3 subtitleStyle bd-highlight ms_auto">Content</label>
+            <div class="d-flex justify-content-center  bd-highlight">
+                <textarea class="form-control inputText boxRadius shadow text" type="text" name="question-content" placeholder="        Content of question..." value="{{  content_default_value  }}"></textarea>
+            </div>
         </div>
 
-        
-        <div class="hintStyle ms-4 mt-2">
-            Please choose your tags
+
+        <div class="bd-highlight">
+            <div class="hintStyle ms_auto mt-2">
+                Please choose your tags
+            </div>
+            <div class="bd-highlight d-flex flex-row">
+                <div class="btn-group ms_auto bd-highlight" role="group">
+                    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="General" value="General">
+                    <label class="btn btnStyle btnWord me-4  justify-content-center" for="btncheck1" style="border-radius:3.6vmin">General</label>
+
+                    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="Freshman" value="Freshman">
+                    <label class="btn btnStyle btnWord me-4 justify-content-center" for="btncheck2" style="border-radius:3.6vmin">Freshman</label>
+
+                    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="Sophomore" value="Sophomore">
+                    <label class="btn btnStyle btnWord me-4 justify-content-center" for="btncheck3" style="border-radius:3.6vmin">Sophomore</label>
+
+                    <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="Junior" value="Junior">
+                    <label class="btn btnStyle btnWord me-4 justify-content-center" for="btncheck4" style="border-radius:3.6vmin">Junior</label>
+
+                    <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="Multimedia" value="Multimedia">
+                    <label class="btn btnStyle btnWord me-4 justify-content-center" for="btncheck5" style="border-radius:3.6vmin">Multimedia</label>
+
+                    <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="Network" value="Network">
+                    <label class="btn btnStyle btnWord justify-content-center" for="btncheck6" style="border-radius:3.6vmin">Network</label>
+                </div>
+                <div class="bd-highlight d-flex flex-column  ms_auto">
+                    <div class=" bd-highlight">
+                        <input type="submit" name="post-button" value="Post" class="justify-content-center postBtn postWord">
+                    </div>
+                    <div class="form-check bd-highlight ms-2">
+                        <input class="form-check-input " type="checkbox" name="anonymous" value="Anonymous" {{ anonymous_checked | safe }} id="anonymous" checked>
+                        <label class="form-check-label" for="anonymous" >Anonymous</label>
+                    </div>
+                </div>
+
+            </div>
+            {% if tagMessage != "" %}
+            <div class=" justify-content-center hintStyle">
+                {{ tagMessage }}
+            </div>
+            {% endif %}
+
+
+
+            <div class="d-flex justify-content-center hintStyle">{{ message }}</div>
+
+
+
         </div>
 
-        <div class="btn-group " role="group">
-            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="General" value="General">
-            <label class="btn btnStyle btnWord me-4 ms-3 justify-content-center" for="btncheck1" style="border-radius:3.6vmin">General</label>
-
-            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="Freshman" value="Freshman">
-            <label class="btn btnStyle btnWord me-4 justify-content-center" for="btncheck2" style="border-radius:3.6vmin">Freshman</label>
-
-            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="Sophomore" value="Sophomore">
-            <label class="btn btnStyle btnWord me-4 justify-content-center" for="btncheck3" style="border-radius:3.6vmin">Sophomore</label>
-
-            <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="Junior" value="Junior">
-            <label class="btn btnStyle btnWord me-4 justify-content-center" for="btncheck4" style="border-radius:3.6vmin">Junior</label>
-
-            <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="Multimedia" value="Multimedia">
-            <label class="btn btnStyle btnWord me-4 justify-content-center" for="btncheck5" style="border-radius:3.6vmin">Multimedia</label>
-
-            <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="Network" value="Network">
-            <label class="btn btnStyle btnWord justify-content-center" for="btncheck6" style="border-radius:3.6vmin">Network</label>
-        </div>
-
-        {% if tagMessage != "" %}
-        <div class=" justify-content-center hintStyle">
-            {{ tagMessage }}
-        </div>
-        {% endif %}
-        
-        <div class=" d-flex justify-content-end">
-            <input type="submit" name="post-button" value="Post" class="justify-content-center postBtn postWord">
-        </div>
-        <div class="form-check d-flex justify-content-end">
-            <input class="form-check-input" type="checkbox" name="anonymous" value="Anonymous" {{ anonymous_checked | safe }} id="anonymous" checked>
-            <label class="form-check-label" for="anonymous" >Anonymous</label>
-        </div>
-
-        <div class="d-flex justify-content-center hintStyle">{{ message }}</div>
     
     </form>
 </div>

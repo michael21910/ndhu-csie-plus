@@ -100,8 +100,7 @@ class databaseUtils:
                 cursor.execute(sql)
                 qid = cursor.fetchall()[0]["LAST_INSERT_ID()"]
 
-                sql = "INSERT INTO %s (qid) VALUE (%s);" % (targetTag, qid)
-                cursor.execute(sql)
+
 
                 if (self.construct_question_table(connection, qid) == -1):
                     return -1, None

@@ -2,24 +2,24 @@
 <link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
 <link rel="stylesheet" href="{{  url_for('static', filename = 'profile.css')  }}">
 {% endblock %}{% block login %}
-<div>
-    Hi, {{ username }}
-</div>
-<div>
-    <a href="{{  url_for('log_out')  }}">Logout</a>
-</div>
+<button class="btn ">
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;">Hi, {{ username }}</a>
+</button>
+<button class="btn ">
+    <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center">Logout</a>
+</button>
 {% endblock %} {% block content %}
 <div class="container backBlockMargin">
     <div class="backBlockStyle mx-auto overflow-auto">
         <div class="d-flex flex-column bd-highlight mb-3">
-            <div class="d-flex p-2 bd-highlight justify-content-center">
+            <div class="d-flex p-2 bd-highlight justify-content-center mt-5 ">
                 <img src="https://picsum.photos/100/100?random=50" class="image d-flex me-3">
                 <div class="profile d-flex">
                     Profile
                 </div>
             </div>
-
-            <div class="p-2 bd-highlight ms-5">
+            <div class="d-flex justify-content-around bd-highlight"><hr class="line"></div>
+            <div class="p-2 bd-highlight ms-5 ">
                 <div class="d-flex flex-column bd-highlight mb-3 ms-5">
                     <div class="p-2 bd-highlight subtitle w-100">Personal Infomation</div>
                     <div class="p-2 bd-highlight item w-100">Username: {{ username }}</div>

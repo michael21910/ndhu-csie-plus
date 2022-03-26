@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+
+.Qtitle{
+    width: 56.551vh;
+    height: 13.165vh;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size:  7.563vh;
+    line-height: 11.344vh;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+}
+
+
+
+.Qrelative{
+
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+
+    color: #484848;
+}
+
+
+.Qdate{
+    width: 19.179vh;
+    height: 3.641vh;
+
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.801vh;
+    line-height:  4.201vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #484848;
+
+}
+
+.Qbutton{
+
+    /*word*/
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size:  1.960vh;
+    line-height: 2.941vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+
+    /*button*/
+    width: 13.533vh;
+    height: 4.481vh;
+    background: #888280;
+    border-radius: 0.8403vh;
+}
+
+
+
+
+
+.Qcontent{
+    width:  156.267vh;
+    height: 28.291vh;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.801vh;
+    line-height: 4.201;
+
+    color: #363636;
+}
+
+
+
+.Qbackground{
+    background: #FFFFFF;
+    border-radius: 2.801vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
+
+.post{
+    width: 16.372vh;
+    height:  7.282vh;
+    background: #5D8F8A;
+    border-radius: 4.201vh;
+}
+
+
+.box{
+    width: 146.372vh;
+    height:  7.282vh;
+
+    background: #FFFFFF;
+    border-radius: 4.201vh;
+
+}
+
+.postWord{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.8011vh;
+    line-height:  4.2016vh;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+
+}
+
+.comment{
+    width: 139.275vh;
+    height: 4.061vh;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size:  4.2016vh;
+    line-height: 3.7815vh;
+    display: flex;
+    align-items: center;
+    color: #363636;
+
+
+
+
+
+
+}
+
+
+.reply{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.521vh;
+    line-height: 3.781vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #363636;
+
+}
+
+.dateReply{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.521vh;
+    line-height: 3.7815vh;
+    display: flex;
+    align-items: center;
+
+    color: #828282;
+}
+
+
+.titleBackground{
+    width: 154.7619vh;
+}
+
+.heartSize{
+    width: 7.337vh;
+    height: 6.442vh;
+    font-size: 6.3025vh;
+
+}
+.likeTimes{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size:  4.2016vh;
+    line-height: 6.302vh;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}

@@ -40,9 +40,16 @@
     font-weight: 700;
     font-size: 3.842vh;
     line-height: 5.763vh;
-    display: flex;
+
     align-items: center;
     text-align: center;
 
     color: #484848;
+}
+
+
+.myself{
+
+    background: linear-gradient(to right, transparent, #B0CBAD, transparent);
+    border-radius: 30px;
 }

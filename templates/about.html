@@ -5,12 +5,12 @@
 <button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a></button>
 <button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a></button>
 {% endif %} {% if username != "" %}
-<div>
-    Hi, {{ username }}
-</div>
-<div>
-    <a href="{{  url_for('log_out')  }}">Logout</a>
-</div>
+<button class="btn ">
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;">Hi, {{ username }}</a>
+</button>
+<button class="btn ">
+    <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center">Logout</a>
+</button>
 {% endif %} {% endblock %} {% block content %}
 
     <div class="container">

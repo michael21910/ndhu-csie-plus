@@ -3,23 +3,20 @@
 
 
 .backBlockStyle{
-    width: 142.157vh;
-    height: 65vh;
+    width: 121.84vmin;
+    height: 83.673vmin;
     background: #FFFFFF;
     box-shadow: 0vmin 0.48vmin 0.48vmin rgba(0, 0, 0, 0.25);
     border-radius: 1.5vmin;
 }
 
 
-
 .profile{
 
-    width: 37.095238095238095vh;
-    height: 11.9593837535014vh;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 8.96358543417367vh;
-    line-height: 13.445378151260504vh;
+    font-size: 7.683vmin;
+    line-height: 11.524vmin;
     display: flex;
     align-items: center;
     text-align: center;
@@ -35,13 +32,11 @@
 
 
 .subtitle{
-    width: 37.476vh;
-    height: 8.906vh;
 
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 5.042vh;
-    line-height: 7.563vh;
+    font-size: 4.321vmin;
+    line-height: 6.482vmin;
     display: flex;
     align-items: center;
     color: #5D8F8A;
@@ -49,18 +44,18 @@
 }
 
 .item{
-
-    width: 43.273vh;
-    height: 7.633vh;
-
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 3.081vh;
-    line-height: 4.622vh;
+    font-size: 2.641vmin;
+    line-height: 3.961vmin;
     display: flex;
     align-items: center;
-
     color: #484848;
 
 }
 
+.line{
+    width: 90%;
+    color:#000000;
+
+}
