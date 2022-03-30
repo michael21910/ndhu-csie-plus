@@ -5,8 +5,8 @@
 .leaderboard{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 8.751vh;
-    line-height: 13.127vh;
+    font-size: 9.844vmin;
+    line-height: 14.766vmin;
     display: flex;
     align-items: center;
     text-align: center;
@@ -20,12 +20,12 @@
 
 
 .topic{
+    width: 18.727vmin;
+    height: 5.762vmin;
     font-family: 'Poppins', sans-serif;
-    width: 5.123vh; 
-    height: 5.123vh;
     font-weight: 700;
-    font-size: 5.123vh;
-    line-height:  7.684vh;
+    font-size: 5.762vmin;
+    line-height: 8.643vmin;
     display: flex;
     align-items: center;
     text-align: center;
@@ -34,12 +34,12 @@
 }
 
 .userStyle{
-    width: 5.123vh; 
-    height: 5.123vh;
+    width: 18.727vmin;
+    height: 5.762vmin;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 3.842vh;
-    line-height: 5.763vh;
+    font-size: 4.322vmin;
+    line-height: 6.483vmin;
 
     align-items: center;
     text-align: center;
@@ -50,6 +50,6 @@
 
 .myself{
 
-    background: linear-gradient(to right, transparent, #B0CBAD, transparent);
-    border-radius: 30px;
+    background:#B0CBAD;
+    border-radius: 3.601vmin;
 }

@@ -2,13 +2,10 @@
 
 
 .backBlockStyle{
-    width: 1178px;
-    left: 371px;
-
-
+    width: 141.296vmin;
+    height: 93.277vmin;
     background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
+    border-radius: 1.801vmin;
 }
 
 
@@ -16,12 +13,11 @@
 .titleStyle{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 5.763vh;
-    line-height:  8.645vh;
+    font-size: 6.483vmin;
+    line-height: 9.724vmin;
     display: flex;
     align-items: center;
     text-align: center;
-
     color: #000000;
 }
 
@@ -31,8 +27,8 @@
 .subtitleStyle{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 3.842vh;
-    line-height: 5.763vh;
+    font-size: 4.322vmin;
+    line-height: 6.483vmin;
     display: flex;
     align-items: center;
 
@@ -43,8 +39,8 @@
 .hintStyle{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 2.561vh;
-    line-height: 3.842vh;
+    font-size: 2.881vmin;
+    line-height:4.322vmin;
     display: flex;
     align-items: center;
 
@@ -54,37 +50,34 @@
 .form-check-label{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size:  1.921vh;
-    line-height: 2.882vh;
+    font-size: 2.161vmin;
+    line-height: 3.241vmin;
     display: flex;
     align-items: center;
     color: #555555;
 }
 
-.btnStyle{
-    width: 10.321vh;
-    height: 4.696vh;
-    background: #888280;
-    border-color: transparent;
-}
+
 
 
 .btnWord{
+    height: 5.2821vmin;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 1.494vh;
-    line-height: 2.241vh;
     display: flex;
     align-items: center;
-    text-align: center;
-    color: #FFFFFF;
-
+    font-size:1.8vmin;
+    line-height: 1.8vmin;
+    color:#FFFEFE;
+    background-color:#888280;
+    border-color: transparent;
+    border-radius:3.6vmin;
 }
 
 
 .postBtn{
-    width:17.411vh;
-    height: 6.403vh;
+    width: 17.585vmin;
+    height: 6.203vmin;
     border-color: transparent;
     background: #5D8F8A;
     border-radius: 3.6vmin;
@@ -94,8 +87,8 @@
 .postWord{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 3.202vh;
-    line-height: 4.803vh;
+    font-size: 3.601vmin;
+    line-height: 5.402vmin;
     display: flex;
     align-items: center;
     text-align: center;
@@ -105,26 +98,18 @@
 
 
 .text{
-    width: 1043px;
-    height: 270px;
+    resize: none;
+    width: 110.21vmin;
+    height: 32.413vmin;
     background: #C4C4C4;
-    border-radius: 30px;
+    border-radius: 3.601vmin;
 }
 
 
 .titleText{
-    width: 1043px;
-    height: 64px;
+    width: 110.21vmin;
+    height: 7.683vmin;
     background: #C4C4C4;
-    border-radius: 30px;
+    border-radius: 3.601vmin;
 }
-
-
-.ms_auto{
-    margin-left: 100px;
-}
-.ms_btn{
-    margin-left: 14.606vmin;
-}
-
 

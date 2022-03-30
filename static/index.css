@@ -1,40 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Yaldevi:wght@700&display=swap');
+
+
 
 .loginbuttonstyle{
-    width: 116px;
-    height: 40.91px;
-    left: 1613px;
-    top: 50.16px;
+    width: 13.926vmin;
+    height: 4.922vmin;
     text-decoration: none;
-    background: #FFFEFE;
-    border-radius: 20px;
+    border-radius: 2.401vmin;
     border-color:transparent;
     font-family: 'Poppins', sans-serif;
-    font-style: normal;
+
     font-weight: 700;
-    font-size: 0.9375vw;
-    line-height: 1.40625vw;
+    font-size: 2.161vmin;
+    line-height: 3.241vmin;
     display: flex;
     align-items: center;
     text-align: center;
     color: #474747;
+    background: #FFFEFE;
 }
 
 .registerbuttonstyle{
-    width: 116px;
-    height: 40.91px;
-    right: 50px;
-    top: 50.16px;
+    width: 13.926vmin;
+    height: 4.922vmin;
     text-decoration: none;
     background: #BD9090;
-    border-radius: 20px;
+    border-radius: 2.401vmin;
     border-color:transparent;
     font-family: 'Poppins', sans-serif;
-    font-style: normal;
     font-weight: 700;
-    font-size: 18px;
-    line-height: 27px;
+    font-size: 2.161vmin;
+    line-height: 3.241vmin;
     display: flex;
     align-items: center;
     text-align: center;
@@ -43,10 +41,10 @@
 
 
 
+
 .boxRadius{
-    width: 125.614vh;
     background: #FFFFFF;
-    border: 0.107vh solid #000000;
+    border: 0.107vh solid transparent;
     box-sizing: border-box;
     border-radius: 3.6vmin;
 }
@@ -54,41 +52,33 @@
 
 
 .questionBlock{
-    width: 125.614vh;
-    left: calc(50% - 125.614vh/2 -  0.0534vh);
     background: #FFFFFF;
-    border-radius: 1.601vh;
+    border-radius: 1.801vmin;
 }
 
 .questionTitle{
-    width: 896.48px;
-    height: 30.68px;
-
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 28px;
-    line-height: 42px;
+    font-size: 3.361vmin;
+    line-height: 5.042vmin;
     display: flex;
     align-items: center;
-
     color: #000000;
 }
 
 .heart{
-    font-size: 45px;
-    width: 6.1792vh;
-    height: 53.18px;
+    font-size: 5.4021vmin;
     background-color: transparent;
 }
 
 .heartNumber{
-    width:  3.196vh;
-    height: 2.838vh;
+    width:  3.601vmin;
+    height: 3.241vmin;
     text-decoration: none;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size:  2.561vh;
-    line-height: 2.988vh;
+    font-size:  2.8811vmin;
+    line-height: 3.3613vmin;
     display: flex;
     align-items: center;
     text-align: center;
@@ -98,8 +88,7 @@
 
 
 .questionTime{
-    width: 21.345vh;
-    height: 2.182vh;
+
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size:  1.281vh;
@@ -140,14 +129,20 @@
 
 
 .hiMember{
+    width: 13.926vmin;
+    height: 4.922vmin;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 18px;
-    line-height: 27px;
+    font-size: 2.161vmin;
+    line-height: 3.241vmin;
     display: flex;
     align-items: center;
     text-align: center;
     text-decoration: none;
     color: #F1EFE6;
+
 }
+
+
+
 

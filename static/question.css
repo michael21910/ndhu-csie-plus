@@ -1,182 +1,150 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
-
+.titleBackground{
+    width:132.653vmin;
+}
 .Qtitle{
-    width: 56.551vh;
-    height: 13.165vh;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size:  7.563vh;
-    line-height: 11.344vh;
+    font-size: 6.483vmin;
+    line-height: 9.724vmin;
     display: flex;
     align-items: center;
-
     color: #000000;
-
 }
 
 
 
 .Qrelative{
-
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-
     display: flex;
     align-items: center;
-
+    font-size:2.161vmin;
+    line-height: 2.521vmin;
     color: #484848;
 }
 
-
-.Qdate{
-    width: 19.179vh;
-    height: 3.641vh;
-
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 2.801vh;
-    line-height:  4.201vh;
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-    color: #484848;
-
-}
 
 .Qbutton{
-
     /*word*/
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size:  1.960vh;
-    line-height: 2.941vh;
+    font-size:1.681vmin;
+    line-height: 2.521vmin;
     display: flex;
     align-items: center;
     text-align: center;
     color: #FFFFFF;
-
     /*button*/
-    width: 13.533vh;
-    height: 4.481vh;
     background: #888280;
-    border-radius: 0.8403vh;
+    border-radius: 0.72vmin;
 }
-
-
-
 
 
 .Qcontent{
-    width:  156.267vh;
-    height: 28.291vh;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 2.801vh;
-    line-height: 4.201;
-
+    font-size: 2.401vmin;
+    line-height:3.601vmin;
     color: #363636;
+    border-radius:2.4vmin;
 }
 
-
-
-.Qbackground{
-    background: #FFFFFF;
-    border-radius: 2.801vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-
+.heartSize{
+    font-size: 5.402vmin;
 }
-
-.post{
-    width: 16.372vh;
-    height:  7.282vh;
-    background: #5D8F8A;
-    border-radius: 4.201vh;
-}
-
-
-.box{
-    width: 146.372vh;
-    height:  7.282vh;
-
-    background: #FFFFFF;
-    border-radius: 4.201vh;
-
-}
-
-.postWord{
+.likeTimes{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 2.8011vh;
-    line-height:  4.2016vh;
+    font-size: 3.601vmin;
+    line-height: 5vmin;
     display: flex;
     align-items: center;
-    color: #FFFFFF;
-
+    color: #000000;
 }
+
 
 .comment{
-    width: 139.275vh;
-    height: 4.061vh;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size:  4.2016vh;
-    line-height: 3.7815vh;
+    font-size:3.601vmin;
+    line-height:5.402vmin;
     display: flex;
     align-items: center;
     color: #363636;
-
-
-
-
-
-
 }
 
 
 .reply{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 2.521vh;
-    line-height: 3.781vh;
+    font-size:2.161vmin;
+    line-height:3.241vmin;
     display: flex;
     align-items: center;
     text-align: center;
     color: #363636;
-
 }
 
-.dateReply{
+.replyMember{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 2.521vh;
-    line-height: 3.7815vh;
+    font-size: 2.401vmin;
+    line-height: 3.601vmin;
     display: flex;
     align-items: center;
+    color: #658389;
+}
 
+.replyContent{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.401vmin;
+    line-height: 3.601vmin;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+
+.replyDate{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.801vmin;
+    line-height:3.241vmin;
+    display: flex;
+    align-items: center;
     color: #828282;
 }
 
-
-.titleBackground{
-    width: 154.7619vh;
+.post{
+    height: 6.242vmin;
+    background: #5D8F8A;
+    border-radius: 3vmin;
 }
 
-.heartSize{
-    width: 7.337vh;
-    height: 6.442vh;
-    font-size: 6.3025vh;
 
+.box{
+    height: 6.242vmin;
+    background: #FFFFFF;
+    border-radius: 3.6014vmin;
 }
-.likeTimes{
+
+.postWord{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size:  4.2016vh;
-    line-height: 6.302vh;
+    font-size: 2.401vmin;
+    line-height: 3.601vmin;
     display: flex;
     align-items: center;
-
-    color: #000000;
+    color: #FFFFFF;
 }
+
+
+
+
+
+
+
+

@@ -11,8 +11,8 @@
 
 .top{
     background-color: #658389;
-    box-shadow: 0 0.48vmin 0.48vmin rgba(0, 0, 0, 0.25);
-    height: 15vh;
+
+
 }
 
 .brand{
@@ -28,31 +28,13 @@
 .navOption{
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
-    font-size: 1.25vw;
+    font-size: 2.161vmin;
+    line-height: 3.241vmin;
     display: flex;
     align-items: center;
     text-align: center;
     color: #FFFFFF;
 }
 
-.base_login{
-    background: #FFFEFE;
-    border-radius: 20px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 27px;
-    color: #474747;
-}
 
-.base_register{
-    background: #BD9090;
-    border-radius: 20px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 27px;
-    color: #FFFFFF;
-}
+

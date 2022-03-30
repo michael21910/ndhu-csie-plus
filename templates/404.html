@@ -7,7 +7,7 @@
 <button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a></button>
 {% endif %} {% if username != "" %}
 <button class="btn ">
-    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;">Hi, {{ username }}</a>
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" >Hi, {{ username }}</a>
 </button>
 <button class="btn ">
     <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center">Logout</a>
@@ -15,9 +15,11 @@
 {% endif %} {% endblock %} {% block content %}
 <div class="container backMargin">
     
-    <div class="row row-cols-2">
-        <div class="four0four col seperate-line">404</div>
-        <div class="col ">
+    <div class="row row-cols-lg-2 ">
+        <div class="four0four col-sm-12 col-lg-6 seperate-line  end-0" >
+            404
+        </div>
+        <div class="col-6 start-0">
             <div class="oopsWord mt-5 ms-5">Oops!</div>
             <div class="mt-4 sentence ms-5">The Page You're Looking For<br>Was Not Found</div>
             <button class="btn mt-4 ms-5"><a href="{{ url_for('index') }}" class="backButton justify-content-center "> < Back To Home</a></button>

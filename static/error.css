@@ -2,11 +2,11 @@
 
 
 .four0four{
-   
+    font-size: 31.212vmin;
+    line-height: 46.819vmin;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 260px;
-    line-height: 390px;
+
     display: flex;
     align-items: center;
     text-align: center;
@@ -15,11 +15,11 @@
 }
 
 .oopsWord{
-    
+    font-size: 7.683vmin;
+    line-height: 11.525vmin;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 64px;
-    line-height: 96px;
+
     display: flex;
     align-items: center;
     text-align: center;
@@ -31,18 +31,15 @@
 
 
 .backButton{
-
-    width: 200px;
-    height: 40px;
-    right: 700px;
-    top: 635px;
+    width: 24.01vmin;
+    height: 4.802vmin;
 
     background: #FFFEFE;
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
     font-weight: 700;
-    font-size: 18px;
-    line-height: 27px;
+    font-size:2.161vmin;
+    line-height: 3.241vmin;
     display: flex;
     align-items: center;
     text-align: center;
@@ -61,10 +58,9 @@
 .sentence{
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 36px;
-    line-height: 54px;
     display: flex;
     align-items: center;
     color: #606060;
-
+    font-size: 4.322vmin;
+    line-height: 6.483vmin;
 }

@@ -18,49 +18,50 @@
 
 
 
-
 <div class="container backBlockMargin">
-    <div class="d-flex flex-column bd-highlight">
-        <div class="bd-highlight d-flex flex-row">
-            <div class="d-flex flex-column bd-highlight bg-light titleBackground">
+
+    <div class="row">
+        <div class="bd-highlight d-flex flex-row col-12">
+            <div class="d-flex flex-column bd-highlight  titleBackground">
                 <label class="bd-highlight Qtitle">{{ question_title }}</label>
-                <div class="bd-highlight d-flex flex-row">
-                        <label class=" bd-highlight Qrelative">{{ asker}}</label>
+                <div class="bd-highlight d-flex flex-row mt-3">
+                        <label class="bd-highlight Qrelative">{{ asker}}</label>
                         <label class=" bd-highlight Qrelative ms-3">{{ question_date }}</label>
-                        <label class="ms-3 bd-highlight Qbutton justify-content-center">{{ tag }}</label>
+                        <div class="ms-3 bd-highlight Qbutton btn-sm justify-content-center">{{ tag }}</div>
                 </div>
             </div>
             <div class="d-flex flex-column bd-highlight ">
                 <div class="justify-content-center"><a style="text-decoration: none" href="{{  url_for('upvote_question')  }}" class="bd-highlight heartSize "> ❤️</a></div>
-                <label class="bd-highlight likeTimes justify-content-center mt-2">{{ question_likes }}</label>
+                <div class="bd-highlight likeTimes justify-content-center ">{{ question_likes }}</div>
             </div>
         </div>
-        <div class="bd-highlight Qbackground mt-5" contenteditable="true">
-            <p class="Qcontent ">{{ question_content }}</p>
+        <div class="col-12 mt-5" >
+            <div class="Qcontent bg-light p-3 "><div class="ms-2">{{ question_content }}</div></div>
         </div>
-        <form class="bd-highlight d-flex flex-column" action="{{  url_for('post_reply')  }}" method="post">
-            <div class="bd-highlight d-flex flex-row mb-2" style="border-bottom:0.1vw solid #A49B9B">
-                <label class="bd-highlight   comment">Comments</label>
-                <label class="bd-highlight  justify-content-bottom justify-content-end reply nowrap">{{ question_replies }}</label>
+        <form class="mt-2" action="{{  url_for('post_reply')  }}" method="post">
+            <div class="row mb-2" style="border-bottom:0.1vw solid #A49B9B">
+                <div class="col-10 comment mb-2 "><div class="ms-3">Comments</div></div>
+                <div class="col-2  align-self-end justify-content-end reply text-nowrap">{{ question_replies }}</div>
             </div>
-            <div class="bd-highlight">
+            <div class="row">
                 {% for reply in reply_list %} {% set rid = loop.index %} {% set replier = reply["replier"] %} {% set reply_time = reply["time"] %} {% set reply_content = reply["content"] %}
-                <div class="reply-{{rid}}  d-flex flex-column">
+                <div class="reply-{{rid}} mt-3">
                     <div class="reply-{{rid}}-content bd-highlight">
-                        <p class="">{{ replier }}:</p>
-                        <p class="">{{ reply_content }}</p>
+                        <div class="col-12 replyMember ms-3">{{ replier }}</div>
+                        <div class="col-12 replyContent ms-3">{{ reply_content }}</div>
                     </div>
-                    <div class="reply-{{rid}}-date bd-highlight">
-                        <label class="dateReply"><{{ reply_time }}></label>
+                    <div class="reply-{{rid}}-date">
+                        <div class=" col-12 replyDate ms-3"><{{ reply_time }}></div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
-            <div class="bd-highlight d-flex flex-row">
-                <input class="bd-highlight form-control boxRadius  box me-2 inputText" type="text" name="reply_entry_box" placeholder="      comments..." value="{{  reply_default_value  }}">
-                <input class="bd-highlight flex-shrink-1 post my-auto postWord justify-content-center" type="submit" name="submit_button" value="Post">
+            <div class="row mt-4">
+                <input class="col-8 form-control w-75 inputText box" type="text" name="reply_entry_box" placeholder="      comments..." value="{{  reply_default_value  }}">
+                <input class="col-1 post offset-2 btn-sm  my-auto postWord justify-content-center" type="submit" name="submit_button" value="Post">
             </div>
         </form>
     </div>
+
 </div>
 {% endblock %}

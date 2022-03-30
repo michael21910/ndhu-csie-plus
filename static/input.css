@@ -6,12 +6,12 @@
 }
 
 input{
+    font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 700;
     width: 46.5vmin;
     height: 7vmin;
-    left: 89.55vmin;
-    bottom: 76.88vmin;
+
     border-radius: 3.6vmin;
     border: transparent;
 }
