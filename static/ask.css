@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+
+.backBlockStyle{
+    background: #FFFFFF;
+    border-radius: 1.801vmin;
+}
+
+
+.titleStyle{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 6.483vmin;
+    line-height: 9.724vmin;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+
+
+
+.subtitleStyle{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 4.322vmin;
+    line-height: 6.483vmin;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+}
+
+.hintStyle{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.881vmin;
+    line-height:4.322vmin;
+    display: flex;
+    align-items: center;
+
+    color: #363636;
+}
+
+.form-check-label{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.161vmin;
+    line-height: 3.241vmin;
+    display: flex;
+    align-items: center;
+    color: #555555;
+}
+
+
+
+
+.btnWord{
+    height: 5.2821vmin;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    font-size:1.8vmin;
+    line-height: 1.8vmin;
+    color:#FFFEFE;
+    background-color:#888280;
+    border-color: transparent;
+    border-radius:3.6vmin;
+}
+
+
+.postBtn{
+    width: 17.585vmin;
+    height: 6.203vmin;
+    border-color: transparent;
+    background: #5D8F8A;
+    border-radius: 3.6vmin;
+}
+
+
+.postWord{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 3.601vmin;
+    line-height: 5.402vmin;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+
+.text{
+    resize: none;
+    width: 110.21vmin;
+    height: 32.413vmin;
+    background: #C4C4C4;
+    border-radius: 3.601vmin;
+}
+
+.text1{
+    resize: none;
+    height: 32.413vmin;
+    background: #C4C4C4;
+    border-radius: 3.601vmin;
+}
+
+
+
+.titleText{
+    width: 110.21vmin;
+    height: 7.683vmin;
+    background: #C4C4C4;
+    border-radius: 3.601vmin;
+}
+
+.titleText1{
+    background: #C4C4C4;
+    border-radius: 3.601vmin;
+}
+
+
+input:checked + label {
+    background-color: #E5A9A5;
+}
+
+
+

@@ -1,84 +1,127 @@
-{% extends "base.html" %} {% block login %} {% if username == "" %}
-<div>
-    <a href="{{ url_for('login') }}">Login</a>
-</div>
-<div>
-    <a href="{{ url_for('register') }}">Register</a>
-</div>
+{% extends "base.html" %} {% block linkCSS %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'input.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'ask.css')  }}">
+
+{% endblock %} {% block login %} {% if username == "" %}
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center p-3" id="login">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center p-3" id="register">Register</a></button>
 {% endif %} {% if username != "" %}
-<div class="greet">
-    Hi, {{ username }}
-</div>
-<div class="log-out">
-    <a href="{{  url_for('log_out')  }}">Logout</a>
-</div>
+<button class="btn ">
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;" id="member">Hi, {{ username }}</a>
+</button>
+<button class="btn ">
+    <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center p-3" id="logout">Logout</a>
+</button>
 {% endif %} {% endblock %} {% block content %}
 
-<div class="question_block">
-    <div class="question_block_top">
-        <div class="question_block_top_label">
-            <label>Ask a Question</label>
-        </div>
-    </div>
-    <form class="question_block_bot" action="{{  url_for('post_question')  }}" method="post">
-        <div class="question_block_bot_left">
-            <div class="question_block_bot_left_top">
-                <div>
-                    <div>
-                        <label>Title</label>
-                    </div>
-                </div>
-                <div>
-                    <input type="text" name="question-title" placeholder="Title of question..." value="{{  title_default_value  }}">
-                </div>
+
+<div class="container backBlockMargin ">
+    <div class="row ">
+        <form class= "backBlockStyle shadow mx-auto " action="{{  url_for('post_question')  }}" method="post">
+            <label class="d-flex justify-content-center titleStyle col mt-lg-4">Ask a Question</label>
+
+
+            <label class=" mt-lg-3 subtitleStyle  col offset-lg-1">Title</label>
+            <div class="col d-flex justify-content-center">
+                <input class="form-control titleText boxRadius shadow inputText"type="text" name="question-title" placeholder="Title of question..." value="{{  title_default_value  }}" maxlength="200">
             </div>
-            <div class="question_block_bot_left_bot">
-                <div>
-                    <div>
-                        <label>Content</label>
-                    </div>
-                </div>
-                <div>
-                    <input type="text" name="question-content" placeholder="Content of question..." value="{{  content_default_value  }}">
-                </div>
+
+
+            <label class="col mt-3 subtitleStyle offset-lg-1">Content</label>
+            <div class="col d-flex justify-content-center">
+                <textarea  class="form-control inputText boxRadius shadow text me-4" type="text" name="question-content" placeholder="Content of question..." value="{{  content_default_value  }}" maxlength="500"></textarea>
             </div>
-            <div class="tags">
-                <div>
+
+
+            <div class="row ">
+                <div class="hintStyle col offset-lg-1 mt-lg-3">
                     Please choose your tags
                 </div>
-                <div>
-                    <input type="checkbox" name="General" value="General">
-                    <span>General</span>
-                    <input type="checkbox" name="Freshman" value="Freshman">
-                    <span>Freshman</span>
-                    <input type="checkbox" name="Sophomore" value="Sophomore">
-                    <span>Sophomore</span>
-                    <input type="checkbox" name="Junior" value="Junior">
-                    <span>Junior</span>
-                    <input type="checkbox" name="Multimedia" value="Multimedia">
-                    <span>Multimedia</span>
-                    <input type="checkbox" name="Network" value="Network">
-                    <span>Network</span>
-                </div>
-                {% if tagMessage != "" %}
-                <div>
-                    {{ tagMessage }}
-                </div>
-                {% endif %}
             </div>
-            <div class="question_block_bot_right">
-                <div>
-                    <div>
-                        <input type="submit" name="post-button" value="Post">
+
+            <div class="row ">
+                <div class=" d-flex flex-row col-md-8 offset-lg-1 my-auto ">
+                    <div class="btn-group ms_auto bd-highlight" role="group" >
+
+                            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="General" value="General" >
+                            <label class="btn btnWord me-md-4 col-4 justify-content-center " for="btncheck1" style="border-radius:3.6vmin">General</label>
+
+
+                            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="Freshman" value="Freshman">
+                            <label class="btn btnWord me-md-4 col-4 justify-content-center" for="btncheck2" style="border-radius:3.6vmin;">Freshman</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="Sophomore" value="Sophomore">
+                            <label class="btn btnWord me-md-4 col-4 justify-content-center" for="btncheck3" style="border-radius:3.6vmin">Sophomore</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="Junior" value="Junior">
+                            <label class="btn btnWord me-md-4 justify-content-center" for="btncheck4" style="border-radius:3.6vmin">Junior</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="Multimedia" value="Multimedia">
+                            <label class="btn btnWord me-md-4 justify-content-center" for="btncheck5" style="border-radius:3.6vmin">Multimedia</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="Network" value="Network">
+                            <label class="btn btnWord justify-content-center" for="btncheck6" style="border-radius:3.6vmin">Network</label>
+
                     </div>
-                    <div>
-                        <input type="checkbox" name="anonymous" value="Anonymous" {{ anonymous_checked | safe }}>
-                        <label for="anonymous">Anonymous</label>
+                </div>
+
+                <!--
+                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="General" value="General" checked>
+                        <label class="btnStyle btnWord me-lg-4  me-sm-2  justify-content-center btn-sm" for="btncheck1" style="border-radius:3.6vmin">General</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="Freshman" value="Freshman">
+                        <label class="btnStyle btnWord me-lg-4 me-sm-2 d-flex justify-content-center btn-sm" for="btncheck2" style="border-radius:3.6vmin">Freshman</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="Sophomore" value="Sophomore">
+                        <label class=" btnStyle btnWord me-lg-4  me-sm-2  justify-content-center btn-sm" for="btncheck3" style="border-radius:3.6vmin">Sophomore</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="Junior" value="Junior">
+                        <label class=" btnStyle btnWord me-lg-4 me-sm-2  justify-content-center btn-sm" for="btncheck4" style="border-radius:3.6vmin">Junior</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="Multimedia" value="Multimedia">
+                        <label class=" btnStyle btnWord me-lg-4  me-sm-2  justify-content-center btn-sm" for="btncheck5" style="border-radius:3.6vmin">Multimedia</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="Network" value="Network">
+                        <label class=" btnStyle btnWord   justify-content-center btn-sm" for="btncheck6" style="border-radius:3.6vmin">Network</label>
+
+    -->
+                <div class="col-lg-2 mt-lg-0 mt-2">
+                    <div class="ms-lg-5">
+                        <input type="submit" name="post-button" value="Post" class="justify-content-center postBtn postWord">
                     </div>
-                    {{ message }}
+                </div>
+
+            </div>
+
+
+
+
+            <div class="row mb-5">
+                <div class="form-check col offset-lg-9 ">
+                    <div class="ms-lg-5">
+                        <div class="ms-lg-3">
+                            <input class="form-check-input " type="checkbox" name="anonymous" value="Anonymous" {{ anonymous_checked | safe }} id="anonymous" checked>
+                            <div class="form-check-label" for="anonymous" >Anonymous</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+
+            {% if tagMessage != "" %}
+            <div class="d-flex justify-content-center hintStyle col-12">
+                {{ tagMessage }}
+            </div>
+            {% endif %}
+            <div class="d-flex justify-content-center hintStyle col-12">{{ message }}</div>
+        </form>
+    </div>
 </div>
+
+
+
+
 {% endblock %}
+
+
+

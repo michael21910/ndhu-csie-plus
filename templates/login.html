@@ -1,44 +1,49 @@
-{% extends "base.html" %} {% block login %}
-<div>
-    <a href="{{ url_for('login') }}">Login</a>
-</div>
-<div>
-    <a href="{{ url_for('register') }}">Register</a>
-</div>
+{% extends "base.html" %} {% block linkCSS %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'login.css')  }}">
+
+{% endblock %} {% block login %}
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center p-3" id="login">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center p-3" id="register">Register</a></button>
 {% endblock %} {% block content %}
-<div>
-    <div>
-        Login
-    </div>
-    <div>
-        <form action="{{ url_for('index') }}" method="post">
-            <div>
-                <div>
-                    <input type="text" name="username" max="20" placeholder="Username">
+<div class="container backBlockMargin">
+    <div class="row ">
+        <div class="backBlockStyle mx-auto">
+            <div class="col-12 d-flex justify-content-center ">
+                <span class = "title mt-lg-5 mb-lg-5  mt-md-4 mb-md-4  mt-3 mb-3 ">Login</span>
+            </div>
+
+            <form action="{{ url_for('index') }}" method="post" class="col-12">
+                <div class=" d-flex justify-content-center mt-md-2  mt-1 col-12" >
+                    <input type="text" name="username" maxlength="20" placeholder="Username" class="inputText">
                 </div>
-            </div>
-            <div>
-                <div>
-                    <input type="password" name="password" max="16" placeholder="Password">
+
+                <div class="  d-flex justify-content-center mt-md-3  mt-2 col-12">
+                    <input type="password" name="password" maxlength="16" placeholder="Password" class="inputText">
                 </div>
-            </div>
-            <div>
-                <a href="{{ url_for('forgotpassword') }}">Forgot Password?</a>
-            </div>
-            {% if message != "" %}
-            <div>
-                {{ message }}
-            </div>
-            {% endif %}
-            <div>
-                <div>
-                    <input type="submit" name="send" value="Login">
+
+                <div class="d-flex  justify-content-around mt-md-2 mt-1 col-12">
+                    <a href="{{ url_for('forgotpassword') }}" class="link fw-bold text-nowrap">Forgot Password?</a>
                 </div>
-            </div>
-            <div>
-                Don't have an account? <a href="{{ url_for('register') }}">Register</a>
-            </div>
-        </form>
+                {% if message != "" %}
+                <div class="fw-bold hintSentence d-flex justify-content-center  mt-md-3 mt-2 col-12 text-nowrap">
+                    {{ message }}
+                </div>
+                {% endif %}
+
+                <div class="d-flex justify-content-center mt-md-5 mt-3  col-12 ">
+                    <input type="submit" name="send" value="Login" class="sendButtom sendWord">
+                </div>
+
+                <div class="d-flex justify-content-around mt-lg-3 mb-lg-5  mt-3 mt-md-4 mt-md-1 col-12 text-nowrap">
+                    <span class="hintSentence fw-bold">Don't have an account?<a href="{{ url_for('register') }}" class="link">&nbsp;&nbsp;Register</a></span>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
+
+
+
 {% endblock %}

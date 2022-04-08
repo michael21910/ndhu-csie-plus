@@ -1,54 +1,39 @@
-{% extends "base.html" %} {% block login %}
-<div class="greet">
-    Hi, {{ username }}
-</div>
-<div class="log-out">
-    <a href="{{  url_for('log_out')  }}">Logout</a>
-</div>
+{% extends "base.html" %}  {% block linkCSS %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'profile.css')  }}">
+{% endblock %}{% block login %}
+<button class="btn ">
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;" id="member">Hi, {{ username }}</a>
+</button>
+<button class="btn ">
+    <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center p-3" id="logout">Logout</a>
+</button>
 {% endblock %} {% block content %}
-<div>
-    <div>
-        <div>
+<div class="container backBlockMargin">
+    <div class="row row-col-12">
+        <div class="backBlockStyle mx-auto col ">
+            <div class=" mb-md-3 col">
+                <div class="d-flex p-md-2  justify-content-center mt-md-5 mt-3">
+                    <img src="https://picsum.photos/100/100?random=50" class="image  mt-1 mt-md-2 me-3">
+                    <div class="profile d-flex">
+                        Profile
+                    </div>
+                </div>
+                <div class="d-flex justify-content-around col"><hr class="line"></div>
 
-        </div>
-        <div>
-            Profile
-        </div>
-    </div>
-    <div>
+                <div class="p-md-2  subtitle  col ms-md-5"><div class="ms-md-5">Personal Infomation</div></div>
+                <div class="p-md-2  item  col ms-md-5"><div class="ms-md-5  mt-1">Username: {{ username }}</div></div>
+                <div class="p-md-2  item  col ms-md-5"><div class="ms-md-5  mt-1">Email: {{ email }}</div></div>
+                <div class="p-md-2  item  col ms-md-5"><div class="ms-md-5  mt-1">Password: {{ password }}</div></div>
 
-    </div>
-    <div>
-        <div>
-            <div>
-                Personal Information
-            </div>
-            <div>
-                <div>
-                    Username: {{ username }}
-                </div>
-                <div>
-                    Email: {{ email }}
-                </div>
-                <div>
-                    Password: {{ password }}
-                </div>
-            </div>
-        </div>
-        <div>
-            <div>
-                Your Records
-            </div>
-            <div>
-                <div>
-                    Points: {{ points }}
-                </div>
-                <div>
-                    Posts: {{ posts }}
-                </div>
-                <div>
-                    Answers: {{ answers }}
-                </div>
+
+                <div class="p-md-2  subtitle  col ms-md-5 mt-3"><div class="ms-md-5">Your Records</div></div>
+                <div class="p-md-2  item  col ms-md-5"><div class="ms-md-5  mt-1">Points: {{ points }}</div></div>
+                <div class="p-md-2  item  col ms-md-5"><div class="ms-md-5  mt-1">Posts: {{ posts }}</div></div>
+                <div class="p-md-2  item  col ms-md-5"><div class="ms-md-5  mt-1">Answers: {{ answers }}</div></div>
+
+
+
             </div>
         </div>
     </div>

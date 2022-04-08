@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Yaldevi:wght@700&display=swap');
+
+
+
+.loginbuttonstyle{
+    width: 13.926vmin;
+    height: 4.922vmin;
+    text-decoration: none;
+    border-radius: 2.401vmin;
+    border-color:transparent;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.161vmin;
+    line-height: 3.241vmin;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #474747;
+    background: #FFFEFE;
+}
+
+.registerbuttonstyle{
+    width: 13.926vmin;
+    height: 4.922vmin;
+    text-decoration: none;
+    background: #BD9090;
+    border-radius: 2.401vmin;
+    border-color:transparent;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.161vmin;
+    line-height: 3.241vmin;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+
+#register:hover{
+    color: #FFFFFF;
+}
+#logout:hover{
+    color: #FFFFFF;
+}
+#member:hover{
+    color: #FFFFFF;
+}
+
+#login:hover{
+    color: #474747;
+}
+
+
+
+
+
+
+.boxRadius{
+    background: #FFFFFF;
+    border: 0.107vh solid transparent;
+    box-sizing: border-box;
+    border-radius: 3.6vmin;
+}
+
+
+
+.questionBlock{
+    background: #FFFFFF;
+    border-radius: 1.801vmin;
+}
+
+.questionTitle{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 3.361vmin;
+    line-height: 5.042vmin;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.heart{
+    font-size: 5.4021vmin;
+    background-color: transparent;
+}
+
+.heartNumber{
+    width:  3.601vmin;
+    height: 3.241vmin;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size:  2.8811vmin;
+    line-height: 3.3613vmin;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+
+.questionTime{
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size:  1.281vh;
+    line-height: 2.241vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+.questionReply{
+    width: 5.54vh;
+    height: 5.021vh;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 2.988vh;
+    line-height: 3.522vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+
+.questionreply{
+    width: 5.54vh;
+    height: 3vh;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size:  1.494vh;
+    line-height: 1.75vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+
+
+.hiMember{
+    width: 13.926vmin;
+    height: 4.922vmin;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.161vmin;
+    line-height: 3.241vmin;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: #F1EFE6;
+
+}
+
+
+
+

@@ -1,75 +1,67 @@
-{% extends "base.html" %} {% block login %} {% if username == "" %}
-<div>
-    <a href="{{ url_for('login') }}">Login</a>
-</div>
-<div>
-    <a href="{{ url_for('register') }}">Register</a>
-</div>
+{% extends "base.html" %} {% block linkCSS %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'question.css')  }}">
+{% endblock %}{% block login %} {% if username == "" %}
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center p-3" id="login">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center p-3" id="register">Register</a></button>
 {% endif %} {% if username != "" %}
-<div class="greet">
-    Hi, {{ username }}
-</div>
-<div class="log-out">
-    <a href="{{  url_for('log_out')  }}">Logout</a>
-</div>
+<button class="btn ">
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;" id="member">Hi, {{ username }}</a>
+</button>
+<button class="btn ">
+    <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center p-3" id="logout">Logout</a>
+</button>
 {% endif %} {% endblock %} {% block content %} {% set asker = question_contents["question"]["question_data"]["asker"] %} {% set question_id = question_contents["question"]["question_id"] %} {% set question_content = question_contents["question"]["question_data"]["content"]
 %} {% set question_title = question_contents["question"]["question_data"]["question"] %} {% set question_date = question_contents["question"]["question_data"]["time"] %} {% set question_likes = question_contents["question"]["question_data"]["likes"] %}
 {% set question_replies = question_contents["question"]["question_data"]["replies"] %} {% set reply_list = question_contents["replies"] %}
 
-<div class="content_">
-    <div class="upper">
-        <div class="upper-left">
-            <div class="upper-left-upper">
-                <label>{{ question_title }}</label>
-            </div>
-            <div class="upper-left-middle">
-                <label>{{ asker }} {{ question_date }}</label>
-            </div>
-            <div class="upper-left-lower">
-                <label>{{ tag }}</label>
-            </div>
-        </div>
-        <div class="upper-right">
-            <a class="heart-block" href="{{  url_for('upvote_question')  }}">
-        ❤️
-      </a>
-            <div class="like-count">
-                <label>{{ question_likes }}</label>
-            </div>
-        </div>
-    </div>
-    <div class="middle">
-        <p>{{ question_content }}</p>
-    </div>
-    <form class="lower" action="{{  url_for('post_reply')  }}" method="post">
-        <div class="lower-upper">
-            <div class="lower-upper-left">
-                <label>Comments</label>
-            </div>
-            <div class="lower-upper-right">
-                <label>{{ question_replies }}</label>
-            </div>
-        </div>
-        <div class="lower-middle">
-            {% for reply in reply_list %} {% set rid = loop.index %} {% set replier = reply["replier"] %} {% set reply_time = reply["time"] %} {% set reply_content = reply["content"] %}
-            <div class=reply-{{rid}}>
-                <div class=reply-{{rid}}-content>
-                    <p>{{ replier }}: {{ reply_content }}</p>
-                </div>
-                <div class=reply-{{rid}}-date>
-                    <label>{{ reply_time }}</label>
+
+
+
+<div class="container backBlockMargin">
+
+    <div class="row">
+        <div class="bd-highlight d-flex flex-row col-12">
+            <div class="d-flex flex-column bd-highlight  titleBackground">
+                <label class="bd-highlight Qtitle">{{ question_title }}</label>
+                <div class="bd-highlight d-flex flex-row mt-3">
+                        <label class="bd-highlight Qrelative">{{ asker}}</label>
+                        <label class=" bd-highlight Qrelative ms-3">{{ question_date }}</label>
+                        <div class="ms-3 bd-highlight Qbutton btn-sm justify-content-center">{{ tag }}</div>
                 </div>
             </div>
-            {% endfor %}
-        </div>
-        <div class="lower-lower">
-            <div class="lower-lower-left">
-                <input type="text" name="reply_entry_box" placeholder="comments..." value="{{  reply_default_value  }}">
-            </div>
-            <div class="lower-lower-right">
-                <input type="submit" name="submit_button" value="Post">
+            <div class="d-flex flex-column bd-highlight ">
+                <div class="justify-content-center"><a style="text-decoration: none" href="{{  url_for('upvote_question')  }}" class="bd-highlight heartSize "> ❤️</a></div>
+                <div class="bd-highlight likeTimes justify-content-center ">{{ question_likes }}</div>
             </div>
         </div>
-    </form>
+        <div class="col-12 mt-5" >
+            <div class="Qcontent bg-light p-3 "><div class="ms-2">{{ question_content }}</div></div>
+        </div>
+        <form class="mt-2" action="{{  url_for('post_reply')  }}" method="post">
+            <div class="row mb-2" style="border-bottom:0.1vw solid #A49B9B">
+                <div class="col-10 comment mb-2 "><div class="ms-3">Comments</div></div>
+                <div class="col-2  align-self-end justify-content-end reply text-nowrap">{{ question_replies }}</div>
+            </div>
+            <div class="row">
+                {% for reply in reply_list %} {% set rid = loop.index %} {% set replier = reply["replier"] %} {% set reply_time = reply["time"] %} {% set reply_content = reply["content"] %}
+                <div class="reply-{{rid}} mt-3">
+                    <div class="reply-{{rid}}-content bd-highlight">
+                        <div class="col-12 replyMember ms-3">{{ replier }}</div>
+                        <div class="col-12 replyContent ms-3">{{ reply_content }}</div>
+                    </div>
+                    <div class="reply-{{rid}}-date">
+                        <div class=" col-12 replyDate ms-3"><{{ reply_time }}></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row mt-4">
+                <input class="col-8 form-control w-75 inputText box" type="text" name="reply_entry_box" placeholder="comments..." value="{{  reply_default_value  }}">
+                <input class="col-1 post offset-2 btn-sm  my-auto postWord justify-content-center p-1" type="submit" name="submit_button" value="Post">
+            </div>
+        </form>
+    </div>
+
 </div>
 {% endblock %}

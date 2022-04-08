@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Yaldevi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.new-width {
+    width: 75vw;
+}
+
+.seperate-line {
+    border-right: 0.1vw solid #A49B9B;
+}
+
+.top{
+    background-color: #658389;
+
+
+}
+
+.brand{
+    font-family: 'Yaldevi', sans-serif;
+    font-weight: bold;
+    font-size: 6.48vmin;
+    letter-spacing: 0.2em;
+    text-align: center;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.navOption{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 2.161vmin;
+    line-height: 3.241vmin;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.main-content{
+    padding-bottom: 50px;
+}
+
+.footer{
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.161vmin;
+    line-height:2.521vmin;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    height: 50px;
+}
+
+#brand:hover{
+    color:#C5C2B7;
+}
+
+#option:hover{
+    color:#C5C2B7;
+}
+
+.dropdown > a:hover{
+    color:#C5C2B7;
+}
+
+.navbar-toggler-icon {
+    background-image: url(
+    "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 128, 0, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+.navbar-toggler {
+    border-color: green !important; /*Whatever colour you want for background */
+}

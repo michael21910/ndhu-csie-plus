@@ -1,61 +1,60 @@
-{% extends "base.html" %} {% block login %} {% if username == "" %}
-<div>
-    <a href="{{ url_for('login') }}">Login</a>
-</div>
-<div>
-    <a href="{{ url_for('register') }}">Register</a>
-</div>
+{% extends "base.html" %} {% block linkCSS %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'about&rule.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
+{% endblock %} {% block login %} {% if username == "" %}
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center p-3" id="login">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center p-3" id="register">Register</a></button>
 {% endif %} {% if username != "" %}
-<div class="greet">
-    Hi, {{ username }}
-</div>
-<div class="log-out">
-    <a href="{{  url_for('log_out')  }}">Logout</a>
-</div>
+<button class="btn ">
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;" id="member">Hi, {{ username }}</a>
+</button>
+<button class="btn ">
+    <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center p-3" id="logout">Logout</a>
+</button>
 {% endif %} {% endblock %} {% block content %}
-<div>
-    <div>
-        <div>
+
+    <div class="container">
+        <div class="Qstyle mt-3">
             Q: What is NDHU CSIEplus?
         </div>
-        <div>
+        <div class="Astyle">
             NDHU CSIEplus is a question-and-answer website. You can watch the questions and answers from everyone on this platform.
             <br> For those who like to answer questions from others, there are always endless questions on the website; for those who have questions to ask, there are always enthusiastic students on NDHU CSIEplus to help them out. Moreover, if there is
             an in-depth question, there will often be many intense and exciting discussions about the question, which is a lot for the questioner.
             <br> What's even better, since NDHU CSIEplus is very close to students' university life, for some answers that only students at NDHU know, you cannot find a feature like this on any other websites!
             <br> Become a member to ask and answer questions!
         </div>
-        <div>
+        <div class="Qstyle mt-2">
             Q: What is the difference between before and after logging in?
         </div>
-        <div>
+        <div class="Astyle">
             If you log in, you can ask and answer questions on NDHU CSIEplus! However, whether you log in, you can watch all the questions and answers on NDHU CSIEplus!
         </div>
-        <div>
+        <div class="Qstyle mt-2">
             Q: What does the token do send to me by email after registration?
         </div>
-        <div>
+        <div class="Astyle"> 
             You will use the token if you want to change your user password. Therefore, please keep it safe and don't let anyone know!
         </div>
-        <div>
+        <div class="Qstyle mt-2">
             Q: What type of question is available in NDHU CSIEplus?
         </div>
-        <div>
+        <div class="Astyle">
             Any questions about Computer Science and course related to it are all available!
         </div>
-        <div>
+        <div class="Qstyle mt-2">
             Q: What do points do?
         </div>
-        <div>
+        <div class="Astyle">
             You will get 100 points after registration. If you answer a question, you will gain 15 points. If you ask a question, your points will be deducted by 10. See you on the leaderboard!
         </div>
-        <div>
+        <div class="Qstyle mt-2">
             Q: Do I have to pay for this?
         </div>
-        <div>
+        <div class="Astyle">
             No, you don't have to pay for this question-and-answer website! Start your journey and be our member right now!
         </div>
     </div>
 
-</div>
+
 {% endblock %}
