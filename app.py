@@ -1,5 +1,8 @@
 from flask import Flask, render_template, jsonify, session, request, redirect, url_for
+from flask_session import Session
+from numpy import vectorize
 from databaseUtils import databaseUtils
+import comsci as cs
 
 app = Flask(__name__, template_folder = "templates")
 
@@ -20,6 +23,8 @@ connection = db.connect(
 
 app.secret_key = "super secret key"
 app.config["SESSION_TYPE"] = "filesystem"
+
+__session = Session(app)
 
 # global variable
 tags_list = ["General", "Freshman", "Sophomore", "Junior", "Multimedia", "Network"]
@@ -166,21 +171,32 @@ def post_question():
         err = 2
     # if the question title is not empty and the user has logged in, set err to 1 or -1 according to the MySql connection result
     else:
-        request_list = list(request.values.keys())
-        tags_count = 0
-        targetTag = ""
-        for tag in tags_list:
-            if (tag in request_list):
-                targetTag = tag
-                tags_count += 1
-        # the user checked over 1 tags or no tags
-        if (tags_count != 1):
-            session["ask_question_default_message"] = "You can only choose 1 tag."
-            return redirect(url_for("ask_question"))
-        if ("anonymous" in request_list):
-            question_dict["asker"] = ""
-        err, qid = db.insert_question(connection, question_dict, targetTag)
-    
+        # determine the content or the title is realted to CSIE
+        pre_pre_processed_str = question_dict['question'] + " " + question_dict['content']
+        pre_processed_str = cs.pre_process(pre_pre_processed_str)
+        print(pre_processed_str)
+        err = 4
+        if len(pre_processed_str):
+            vectorized_data = cs.vectorize_str(pre_processed_str)
+            # get the confident score of the content or the title
+            relation_score = cs.get_relation_score(vectorized_data)
+            print(relation_score)
+            if relation_score * 100 >= 80:
+                request_list = list(request.values.keys())
+                tags_count = 0
+                targetTag = ""
+                for tag in tags_list:
+                    if (tag in request_list):
+                        targetTag = tag
+                        tags_count += 1
+                # the user checked over 1 tags or no tags
+                if (tags_count != 1):
+                    session["ask_question_default_message"] = "You can only choose 1 tag."
+                    return redirect(url_for("ask_question"))
+                if ("anonymous" in request_list):
+                    question_dict["asker"] = ""
+                err, qid = db.insert_question(connection, question_dict, targetTag)
+
     # if err is 1, redirect to the question page that the user just posted
     if (err == 1):
         print("\n\nSUCCESS\n\n")
@@ -206,6 +222,10 @@ def post_question():
         elif (err == 3):
             print("\n\nEMPTY FIELD DETECTED\n\n")
             session["default_message"] = "Question title must not be blank!"
+            redirect_to = url_for("ask_question")
+        elif (err == 4):
+            print("\n\nNot related to CSIE!!!\n\n")
+            session["default_message"] = "Your post is not related to CSIE! Please contact us if you think this is a mistake."
             redirect_to = url_for("ask_question")
         else:
             redirect_to = url_for("FOF")
@@ -395,7 +415,7 @@ def profile():
 
     # if the user hasn't logged in, redirect to login page
     if username == "":
-        session["login_default_message"] == "Please login to view your profile."
+        session["login_default_message"] = "Please login to view your profile."
         return redirect(url_for("login"))
     else:
         username, email, password, points, posts, answers = db.get_user_info(connection, username)
@@ -427,4 +447,4 @@ def error_handler(_):
     return redirect(url_for("FOF"))
 
 if __name__ == "__main__":
-    app.run(debug = True, port = 5000)
+    app.run(port = 5000)

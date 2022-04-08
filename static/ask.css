@@ -1,13 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 
+
 .backBlockStyle{
-    width: 141.296vmin;
-    height: 93.277vmin;
     background: #FFFFFF;
     border-radius: 1.801vmin;
 }
-
 
 
 .titleStyle{
@@ -105,6 +103,14 @@
     border-radius: 3.601vmin;
 }
 
+.text1{
+    resize: none;
+    height: 32.413vmin;
+    background: #C4C4C4;
+    border-radius: 3.601vmin;
+}
+
+
 
 .titleText{
     width: 110.21vmin;
@@ -112,4 +118,16 @@
     background: #C4C4C4;
     border-radius: 3.601vmin;
 }
+
+.titleText1{
+    background: #C4C4C4;
+    border-radius: 3.601vmin;
+}
+
+
+input:checked + label {
+    background-color: #E5A9A5;
+}
+
+
 

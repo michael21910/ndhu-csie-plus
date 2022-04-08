@@ -2,14 +2,14 @@
 <link rel="stylesheet" href="{{  url_for('static', filename = 'about&rule.css')  }}">
 <link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
 {% endblock %} {% block login %} {% if username == "" %}
-<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a></button>
-<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a></button>
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center p-3" id="login">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center p-3" id="register">Register</a></button>
 {% endif %} {% if username != "" %}
 <button class="btn ">
-    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;">Hi, {{ username }}</a>
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;" id="member">Hi, {{ username }}</a>
 </button>
 <button class="btn ">
-    <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center">Logout</a>
+    <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center p-3" id="logout">Logout</a>
 </button>
 {% endif %} {% endblock %} {% block content %}
 
@@ -27,31 +27,31 @@
         </div>
 
 
-        <div class="row row-cols-1 row-cols-md-2 g-5 mt-4">
+        <div class="row row-cols-1 row-cols-md-2 g-2 mt-1">
 
             <div class="col">
                 <div class="card" >
-                    <h5 class="card-title d-flex justify-content-center mt-3 title">Team  Leader</h5>
+                    <h5 class="card-title d-flex justify-content-center  mt-3 title">Team  Leader</h5>
                     <a href="https://github.com/michael21910"><img src="https://picsum.photos/100/100?random=50" class=" card-img p-4 rounded-circle mx-auto "></a>
                     <div class="card-body">
                         <div class="d-flex justify-content-center mt-3 name">薛祖恩</div>     
-                        <p class="card-text mt-3 content">My motto.</p>
+                        <p class="card-text mt-3 content justify-content-center">My motto.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col ">
                 <div class="card">
-                    <h5 class="card-title d-flex justify-content-center mt-3 title">Team Member</h5>
+                    <h5 class="card-title d-flex justify-content-center  mt-3 title">Team Member</h5>
                     <a href="https://github.com/keywind127"><img src="https://picsum.photos/100/100?random=30" class=" card-img p-4 rounded-circle mx-auto "></a>
                     <div class="card-body">
                         <div class="d-flex justify-content-center mt-3 name">徐向廷</div>     
-                        <p class="card-text mt-3 content">My motto.</p>
+                        <p class="card-text mt-3 content justify-content-center">My motto.</p>
                     </div>
                 </div>
             </div>
 
-              <div class="col">
+              <div class="col mt-md-4">
                 <div class="card">
                     <h5 class="card-title d-flex justify-content-center mt-3 title">Team Member</h5>
                     <a href="https://github.com/wilsonchang17">  
@@ -59,12 +59,12 @@
                     </a>
                     <div class="card-body">
                         <div class="d-flex justify-content-center mt-3 name">張宸瑋</div>     
-                        <p class="card-text mt-3 content">My motto.</p>
+                        <p class="card-text mt-3 content justify-content-center">My motto.</p>
                     </div>
                 </div>
               </div>
 
-              <div class="col">
+              <div class="col mt-md-4">
                 <div class="card">
                     <h5 class="card-title d-flex justify-content-center mt-3 title">Team Member</h5>
                     <a href="https://github.com/jerry0424">
@@ -72,7 +72,7 @@
                     </a>
                     <div class="card-body">
                         <div class="d-flex justify-content-center mt-3 name">葉耀中</div>     
-                        <p class="card-text mt-3 content">My motto.</p>
+                        <p class="card-text mt-3 content justify-content-center">My motto.</p>
                         
                     </div>
                 </div>

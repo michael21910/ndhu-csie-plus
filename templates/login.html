@@ -3,15 +3,11 @@
 <link rel="stylesheet" href="{{  url_for('static', filename = 'login.css')  }}">
 
 {% endblock %} {% block login %}
-<button class="btn">
-    <a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center">Login</a>
-</button>
-<button class="btn">
-    <a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center">Register</a>
-</button>
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center p-3" id="login">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center p-3" id="register">Register</a></button>
 {% endblock %} {% block content %}
 <div class="container backBlockMargin">
-    <div class="row">
+    <div class="row ">
         <div class="backBlockStyle mx-auto">
             <div class="col-12 d-flex justify-content-center ">
                 <span class = "title mt-lg-5 mb-lg-5  mt-md-4 mb-md-4  mt-3 mb-3 ">Login</span>
@@ -19,11 +15,11 @@
 
             <form action="{{ url_for('index') }}" method="post" class="col-12">
                 <div class=" d-flex justify-content-center mt-md-2  mt-1 col-12" >
-                    <input type="text" name="username" max="20" placeholder="        Username" class="inputText">
+                    <input type="text" name="username" maxlength="20" placeholder="Username" class="inputText">
                 </div>
 
                 <div class="  d-flex justify-content-center mt-md-3  mt-2 col-12">
-                    <input type="password" name="password" max="16" placeholder="        Password" class="inputText">
+                    <input type="password" name="password" maxlength="16" placeholder="Password" class="inputText">
                 </div>
 
                 <div class="d-flex  justify-content-around mt-md-2 mt-1 col-12">

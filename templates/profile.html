@@ -3,10 +3,10 @@
 <link rel="stylesheet" href="{{  url_for('static', filename = 'profile.css')  }}">
 {% endblock %}{% block login %}
 <button class="btn ">
-    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;">Hi, {{ username }}</a>
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;" id="member">Hi, {{ username }}</a>
 </button>
 <button class="btn ">
-    <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center">Logout</a>
+    <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center p-3" id="logout">Logout</a>
 </button>
 {% endblock %} {% block content %}
 <div class="container backBlockMargin">

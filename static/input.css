@@ -42,6 +42,15 @@ input::placeholder{
 .sendButtom{
     width: 26.1248vmin;
     height: 7.9927vmin;
+
+    background: #5D8F8A;
+    border-radius: 3.6vmin;
+    border-color: transparent;
+}
+
+.sendButtom{
+    width: 26.1248vmin;
+    height: 7.9927vmin;
     left: 102.1608vmin;
     bottom: 48.5498vmin;
     background: #5D8F8A;
