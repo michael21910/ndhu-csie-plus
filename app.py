@@ -7,17 +7,17 @@ app = Flask(__name__, template_folder = "templates")
 
 # connecting to database
 db = databaseUtils(
-    "127.0.0.1",
-    "root",
-    "root",
-    "csieplus"
+    CLEARDB_DATABASE_HOST,
+    CLEARDB_DATABASE_USER,
+    CLEARDB_DATABASE_PASSWORD,
+    CLEARDB_DATABASE_DB
 )
 
 connection = db.connect(
-    "127.0.0.1",
-    "root",
-    "root",
-    "csieplus"
+    CLEARDB_DATABASE_HOST,
+    CLEARDB_DATABASE_USER,
+    CLEARDB_DATABASE_PASSWORD,
+    CLEARDB_DATABASE_DB
 )
 
 app.secret_key = "super secret key"
