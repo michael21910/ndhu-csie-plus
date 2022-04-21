@@ -5,6 +5,7 @@ import random
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
+import os
 
 def format_string(target_string):
     return target_string.replace("'", "\\'")
@@ -296,7 +297,7 @@ This token is needed to change the password, please keep it safe.
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             try:
                 server.ehlo()
-                server.login("ndhucsieplus@gmail.com", EMAILSMTP)
+                server.login("ndhucsieplus@gmail.com", os.environ.get('EMAILSMTP'))
                 server.send_message(content)
                 print("email send to: ", str(email))
             except Exception as e:

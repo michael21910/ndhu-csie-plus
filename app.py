@@ -2,22 +2,23 @@ from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session
 from databaseUtils import databaseUtils
 import comsci as cs
+import os
 
 app = Flask(__name__, template_folder = "templates")
 
 # connecting to database
 db = databaseUtils(
-    CLEARDB_DATABASE_HOST,
-    CLEARDB_DATABASE_USER,
-    CLEARDB_DATABASE_PASSWORD,
-    CLEARDB_DATABASE_DB
+    os.environ.get('CLEARDB_DATABASE_HOST'),
+    os.environ.get('CLEARDB_DATABASE_USER'),
+    os.environ.get('CLEARDB_DATABASE_PASSWORD'),
+    os.environ.get('CLEARDB_DATABASE_DB')
 )
 
 connection = db.connect(
-    CLEARDB_DATABASE_HOST,
-    CLEARDB_DATABASE_USER,
-    CLEARDB_DATABASE_PASSWORD,
-    CLEARDB_DATABASE_DB
+    os.environ.get('CLEARDB_DATABASE_HOST'),
+    os.environ.get('CLEARDB_DATABASE_USER'),
+    os.environ.get('CLEARDB_DATABASE_PASSWORD'),
+    os.environ.get('CLEARDB_DATABASE_DB')
 )
 
 app.secret_key = "super secret key"
