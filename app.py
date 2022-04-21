@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session
 from databaseUtils import databaseUtils

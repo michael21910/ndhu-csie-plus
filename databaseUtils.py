@@ -296,7 +296,7 @@ This token is needed to change the password, please keep it safe.
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             try:
                 server.ehlo()
-                server.login("ndhucsieplus@gmail.com", "xhheytxfagcimsqa")
+                server.login("ndhucsieplus@gmail.com", EMAILSMTP)
                 server.send_message(content)
                 print("email send to: ", str(email))
             except Exception as e:
