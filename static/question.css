@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-
-.titleBackground{
-    width:132.653vmin;
+.titleBackground {
+    width: 132.653vmin;
 }
-.Qtitle{
+
+.Qtitle {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 6.483vmin;
@@ -13,24 +13,21 @@
     color: #000000;
 }
 
-
-
-.Qrelative{
+.Qrelative {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     display: flex;
     align-items: center;
-    font-size:2.161vmin;
+    font-size: 2.161vmin;
     line-height: 2.521vmin;
     color: #484848;
 }
 
-
-.Qbutton{
+.Qbutton {
     /*word*/
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size:1.681vmin;
+    font-size: 1.681vmin;
     line-height: 2.521vmin;
     display: flex;
     align-items: center;
@@ -41,20 +38,20 @@
     border-radius: 0.72vmin;
 }
 
-
-.Qcontent{
+.Qcontent {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 2.401vmin;
-    line-height:3.601vmin;
+    line-height: 3.601vmin;
     color: #363636;
-    border-radius:2.4vmin;
+    border-radius: 2.4vmin;
 }
 
-.heartSize{
+.heartSize {
     font-size: 5.402vmin;
 }
-.likeTimes{
+
+.likeTimes {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 3.601vmin;
@@ -64,30 +61,28 @@
     color: #000000;
 }
 
-
-.comment{
+.comment {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size:3.601vmin;
-    line-height:5.402vmin;
+    font-size: 3.601vmin;
+    line-height: 5.402vmin;
     display: flex;
     align-items: center;
     color: #363636;
 }
 
-
-.reply{
+.reply {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size:2.161vmin;
-    line-height:3.241vmin;
+    font-size: 2.161vmin;
+    line-height: 3.241vmin;
     display: flex;
     align-items: center;
     text-align: center;
     color: #363636;
 }
 
-.replyMember{
+.replyMember {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 2.401vmin;
@@ -97,7 +92,7 @@
     color: #658389;
 }
 
-.replyContent{
+.replyContent {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 2.401vmin;
@@ -107,31 +102,29 @@
     color: #000000;
 }
 
-
-.replyDate{
+.replyDate {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 1.801vmin;
-    line-height:3.241vmin;
+    line-height: 3.241vmin;
     display: flex;
     align-items: center;
     color: #828282;
 }
 
-.post{
+.post {
     height: 6.242vmin;
     background: #5D8F8A;
     border-radius: 3vmin;
 }
 
-
-.box{
+.box {
     height: 6.242vmin;
     background: #FFFFFF;
     border-radius: 3.6014vmin;
 }
 
-.postWord{
+.postWord {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 2.401vmin;
@@ -140,11 +133,3 @@
     align-items: center;
     color: #FFFFFF;
 }
-
-
-
-
-
-
-
-

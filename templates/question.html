@@ -1,17 +1,14 @@
 {% extends "base.html" %} {% block linkCSS %}
 <link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
-<link rel="stylesheet" href="{{  url_for('static', filename = 'question.css')  }}">
-{% endblock %}{% block login %} {% if username == "" %}
-<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center p-3" id="login">Login</a></button>
-<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center p-3" id="register">Register</a></button>
-{% endif %} {% if username != "" %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'question.css')  }}"> {% endblock %}{% block login %} {% if username == "" %}
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center p-md-3 px-4 px-md-0" id="login">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center p-md-3  px-5 px-md-0" id="register">Register</a></button> {% endif %} {% if username != "" %}
 <button class="btn ">
-    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;" id="member">Hi, {{ username }}</a>
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" id="member">{{ username }}</a>
 </button>
 <button class="btn ">
     <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center p-3" id="logout">Logout</a>
-</button>
-{% endif %} {% endblock %} {% block content %} {% set asker = question_contents["question"]["question_data"]["asker"] %} {% set question_id = question_contents["question"]["question_id"] %} {% set question_content = question_contents["question"]["question_data"]["content"]
+</button> {% endif %} {% endblock %} {% block content %} {% set asker = question_contents["question"]["question_data"]["asker"] %} {% set question_id = question_contents["question"]["question_id"] %} {% set question_content = question_contents["question"]["question_data"]["content"]
 %} {% set question_title = question_contents["question"]["question_data"]["question"] %} {% set question_date = question_contents["question"]["question_data"]["time"] %} {% set question_likes = question_contents["question"]["question_data"]["likes"] %}
 {% set question_replies = question_contents["question"]["question_data"]["replies"] %} {% set reply_list = question_contents["replies"] %}
 
@@ -19,15 +16,14 @@
 
 
 <div class="container backBlockMargin">
-
     <div class="row">
         <div class="bd-highlight d-flex flex-row col-12">
             <div class="d-flex flex-column bd-highlight  titleBackground">
                 <label class="bd-highlight Qtitle">{{ question_title }}</label>
                 <div class="bd-highlight d-flex flex-row mt-3">
-                        <label class="bd-highlight Qrelative">{{ asker}}</label>
-                        <label class=" bd-highlight Qrelative ms-3">{{ question_date }}</label>
-                        <div class="ms-3 bd-highlight Qbutton btn-sm justify-content-center">{{ tag }}</div>
+                    <label class="bd-highlight Qrelative">{{ asker}}</label>
+                    <label class=" bd-highlight Qrelative ms-3">{{ question_date }}</label>
+                    <div class="ms-3 bd-highlight Qbutton btn-sm justify-content-center">{{ tag }}</div>
                 </div>
             </div>
             <div class="d-flex flex-column bd-highlight ">
@@ -35,12 +31,16 @@
                 <div class="bd-highlight likeTimes justify-content-center ">{{ question_likes }}</div>
             </div>
         </div>
-        <div class="col-12 mt-5" >
-            <div class="Qcontent bg-light p-3 "><div class="ms-2">{{ question_content }}</div></div>
+        <div class="col-12 mt-5">
+            <div class="Qcontent bg-light p-3 ">
+                <div class="ms-2">{{ question_content }}</div>
+            </div>
         </div>
         <form class="mt-2" action="{{  url_for('post_reply')  }}" method="post">
             <div class="row mb-2" style="border-bottom:0.1vw solid #A49B9B">
-                <div class="col-10 comment mb-2 "><div class="ms-3">Comments</div></div>
+                <div class="col-10 comment">
+                    <div class="ms-3">Comments</div>
+                </div>
                 <div class="col-2  align-self-end justify-content-end reply text-nowrap">{{ question_replies }}</div>
             </div>
             <div class="row">
@@ -51,13 +51,15 @@
                         <div class="col-12 replyContent ms-3">{{ reply_content }}</div>
                     </div>
                     <div class="reply-{{rid}}-date">
-                        <div class=" col-12 replyDate ms-3"><{{ reply_time }}></div>
+                        <div class=" col-12 replyDate ms-3">
+                            <{{ reply_time }}>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
-            <div class="row mt-4">
-                <input class="col-8 form-control w-75 inputText box" type="text" name="reply_entry_box" placeholder="comments..." value="{{  reply_default_value  }}">
+            <div class="row mt-4 ms-1 ms-md-0">
+                <input class="col-8 form-control w-75 inputText box p-md-4 p-3" type="text" name="reply_entry_box" placeholder="comments..." value="{{  reply_default_value  }}">
                 <input class="col-1 post offset-2 btn-sm  my-auto postWord justify-content-center p-1" type="submit" name="submit_button" value="Post">
             </div>
         </form>

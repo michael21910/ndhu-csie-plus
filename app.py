@@ -1,6 +1,6 @@
-from flask import Flask, render_template, jsonify, session, request, redirect, url_for
+from crypt import methods
+from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session
-from numpy import vectorize
 from databaseUtils import databaseUtils
 import comsci as cs
 
@@ -10,14 +10,14 @@ app = Flask(__name__, template_folder = "templates")
 db = databaseUtils(
     "127.0.0.1",
     "root",
-    "",
+    "root",
     "csieplus"
 )
 
 connection = db.connect(
     "127.0.0.1",
     "root",
-    "",
+    "root",
     "csieplus"
 )
 
@@ -163,6 +163,9 @@ def post_question():
         "asker"     : SGET(session.get("username"), "")
     }
     
+    # store the username for points subtraction
+    asker_username = question_dict["asker"]
+
     # if the question title is empty, set err to 3
     if (question_dict["question"] == ""): 
         err = 3
@@ -195,7 +198,7 @@ def post_question():
                     return redirect(url_for("ask_question"))
                 if ("anonymous" in request_list):
                     question_dict["asker"] = ""
-                err, qid = db.insert_question(connection, question_dict, targetTag)
+                err, qid = db.insert_question(connection, question_dict, targetTag, asker_username)
 
     # if err is 1, redirect to the question page that the user just posted
     if (err == 1):
@@ -344,7 +347,7 @@ def register():
     if request.method == "POST":
         # fetch the username, password, and email
         username = request.values["username"]
-        email = request.values["email"]
+        email = request.values["email"] + "@gms.ndhu.edu.tw"
         password = request.values["password"]
         repeatPassword = request.values["repeat-password"]
 
@@ -393,6 +396,10 @@ def forgotpassword():
             if db.change_password_user_check(connection, username, token) == "True":
                 # if the new password and repeat new password are the same
                 if newPassword == repeatNewPassword:
+                    user_previous_password = db.get_user_info(connection, username)[2]
+                    if user_previous_password == newPassword:
+                        session["login_default_message"] = "Your new password is the same as your previous password."
+                        return redirect(url_for("login"))
                     db.update_password(connection, username, newPassword)
                     session["login_default_message"] = "You have successfully changed your password."
                     return redirect(url_for("login"))
@@ -447,4 +454,4 @@ def error_handler(_):
     return redirect(url_for("FOF"))
 
 if __name__ == "__main__":
-    app.run(port = 5000)
+    app.run(debug = True, port = 5000)

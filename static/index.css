@@ -1,15 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Yaldevi:wght@700&display=swap');
-
-
-
-.loginbuttonstyle{
+.loginbuttonstyle {
     width: 13.926vmin;
     height: 4.922vmin;
     text-decoration: none;
     border-radius: 2.401vmin;
-    border-color:transparent;
+    border-color: transparent;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 2.161vmin;
@@ -21,13 +18,12 @@
     background: #FFFEFE;
 }
 
-.registerbuttonstyle{
+.registerbuttonstyle {
     width: 13.926vmin;
     height: 4.922vmin;
     text-decoration: none;
-    background: #BD9090;
     border-radius: 2.401vmin;
-    border-color:transparent;
+    border-color: transparent;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 2.161vmin;
@@ -36,43 +32,38 @@
     align-items: center;
     text-align: center;
     color: #FFFFFF;
+    background: #BD9090;
 }
 
-
-#register:hover{
-    color: #FFFFFF;
-}
-#logout:hover{
-    color: #FFFFFF;
-}
-#member:hover{
+#register:hover {
     color: #FFFFFF;
 }
 
-#login:hover{
+#logout:hover {
+    color: #FFFFFF;
+}
+
+#member:hover {
+    color: #F1EFE6;
+}
+
+#login:hover {
     color: #474747;
 }
 
-
-
-
-
-
-.boxRadius{
+.boxRadius {
     background: #FFFFFF;
     border: 0.107vh solid transparent;
     box-sizing: border-box;
     border-radius: 3.6vmin;
 }
 
-
-
-.questionBlock{
+.questionBlock {
     background: #FFFFFF;
     border-radius: 1.801vmin;
 }
 
-.questionTitle{
+.questionTitle {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 3.361vmin;
@@ -82,32 +73,29 @@
     color: #000000;
 }
 
-.heart{
+.heart {
     font-size: 5.4021vmin;
     background-color: transparent;
 }
 
-.heartNumber{
-    width:  3.601vmin;
+.heartNumber {
+    width: 3.601vmin;
     height: 3.241vmin;
     text-decoration: none;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size:  2.8811vmin;
+    font-size: 2.8811vmin;
     line-height: 3.3613vmin;
     display: flex;
     align-items: center;
     text-align: center;
-
     color: #000000;
 }
 
-
-.questionTime{
-
+.questionTime {
     font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size:  1.281vh;
+    font-weight: 700;
+    font-size: 1.281vh;
     line-height: 2.241vh;
     display: flex;
     align-items: center;
@@ -115,7 +103,7 @@
     color: #000000;
 }
 
-.questionReply{
+.questionReply {
     width: 5.54vh;
     height: 5.021vh;
     font-family: 'Roboto', sans-serif;
@@ -128,13 +116,12 @@
     color: #000000;
 }
 
-
-.questionreply{
+.questionreply {
     width: 5.54vh;
     height: 3vh;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size:  1.494vh;
+    font-size: 1.494vh;
     line-height: 1.75vh;
     display: flex;
     align-items: center;
@@ -142,10 +129,9 @@
     color: #000000;
 }
 
-
-
-.hiMember{
-    width: 13.926vmin;
+.hiMember {
+    /* width: 13.926vmin; */
+    width: auto !important;
     height: 4.922vmin;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
@@ -156,9 +142,5 @@
     text-align: center;
     text-decoration: none;
     color: #F1EFE6;
-
+    padding-left: 0.375rem;
 }
-
-
-
-

@@ -87,7 +87,7 @@ class databaseUtils:
         except Exception as e:
             print(e)
 
-    def insert_question(self, connection, question_dict, targetTag):
+    def insert_question(self, connection, question_dict, targetTag, asker_username):
         try:
             tags_list = ["General", "Freshman", "Sophomore", "Junior", "Multimedia", "Network"]
             with connection.cursor() as cursor:
@@ -100,8 +100,6 @@ class databaseUtils:
                 cursor.execute(sql)
                 qid = cursor.fetchall()[0]["LAST_INSERT_ID()"]
 
-
-
                 if (self.construct_question_table(connection, qid) == -1):
                     return -1, None
 
@@ -110,7 +108,7 @@ class databaseUtils:
 
                 # user posts + 1, points - 10
                 sql = "UPDATE users SET posts = posts + 1, points = points - 10 WHERE (username = '{}');".format(
-                    format_string(question_dict["asker"])
+                    format_string(asker_username)
                 )
                 cursor.execute(sql)
                 connection.commit()

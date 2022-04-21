@@ -1,54 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-
-
-
-.leaderboard{
+.leaderboard {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 9.844vmin;
-    line-height: 14.766vmin;
+    font-size: 6.483vmin;
+    line-height: 9.724vmin;
     display: flex;
     align-items: center;
     text-align: center;
-
     color: #000000;
 }
 
-.bottomLine{
+.bottomLine {
     border-bottom: 0.1vw solid #A49B9B;
 }
 
-
-.topic{
-    width: 18.727vmin;
-    height: 5.762vmin;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 5.762vmin;
-    line-height: 8.643vmin;
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-    color: #363636;
-}
-
-.userStyle{
+.topic {
     width: 18.727vmin;
     height: 5.762vmin;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 4.322vmin;
     line-height: 6.483vmin;
-
+    display: flex;
     align-items: center;
     text-align: center;
+    color: #363636;
+}
 
+.userStyle {
+    width: 18.727vmin;
+    height: 5.762vmin;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 4.322vmin;
+    line-height: 6.483vmin;
+    align-items: center;
+    text-align: center;
     color: #484848;
 }
 
-.myself{
-
-    background:#B0CBAD;
+.myself {
+    background: #B0CBAD;
     border-radius: 3.601vmin;
+}
+
+.bronze {
+    color: #CD7F32;
+}
+
+.silver {
+    color: #A1A1A1;
+}
+
+.gold {
+    color: #DAA520;
 }

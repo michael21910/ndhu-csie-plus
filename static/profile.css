@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-
-
-
-.backBlockStyle{
+.backBlockStyle {
     width: 121.84vmin;
     height: 83.673vmin;
     background: #FFFFFF;
@@ -10,9 +7,7 @@
     border-radius: 1.5vmin;
 }
 
-
-.profile{
-
+.profile {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 7.683vmin;
@@ -20,19 +15,15 @@
     display: flex;
     align-items: center;
     text-align: center;
-
     color: #000000;
 }
 
-.image{
+.image {
     width: 10.204vmin;
-    height:  10.204vmin;
+    height: 10.204vmin;
 }
 
-
-
-.subtitle{
-
+.subtitle {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 4.321vmin;
@@ -40,10 +31,9 @@
     display: flex;
     align-items: center;
     color: #5D8F8A;
-
 }
 
-.item{
+.item {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 2.641vmin;
@@ -51,11 +41,9 @@
     display: flex;
     align-items: center;
     color: #484848;
-
 }
 
-.line{
+.line {
     width: 90%;
-    color:#000000;
-
+    color: #000000;
 }

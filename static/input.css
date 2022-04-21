@@ -1,22 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-.backBlockMargin{
-    margin-top: 7.5vh;
+@media screen and (min-width: 768px) {
+    .backBlockMarginBase {
+        margin-top: 7.5vh !important;
+    }
 }
 
-input{
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    width: 46.5vmin;
-    height: 7vmin;
-
-    border-radius: 3.6vmin;
-    border: transparent;
+@media screen and (max-width: 700px) {
+    .backBlockMarginBase {
+        margin-top: 3vh !important;
+    }
 }
-    
-input::placeholder{
+
+@media screen and (min-width: 768px) {
+    .backBlockMarginLog {
+        margin-top: 7.5vh !important;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .backBlockMarginLog {
+        margin-top: 25vh !important;
+    }
+}
+
+.backBlockMargin {
+    margin-top: 7.5vh !important;
+}
+
+input:focus {
+    outline: none;
+}
+
+input::placeholder {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -27,7 +43,56 @@ input::placeholder{
     color: #555555;
 }
 
-.inputText{
+@media screen and (min-width: 768px) {
+    input {
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        width: 46.5vmin;
+        height: 7vmin;
+        border-radius: 3.6vmin;
+        border: transparent;
+    }
+    .input-group>input {
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        width: 19.5vmin;
+        height: 7vmin;
+        border-radius: 3.6vmin;
+        border: transparent;
+    }
+    .input-group>span {
+        height: 7vmin;
+        border-radius: 3.6vmin;
+        border-color: transparent;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    input {
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        width: 62.5vmin;
+        border-radius: 3.6vmin;
+        border: transparent;
+    }
+    .input-group>input {
+        font-family: 'Poppins', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        width: 20.5vmin;
+        border-radius: 3.6vmin;
+        border: transparent;
+    }
+    .input-group>span {
+        border-radius: 3.6vmin;
+        border-color: transparent;
+    }
+}
+
+.inputText {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -39,16 +104,15 @@ input::placeholder{
     color: #555555;
 }
 
-.sendButtom{
+.sendButtom {
     width: 26.1248vmin;
     height: 7.9927vmin;
-
     background: #5D8F8A;
     border-radius: 3.6vmin;
     border-color: transparent;
 }
 
-.sendButtom{
+.sendButtom {
     width: 26.1248vmin;
     height: 7.9927vmin;
     left: 102.1608vmin;
@@ -58,7 +122,7 @@ input::placeholder{
     border-color: transparent;
 }
 
-.sendWord{
+.sendWord {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -66,7 +130,7 @@ input::placeholder{
     color: #FFFFFF;
 }
 
-.hintSentence{
+.hintSentence {
     text-decoration: none;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
@@ -78,7 +142,7 @@ input::placeholder{
     color: #555555;
 }
 
-.title{
+.title {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 5.4vmin;
@@ -86,12 +150,10 @@ input::placeholder{
     color: #000000;
 }
 
-.link{
+.link {
     text-decoration: none;
     font-family: 'Roboto', sans-serif;
-
     font-size: 1.92vmin;
     line-height: 2.28vmin;
     color: #5D8F8A;
 }
-

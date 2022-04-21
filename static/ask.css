@@ -1,14 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-
-
-.backBlockStyle{
+.backBlockStyle {
     background: #FFFFFF;
     border-radius: 1.801vmin;
 }
 
-
-.titleStyle{
+.titleStyle {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 6.483vmin;
@@ -19,33 +15,27 @@
     color: #000000;
 }
 
-
-
-
-.subtitleStyle{
+.subtitleStyle {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 4.322vmin;
     line-height: 6.483vmin;
     display: flex;
     align-items: center;
-
     color: #000000;
-
 }
 
-.hintStyle{
+.hintStyle {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 2.881vmin;
-    line-height:4.322vmin;
+    line-height: 4.322vmin;
     display: flex;
     align-items: center;
-
     color: #363636;
 }
 
-.form-check-label{
+.form-check-label {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 2.161vmin;
@@ -55,25 +45,21 @@
     color: #555555;
 }
 
-
-
-
-.btnWord{
+.btnWord {
     height: 5.2821vmin;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     display: flex;
     align-items: center;
-    font-size:1.8vmin;
+    font-size: 1.8vmin;
     line-height: 1.8vmin;
-    color:#FFFEFE;
-    background-color:#888280;
+    color: #FFFEFE;
+    background-color: #888280;
     border-color: transparent;
-    border-radius:3.6vmin;
+    border-radius: 3.6vmin;
 }
 
-
-.postBtn{
+.postBtn {
     width: 17.585vmin;
     height: 6.203vmin;
     border-color: transparent;
@@ -81,8 +67,7 @@
     border-radius: 3.6vmin;
 }
 
-
-.postWord{
+.postWord {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 3.601vmin;
@@ -90,12 +75,10 @@
     display: flex;
     align-items: center;
     text-align: center;
-
     color: #FFFFFF;
 }
 
-
-.text{
+.text {
     resize: none;
     width: 110.21vmin;
     height: 32.413vmin;
@@ -103,31 +86,25 @@
     border-radius: 3.601vmin;
 }
 
-.text1{
+.text1 {
     resize: none;
     height: 32.413vmin;
     background: #C4C4C4;
     border-radius: 3.601vmin;
 }
 
-
-
-.titleText{
+.titleText {
     width: 110.21vmin;
     height: 7.683vmin;
     background: #C4C4C4;
     border-radius: 3.601vmin;
 }
 
-.titleText1{
+.titleText1 {
     background: #C4C4C4;
     border-radius: 3.601vmin;
 }
 
-
-input:checked + label {
+input:checked+label {
     background-color: #E5A9A5;
 }
-
-
-

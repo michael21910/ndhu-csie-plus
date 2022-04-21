@@ -1,61 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-
-
-.four0four{
+.four0four {
     font-size: 31.212vmin;
     line-height: 46.819vmin;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-
     display: flex;
     align-items: center;
     text-align: center;
-    
     color: #606060;
 }
 
-.oopsWord{
+.oopsWord {
     font-size: 7.683vmin;
     line-height: 11.525vmin;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-
     display: flex;
     align-items: center;
     text-align: center;
-
     color: #606060;
-
 }
 
-
-
-.backButton{
+.backButton {
     width: 24.01vmin;
     height: 4.802vmin;
-
     background: #FFFEFE;
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
     font-weight: 700;
-    font-size:2.161vmin;
+    font-size: 2.161vmin;
     line-height: 3.241vmin;
     display: flex;
     align-items: center;
     text-align: center;
-
     border-radius: 20px;
     color: #555555;
-
-
 }
 
-.backMargin{
+.backMargin {
     margin-top: 10vh;
 }
 
-
-.sentence{
+.sentence {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     display: flex;

@@ -1,38 +1,33 @@
 {% extends "base.html" %} {% block linkCSS %}
 <link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
-<link rel="stylesheet" href="{{  url_for('static', filename = 'rank.css')  }}">
-{% endblock %} {% block login %} {% if username == "" %}
-<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center p-3" id="login">Login</a></button>
-<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center p-3" id="register">Register</a></button>
-{% endif %} {% if username != "" %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'rank.css')  }}"> {% endblock %} {% block login %} {% if username == "" %}
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center p-md-3 px-4 px-md-0" id="login">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center p-md-3  px-5 px-md-0" id="register">Register</a></button> {% endif %} {% if username != "" %}
 
 
 <button class="btn ">
-    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" style="text-decoration: none;" id="member">Hi, {{ username }}</a>
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" id="member">{{ username }}</a>
 </button>
 <button class="btn ">
     <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center p-3" id="logout">Logout</a>
-</button>
-
-{% endif %} {% endblock %} {% block content %}
+</button> {% endif %} {% endblock %} {% block content %}
 <div class="container backBlockMargin">
 
-        <label class="leaderboard d-flex justify-content-center bottomLine col-12">Leaderboard</label>
-        <div class=" mt-4 row row-col-4">
-            <label class="d-flex topic justify-content-center col">Rank</label>
-            <label class="d-flex topic justify-content-center col">Username</label>
-            <label class="d-flex topic justify-content-center col">Points</label>
-        </div>
+    <label class="leaderboard d-flex justify-content-center bottomLine col-12">Leaderboard</label>
+    <div class=" mt-4 row row-col-4">
+        <label class="d-flex topic justify-content-center col">Rank</label>
+        <label class="d-flex topic justify-content-center col">Username</label>
+        <label class="d-flex topic justify-content-center col">Points</label>
+    </div>
 
-        {% for user_content in user_contents %} {% set user_point = user_content[0] %} {% set user_name = user_content[1] %}
-        {% set rank_color = (("") if (loop.index > 3) else ("bronze") if (loop.index > 2) else ("silver") if (loop.index > 1) else ("gold")) %}
-        {% set is_myself = (("myself") if (username == user_name) else ("")) %}
-        <div class="board_bot_bot_content_{{loop.index}}  mt-4  {{is_myself}} row row-col-4 {{rank_color}}">
-            <label class="d-flex userStyle justify-content-center col"> {{ loop.index }}</label>
-            <label class="d-flex userStyle justify-content-center col"> {{ user_name }}</label>
-            <label class="d-flex userStyle justify-content-center col"> {{ user_point }}</label>
-        </div>
-        {% endfor %}
+    {% for user_content in user_contents %} {% set user_point = user_content[0] %} {% set user_name = user_content[1] %} {% set rank_color = (("") if (loop.index > 3) else ("bronze") if (loop.index > 2) else ("silver") if (loop.index > 1) else ("gold")) %}
+    {% set is_myself = (("myself") if (username == user_name) else ("")) %}
+    <div class="board_bot_bot_content_{{loop.index}}  mt-4  {{is_myself}} row row-col-4 ">
+        <label class="d-flex userStyle justify-content-center col {{rank_color}}"> {{ loop.index }}</label>
+        <label class="d-flex userStyle justify-content-center col {{rank_color}}"> {{ user_name }}</label>
+        <label class="d-flex userStyle justify-content-center col {{rank_color}}"> {{ user_point }}</label>
+    </div>
+    {% endfor %}
 
 </div>
 {% endblock %}

@@ -1,56 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Yaldevi:wght@700&display=swap');
-
-.Qstyle{
-    color:#000000;
+.Qstyle {
+    color: #3F3F3F;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 3.2vmin;
-    line-height: 6.4825vmin;
+    font-size: 4.322vmin;
+    line-height: 6.483vmin;
 }
 
-.Astyle{
+.Astyle {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 2.1608vmin;
     line-height: 3.2412vmin;
-    color:#484848;
+    padding: 2vh 0;
+    border-bottom: 0.1vh solid #3F3F3F;
+    color: #484848;
+    text-align: justify;
 }
 
-img{
+img {
     width: 40vmin;
 }
 
-.title{
+.title {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 2vmin;
+    font-size: 3.5vmin;
     line-height: 3.8415vmin;
     display: flex;
     align-items: center;
     text-align: center;
-    color:#000000;
+    color: #000000;
 }
 
-.name{
+.name {
     font-family: 'Yaldevi', sans-serif;
     font-style: normal;
     font-weight: 700;
     font-style: normal;
-    font-size: 2.1608vmin;
+    font-size: 2.5vmin;
     line-height: 2.8811vmin;
     display: flex;
     align-items: center;
     text-align: center;
-
+    text-decoration: none;
     color: #000000;
 }
 
-.content{
+.content {
     font-family: 'Yaldevi', sans-serif;
     font-style: normal;
     font-size: 2.1608vmin;
@@ -61,7 +61,22 @@ img{
     color: #555555;
 }
 
-.cardStyle{
+.cardStyle {
     max-width: 18rem;
     background-color: #000000;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 0.5vh 0 2.5vh 0;
+}
+
+.card-body>a:hover {
+    color: #fcc;
+    transition-delay: 0.5s;
+}
+
+.smaller-image {
+    width: 50%;
+    padding-top: 1vh;
 }

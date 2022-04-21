@@ -1,22 +1,18 @@
 {% extends "base.html" %} {% block linkCSS %}
 <link rel="stylesheet" href="{{  url_for('static', filename = 'error.css')  }}">
-<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}">
-
-{% endblock %} {% block login %} {% if username == "" %}
-<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center p-3" id="login">Login</a></button>
-<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center p-3" id="register">Register</a></button>
-{% endif %} {% if username != "" %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}"> {% endblock %} {% block login %} {% if username == "" %}
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center p-md-3 px-4 px-md-0" id="login">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center p-md-3  px-5 px-md-0" id="register">Register</a></button> {% endif %} {% if username != "" %}
 <button class="btn ">
-    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" id="member">Hi, {{ username }}</a>
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" id="member">{{ username }}</a>
 </button>
 <button class="btn ">
     <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center p-3" id="logout">Logout</a>
-</button>
-{% endif %} {% endblock %} {% block content %}
+</button> {% endif %} {% endblock %} {% block content %}
 <div class="container backMargin">
-    
+
     <div class="row row-cols-lg-2 ">
-        <div class="four0four col-sm-12 col-lg-6 seperate-line  end-0" >
+        <div class="four0four col-sm-12 col-lg-6 seperate-line  end-0">
             404
         </div>
         <div class="col-6 start-0">
