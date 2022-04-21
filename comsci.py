@@ -6,6 +6,7 @@ import numpy as np
 import requests
 from langid.langid import LanguageIdentifier, model
 import json
+nltk.download('punkt')
 
 identifier = LanguageIdentifier.from_modelstring(model, norm_probs=True)
 
