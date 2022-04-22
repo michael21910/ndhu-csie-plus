@@ -37,7 +37,9 @@ class databaseUtils:
         try:
             with connection.cursor() as cursor:
                 sql = "SELECT (username) FROM `users`"
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
+                connection.commit()
                 result = cursor.fetchall()
                 if (result == None):
                     return None
@@ -81,7 +83,9 @@ class databaseUtils:
         try:
             with connection.cursor() as cursor:
                 sql = "SELECT * FROM questions;"
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
+                connection.commit()
                 result = cursor.fetchall()
                 result.reverse()
                 return databaseUtils.format_question_lists(result)
@@ -95,22 +99,24 @@ class databaseUtils:
                 sql = "INSERT INTO questions (asker, question, content, replies, likes, tag) VALUE ('{}', '{}', '{}', 0, 0, {});".format(
                     format_string(question_dict["asker"]), format_string(question_dict["question"]), format_string(question_dict["content"]), tags_list.index(targetTag) + 1
                 )
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
+                connection.commit()
 
                 sql = "SELECT LAST_INSERT_ID();"
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
+                connection.commit()
                 qid = cursor.fetchall()[0]["LAST_INSERT_ID()"]
 
                 if (self.construct_question_table(connection, qid) == -1):
                     return -1, None
-
-                connection.ping()
-                connection.commit()
-
+                    
                 # user posts + 1, points - 10
                 sql = "UPDATE users SET posts = posts + 1, points = points - 10 WHERE (username = '{}');".format(
                     format_string(asker_username)
                 )
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
                 connection.commit()
 
@@ -125,14 +131,15 @@ class databaseUtils:
                 sql = "CREATE TABLE question_{} (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, replier VARCHAR(20), time TIMESTAMP, content VARCHAR(200));".format(
                     question_id
                 )
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
+                connection.commit()
 
                 sql = "CREATE TABLE question_{}_upvoter (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, upvoter VARCHAR(20));".format(
                     question_id
                 )
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
-
-                connection.ping()
                 connection.commit()
                 return 1
         except Exception as e:
@@ -143,11 +150,15 @@ class databaseUtils:
         try:
             with connection.cursor() as cursor:
                 sql = "SELECT * FROM question_{};".format(question_id)
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
+                connection.commit()
                 replies = databaseUtils.format_reply_lists(cursor.fetchall())
 
                 sql = "SELECT * FROM questions WHERE (id = {});".format(question_id)
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
+                connection.commit()
 
                 question = databaseUtils.format_question_lists(cursor.fetchall())[0]
 
@@ -161,32 +172,38 @@ class databaseUtils:
                 sql = "INSERT INTO question_{} (replier, content) VALUE ('{}', '{}');".format(
                     reply_dict["question_id"], format_string(reply_dict["replier"]), format_string(reply_dict["reply_content"])
                 )
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
+                connection.commit()
 
                 sql = "UPDATE questions SET replies = replies + 1 WHERE (id = {});".format(
                     reply_dict["question_id"]
                 )
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
-
-                connection.ping()
                 connection.commit()
 
                 # user answers + 1, points + 15 if first time reply
                 sql = "SELECT * FROM question_{} WHERE (replier = '{}');".format(
                     reply_dict["question_id"], format_string(reply_dict["replier"])
                 )
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
+                connection.commit()
                 if (len(cursor.fetchall()) == 1):
                     sql = "UPDATE users SET answers = answers + 1, points = points + 15 WHERE (username = '{}');".format(
                         format_string(reply_dict["replier"])
                     )
+                    connection.ping(reconnect = True)
                     cursor.execute(sql)
+                    connection.commit()
                 else:
                     sql = "UPDATE users SET answers = answers + 1 WHERE (username = '{}');".format(
                         format_string(reply_dict["replier"])
                     )
+                    connection.ping(reconnect = True)
                     cursor.execute(sql)
-                connection.commit()
+                    connection.commit()
 
                 return 1
         except Exception as e:
@@ -200,19 +217,24 @@ class databaseUtils:
                 sql = "SELECT * FROM question_{}_upvoter WHERE (upvoter = '{}');".format(
                     question_id, format_string(username)
                 )
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
+                connection.commit()
 
                 if (len(cursor.fetchall()) == 0):
                     sql = "UPDATE questions SET likes = likes + 1 WHERE (id = {});".format(question_id)
+                    connection.ping(reconnect = True)
                     cursor.execute(sql)
+                    connection.commit()
                     sql = "INSERT INTO question_{}_upvoter (upvoter) VALUE ('{}');".format(question_id, format_string(username))
                 else:
                     sql = "UPDATE questions SET likes = likes - 1 WHERE (id = {});".format(question_id)
+                    connection.ping(reconnect = True)
                     cursor.execute(sql)
+                    connection.commit()
                     sql = "DELETE FROM question_{}_upvoter WHERE (upvoter = '{}');".format(question_id, format_string(username))
+                connection.ping(reconnect = True)
                 cursor.execute(sql)
-
-                connection.ping()
                 connection.commit()
                 return 1
         except Exception as e:
@@ -246,7 +268,9 @@ class databaseUtils:
         try:
             with connection.cursor() as cursor:
                 sql = "SELECT * FROM `users` WHERE `username` = %s AND `password` = %s"
+                connection.ping(reconnect = True)
                 cursor.execute(sql, (username, password))
+                connection.commit()
                 result = cursor.fetchone()
                 if result is not None:
                     return "True"
@@ -260,7 +284,9 @@ class databaseUtils:
         try:
             with connection.cursor() as cursor:
                 sql = "SELECT * FROM `users` WHERE `username` = %s"
+                connection.ping(reconnect = True)
                 cursor.execute(sql, (username, ))
+                connection.commit()
                 result = cursor.fetchone()
                 if result is not None:
                     return "True"
@@ -275,6 +301,7 @@ class databaseUtils:
             with connection.cursor() as cursor:
                 token = ''.join(random.sample(string.ascii_letters + string.digits, 10))
                 sql = "INSERT INTO `users` (`username`, `email`, `password`, `token`, `points`) VALUES (%s, %s, %s, %s, 100)"
+                connection.ping(reconnect = True)
                 cursor.execute(sql, (username, email, password, token))
                 connection.commit()
                 databaseUtils.send_email(email, token)
@@ -307,7 +334,9 @@ This token is needed to change the password, please keep it safe.
         try:
             with connection.cursor() as cursor:
                 sql = "SELECT * FROM `users` WHERE `username` = %s AND `token` = %s"
+                connection.ping(reconnect = True)
                 cursor.execute(sql, (username, token))
+                connection.commit()
                 result = cursor.fetchone()
                 print(result)
                 if result is not None:
@@ -324,6 +353,7 @@ This token is needed to change the password, please keep it safe.
         try:
             with connection.cursor() as cursor:
                 sql = "UPDATE `users` SET password = %s WHERE username = %s"
+                connection.ping(reconnect = True)
                 cursor.execute(sql, (password, username))
                 connection.commit()
                 return "True"
@@ -335,7 +365,9 @@ This token is needed to change the password, please keep it safe.
         try:
             with connection.cursor() as cursor:
                 sql = "SELECT * FROM `users` WHERE `username` = %s"
+                connection.ping(reconnect = True)
                 cursor.execute(sql, (username, ))
+                connection.commit()
                 result = cursor.fetchone()
                 if result is not None:
                     return result['username'], result['email'], result['password'], result['points'], result['posts'], result['answers']
