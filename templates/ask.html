@@ -35,22 +35,21 @@
                     Please choose your tags
                 </div>
             </div>
-
             <div class="row">
                 <div class=" d-flex flex-row col-md-7 col-lg-4 offset-lg-1 my-auto ">
                     <div class="btn-group  bd-highlight " role="group">
 
-                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="General" value="General">
+                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="General" value="General" {{  tags_tuple[0]  }}>
                         <label class="btn btnWord me-md-4  me-3 justify-content-center " for="btncheck1" style="border-radius:3.6vmin">General</label>
 
 
-                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="Freshman" value="Freshman">
+                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="Freshman" value="Freshman" {{  tags_tuple[1]  }}>
                         <label class="btn btnWord me-md-4 me-3 justify-content-center" for="btncheck2" style="border-radius:3.6vmin;">Freshman</label>
 
-                        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="Sophomore" value="Sophomore">
+                        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="Sophomore" value="Sophomore" {{  tags_tuple[2]  }}>
                         <label class="btn btnWord me-md-4 me-3 justify-content-center" for="btncheck3" style="border-radius:3.6vmin">Sophomore</label>
 
-                        <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="Junior" value="Junior">
+                        <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="Junior" value="Junior" {{  tags_tuple[3]  }}>
                         <label class="btn btnWord me-lg-4 justify-content-center" for="btncheck4" style="border-radius:3.6vmin">Junior</label>
 
                     </div>
@@ -59,10 +58,10 @@
                 <div class="d-flex flex-row col-md-4  my-auto ">
                     <div class="btn-group  bd-highlight" role="group">
                         <div class="ms-lg-4"></div>
-                        <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="Multimedia" value="Multimedia">
+                        <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="Multimedia" value="Multimedia" {{  tags_tuple[4]  }}>
                         <label class="btn btnWord ms-lg-5  ms-md-4 me-md-4 me-3 justify-content-center" for="btncheck5" style="border-radius:3.6vmin">Multimedia</label>
 
-                        <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="Network" value="Network">
+                        <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="Network" value="Network" {{  tags_tuple[5]  }}>
                         <label class="btn btnWord justify-content-center" for="btncheck6" style="border-radius:3.6vmin">Network</label>
 
                     </div>

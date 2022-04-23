@@ -46,6 +46,10 @@ __session = Session(app)
 # global variable
 tags_list = ["General", "Freshman", "Sophomore", "Junior", "Multimedia", "Network"]
 
+def get_tag_tuple(request_values):
+    tags_tuple = tuple(  (tag in request_values) * "checked" for tag in tags_list  )
+    return tags_tuple
+
 """
     Error Code:
         (1) -1 => internal error (MySQL)
@@ -124,11 +128,12 @@ def log_out():
 @app.route("/ask_question")
 def ask_question():
     # fetch all the informations from the ask question page
-    title_default_value          = SGET(session.get("title_default_value"),          "")
-    content_default_value        = SGET(session.get("content_default_value"),        "")
-    anonymous_checked            = SGET(session.get("anonymous_checked"),            "")
-    default_message              = SGET(session.get("default_message"),              "")
-    ask_question_default_message = SGET(session.get("ask_question_default_message"), "")
+    title_default_value          = SGET(session.get("title_default_value"),                        "")
+    content_default_value        = SGET(session.get("content_default_value"),                      "")
+    anonymous_checked            = SGET(session.get("anonymous_checked"),                          "")
+    default_message              = SGET(session.get("default_message"),                            "")
+    ask_question_default_message = SGET(session.get("ask_question_default_message"),               "")
+    tags_tuple                   = SGET(session.get("tags_tuple"), tuple([ 0 ] * tags_list.__len__()))
     
     # set all the session variables to None
     session["title_default_value"]          = None
@@ -136,6 +141,7 @@ def ask_question():
     session["anonymous_checked"]            = None
     session["default_message"]              = None
     session["ask_question_default_message"] = None
+    session["tags_tuple"]                   = None
     
     return render_template("ask.html", 
         username = SGET(session.get("username"), ""),
@@ -143,7 +149,8 @@ def ask_question():
         content_default_value = content_default_value,
         anonymous_checked     = anonymous_checked,
         message               = default_message,
-        tagMessage            = ask_question_default_message
+        tagMessage            = ask_question_default_message,
+        tags_tuple            = tags_tuple
     )
 
 @app.route("/search", methods = [ "GET", "POST" ])
@@ -184,7 +191,8 @@ def post_question():
     question_dict = {
         "question"  : request.values["question-title"],
         "content"   : request.values["question-content"],
-        "asker"     : SGET(session.get("username"), "")
+        "asker"     : SGET(session.get("username"), ""),
+        "tags_tuple" : get_tag_tuple(request.values)
     }
     
     # store the username for points subtraction
@@ -273,6 +281,7 @@ def post_question():
         session["title_default_value"]   = question_dict["question"]
         session["content_default_value"] = question_dict["content"]
         session["anonymous_checked"]     = ("checked" if (question_dict["asker"] == "") else None) 
+        session["tags_tuple"] = question_dict["tags_tuple"]
         # if something went wrong about the MySQL connection
         if (err == -1):
             print("\n\nMYSQL ERROR\n\n")
