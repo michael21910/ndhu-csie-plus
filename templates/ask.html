@@ -16,116 +16,49 @@
     <div class="row ">
         <form class="backBlockStyle shadow mx-auto " action="{{  url_for('post_question')  }}" method="post">
             <label class="d-flex justify-content-center titleStyle col mt-md-4 mt-2">Ask a Question</label>
-
-
             <label class=" mt-lg-3 subtitleStyle  col offset-lg-1">Title</label>
             <div class="col d-flex justify-content-center">
                 <input class="form-control titleText boxRadius shadow inputText p-4" type="text" name="question-title" placeholder="Title of question..." value="{{  title_default_value  }}" maxlength="200">
             </div>
-
-
             <label class="col mt-3 subtitleStyle offset-lg-1">Content</label>
             <div class="col d-flex justify-content-center">
-                <textarea class="form-control inputText boxRadius shadow text p-4" type="text" name="question-content" placeholder="Content of question..." value="{{  content_default_value  }}" maxlength="500"></textarea>
+                <textarea class="form-control inputText boxRadius shadow text p-4" type="text" name="question-content" placeholder="Content of question..." value="{{  content_default_value  }}" maxlength="500">{{ content_default_value }}</textarea>
             </div>
-
-
             <div class="row">
                 <div class="hintStyle col offset-lg-1 mt-lg-3">
                     Please choose your tags
                 </div>
             </div>
-
             <div class="row">
                 <div class=" d-flex flex-row col-md-7 col-lg-4 offset-lg-1 my-auto ">
                     <div class="btn-group  bd-highlight " role="group">
-
-                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="General" value="General">
+                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="General" value="General" {{ tags_tuple[0] }}>
                         <label class="btn btnWord me-md-4  me-3 justify-content-center " for="btncheck1" style="border-radius:3.6vmin">General</label>
-
-
-                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="Freshman" value="Freshman">
+                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="Freshman" value="Freshman"  {{ tags_tuple[1] }}>
                         <label class="btn btnWord me-md-4 me-3 justify-content-center" for="btncheck2" style="border-radius:3.6vmin;">Freshman</label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="Sophomore" value="Sophomore">
+                        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="Sophomore" value="Sophomore"  {{ tags_tuple[2] }}>
                         <label class="btn btnWord me-md-4 me-3 justify-content-center" for="btncheck3" style="border-radius:3.6vmin">Sophomore</label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="Junior" value="Junior">
+                        <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="Junior" value="Junior"  {{ tags_tuple[3] }}>
                         <label class="btn btnWord me-lg-4 justify-content-center" for="btncheck4" style="border-radius:3.6vmin">Junior</label>
-
                     </div>
                 </div>
                 <br><br>
                 <div class="d-flex flex-row col-md-4  my-auto ">
                     <div class="btn-group  bd-highlight" role="group">
                         <div class="ms-lg-4"></div>
-                        <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="Multimedia" value="Multimedia">
+                        <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="Multimedia" value="Multimedia" {{ tags_tuple[4] }}>
                         <label class="btn btnWord ms-lg-5  ms-md-4 me-md-4 me-3 justify-content-center" for="btncheck5" style="border-radius:3.6vmin">Multimedia</label>
 
-                        <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="Network" value="Network">
+                        <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="Network" value="Network"  {{ tags_tuple[5] }}>
                         <label class="btn btnWord justify-content-center" for="btncheck6" style="border-radius:3.6vmin">Network</label>
-
                     </div>
                 </div>
-
-                <!--
-            <div class="row ">
-                <div class=" d-flex flex-row col-md-8 offset-lg-1 my-auto ">
-                    <div class="btn-group ms_auto bd-highlight" role="group" >
-
-                            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="General" value="General" >
-                            <label class="btn btnWord me-md-4 col-4 justify-content-center " for="btncheck1" style="border-radius:3.6vmin">General</label>
-
-
-                            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="Freshman" value="Freshman">
-                            <label class="btn btnWord me-md-4 col-4 justify-content-center" for="btncheck2" style="border-radius:3.6vmin;">Freshman</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="Sophomore" value="Sophomore">
-                            <label class="btn btnWord me-md-4 col-4 justify-content-center" for="btncheck3" style="border-radius:3.6vmin">Sophomore</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="Junior" value="Junior">
-                            <label class="btn btnWord me-md-4 justify-content-center" for="btncheck4" style="border-radius:3.6vmin">Junior</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="Multimedia" value="Multimedia">
-                            <label class="btn btnWord me-md-4 justify-content-center" for="btncheck5" style="border-radius:3.6vmin">Multimedia</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="Network" value="Network">
-                            <label class="btn btnWord justify-content-center" for="btncheck6" style="border-radius:3.6vmin">Network</label>
-
-                    </div>
-                </div>
-                -->
-                <!--
-                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="General" value="General" checked>
-                        <label class="btnStyle btnWord me-lg-4  me-sm-2  justify-content-center btn-sm" for="btncheck1" style="border-radius:3.6vmin">General</label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="Freshman" value="Freshman">
-                        <label class="btnStyle btnWord me-lg-4 me-sm-2 d-flex justify-content-center btn-sm" for="btncheck2" style="border-radius:3.6vmin">Freshman</label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="Sophomore" value="Sophomore">
-                        <label class=" btnStyle btnWord me-lg-4  me-sm-2  justify-content-center btn-sm" for="btncheck3" style="border-radius:3.6vmin">Sophomore</label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" name="Junior" value="Junior">
-                        <label class=" btnStyle btnWord me-lg-4 me-sm-2  justify-content-center btn-sm" for="btncheck4" style="border-radius:3.6vmin">Junior</label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="Multimedia" value="Multimedia">
-                        <label class=" btnStyle btnWord me-lg-4  me-sm-2  justify-content-center btn-sm" for="btncheck5" style="border-radius:3.6vmin">Multimedia</label>
-
-                        <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="Network" value="Network">
-                        <label class=" btnStyle btnWord   justify-content-center btn-sm" for="btncheck6" style="border-radius:3.6vmin">Network</label>
-
-    -->
                 <div class="col-lg-2 mt-lg-0 mt-2">
                     <div class="ms-lg-5">
                         <input type="submit" name="post-button" value="Post" class="justify-content-center postBtn postWord">
                     </div>
                 </div>
-
             </div>
-
-
-
-
             <div class="row mb-5">
                 <div class="form-check col offset-lg-9 ">
                     <div class="ms-lg-5">
@@ -136,7 +69,6 @@
                     </div>
                 </div>
             </div>
-
             {% if tagMessage != "" %}
             <div class="d-flex justify-content-center hintStyle col-12">
                 {{ tagMessage }}

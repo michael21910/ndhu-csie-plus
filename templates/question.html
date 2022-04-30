@@ -11,10 +11,6 @@
 </button> {% endif %} {% endblock %} {% block content %} {% set asker = question_contents["question"]["question_data"]["asker"] %} {% set question_id = question_contents["question"]["question_id"] %} {% set question_content = question_contents["question"]["question_data"]["content"]
 %} {% set question_title = question_contents["question"]["question_data"]["question"] %} {% set question_date = question_contents["question"]["question_data"]["time"] %} {% set question_likes = question_contents["question"]["question_data"]["likes"] %}
 {% set question_replies = question_contents["question"]["question_data"]["replies"] %} {% set reply_list = question_contents["replies"] %}
-
-
-
-
 <div class="container backBlockMargin">
     <div class="row">
         <div class="bd-highlight d-flex flex-row col-12">
@@ -64,6 +60,5 @@
             </div>
         </form>
     </div>
-
 </div>
 {% endblock %}

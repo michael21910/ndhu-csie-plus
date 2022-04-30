@@ -10,10 +10,7 @@
             <div class="d-flex justify-content-center col-12 ">
                 <span class="title mt-md-5 mb-md-5 mt-3 mb-3">Register</span>
             </div>
-
-
             <form action="{{ url_for('register') }}" method="post">
-
                 <div class="d-flex justify-content-center mt-md-2 col-12">
                     <input type="text" name="username" maxlength="20" placeholder="Username" class="inputText p-4">
                 </div>
@@ -21,25 +18,19 @@
                     <input type="text" name="email" maxlength="9" placeholder="Email" class="inputText p-4 ">
                     <span class="input-group-text inputText p-4">@gms.ndhu.edu.tw</span>
                 </div>
-
                 <div class="d-flex justify-content-center mt-md-3 mt-2 col-12">
                     <input type="password" name="password" maxlength="16" placeholder="Password" class="inputText p-4">
                 </div>
-
-
                 <div class="d-flex justify-content-center mt-md-3 mt-2 col-12">
                     <input type="password" name="repeat-password" maxlength="16" placeholder="Repeat password" class="inputText p-4">
                 </div>
-
                 {% if message != "" %}
                 <span class="d-flex justify-content-center hintSentence mt-md-4 col-12 mt-3 text-nowrap">
                     {{ message }}
                 </span> {% endif %}
-
                 <div class="d-flex justify-content-center mt-md-4 mt-3 col-12">
                     <input type="submit" name="send" value="Register" class="sendButtom sendWord">
                 </div>
-
                 <div class="d-flex justify-content-around mt-md-3 mb-md-5 mt-2 mb-2 col-12 text-nowrap">
                     <span class="hintSentence fw-bold">Don't have an account?<a href="{{ url_for('register') }}" class="link">&nbsp;&nbsp;Login</a></span>
                 </div>
