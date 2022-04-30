@@ -69,17 +69,16 @@
                     </div>
                 </div>
             </div>
-            {% if tagMessage != "" %}
+            {% if message != "" %}
+            <div class="d-flex justify-content-center hintStyle col-12">
+                {{ message }}
+            </div>
+            {% elif tagMessage != "" %}
             <div class="d-flex justify-content-center hintStyle col-12">
                 {{ tagMessage }}
             </div>
             {% endif %}
-            <div class="d-flex justify-content-center hintStyle col-12">{{ message }}</div>
         </form>
     </div>
 </div>
-
-
-
-
 {% endblock %}

@@ -15,9 +15,11 @@
 
 </head>
 
-<body class="body">
+<body id="body">
+    <div id="gotop"></div>
     <div style="min-height: 100%; margin-bottom: 5.33vh;">
-        <nav class="navbar navbar-expand-xl top shadow " style="padding-bottom: -5.33vh;">
+        <a href="{{ url_for('index') }}"><button id="topBtn">top</button></a>
+        <nav class="navbar navbar-expand-xl top shadow sticky" style="padding-bottom: -5.33vh;">
             <div class="container-fluid new-width h-100">
                 <a class="brand  navbar-brand" href="{{  url_for('index')  }}" id="brand">CSIE plus+</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,14 +34,14 @@
                             <a href="{{  url_for('profile')  }}" class="nav-link navOption" id="option"> Profile </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{  url_for('leaderboard')  }}" class="nav-link navOption" id="option">Rank</a>
+                            <a href="{{  url_for('leaderboard')  }}" class="nav-link navOption" id="option">Leaderboard</a>
                         </li>
                         <li class="nav-item dropdown mt-2">
                             <a class="dropdown-toggle navOption" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
                             About
                         </a>
                             <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{  url_for('rules')  }}">Rules</a></li>
+                                <li><a class="dropdown-item" href="{{  url_for('FAQs')  }}">FAQs</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

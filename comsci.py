@@ -6,7 +6,6 @@ import numpy as np
 import requests
 from langid.langid import LanguageIdentifier, model
 import json
-nltk.download('all')
 
 identifier = LanguageIdentifier.from_modelstring(model, norm_probs=True)
 
@@ -20,7 +19,6 @@ class_model_name = "./models/class_model.h5"
 words_model = Word2Vec.load(words_model_name)
 class_model = models.load_model(class_model_name)
 
-#words_limit = 625
 words_limit = 100
 vector_size = words_model.vector_size
 
@@ -96,7 +94,6 @@ def preprocess_vectorize_without_translate(string):
     del string
     del lower_string
     return vectorize_str(result)
-    #return result
 
 def vectorize_str(string_list):
     """

@@ -112,8 +112,6 @@ class SentenceCleanser:
             re.findall("[a-zA-Z0-9\+\#]+", sentence))
 
 identifier = LanguageIdentifier.from_modelstring(model, norm_probs = True)
-    
-# comsci_predictor = models.load_model("./models/comsci_model.h5")
 
 def translate(string):
     

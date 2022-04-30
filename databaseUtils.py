@@ -168,6 +168,23 @@ class databaseUtils:
 
     def insert_reply(self, connection, reply_dict):
         try:
+            # delete empty prefix and postfix
+            comment = reply_dict["reply_content"]
+            index = 0
+            for i in range(len(comment)):
+                if comment[i] != " " or comment[i] != "　":
+                    index = i
+                    break
+            comment = comment[index : len(comment)]
+            comment = comment[::-1]
+            for i in range(len(comment)):
+                if comment[i] != " " or comment[i] != "　":
+                    index = i
+                    break
+            comment = comment[index : len(comment)]
+            comment = comment[::-1]
+            reply_dict["reply_content"] = comment
+                    
             with connection.cursor() as cursor:
                 sql = "INSERT INTO question_{} (replier, content) VALUE ('{}', '{}');".format(
                     reply_dict["question_id"], format_string(reply_dict["replier"]), format_string(reply_dict["reply_content"])
@@ -191,12 +208,20 @@ class databaseUtils:
                 cursor.execute(sql)
                 connection.commit()
                 if (len(cursor.fetchall()) == 1):
-                    sql = "UPDATE users SET answers = answers + 1, points = points + 15 WHERE (username = '{}');".format(
-                        format_string(reply_dict["replier"])
+                    sql = "SELECT * FROM questions WHERE (id = '{}');".format(
+                        reply_dict["question_id"]
                     )
                     connection.ping(reconnect = True)
                     cursor.execute(sql)
                     connection.commit()
+                    asker = cursor.fetchall()[0]["asker"]
+                    if asker != reply_dict["replier"]:
+                        sql = "UPDATE users SET answers = answers + 1, points = points + 15 WHERE (username = '{}');".format(
+                            format_string(reply_dict["replier"])
+                        )
+                        connection.ping(reconnect = True)
+                        cursor.execute(sql)
+                        connection.commit()
                 else:
                     sql = "UPDATE users SET answers = answers + 1 WHERE (username = '{}');".format(
                         format_string(reply_dict["replier"])
@@ -286,6 +311,22 @@ class databaseUtils:
                 sql = "SELECT * FROM `users` WHERE `username` = %s"
                 connection.ping(reconnect = True)
                 cursor.execute(sql, (username, ))
+                connection.commit()
+                result = cursor.fetchone()
+                if result is not None:
+                    return "True"
+                else:
+                    return "DNE"
+        except Exception as e:
+            print(e)
+            return "False"
+
+    def check_email_exists(self, connection, email):
+        try:
+            with connection.cursor() as cursor:
+                sql = "SELECT * FROM `users` WHERE `email` = %s"
+                connection.ping(reconnect = True)
+                cursor.execute(sql, (email, ))
                 connection.commit()
                 result = cursor.fetchone()
                 if result is not None:

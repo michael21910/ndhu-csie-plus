@@ -11,6 +11,7 @@
     display: flex;
     align-items: center;
     color: #000000;
+    word-break: break-word;
 }
 
 .Qrelative {
@@ -100,6 +101,7 @@
     display: flex;
     align-items: center;
     color: #000000;
+    word-break: break-word;
 }
 
 .replyDate {

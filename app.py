@@ -108,7 +108,7 @@ def log_out():
     session["username"] = None
     return redirect(url_for("index"))
 
-@app.route("/ask_question")
+@app.route("/ask")
 def ask_question():
     # fetch all the informations from the ask question page
     title_default_value          = SGET(session.get("title_default_value"),                        "")
@@ -308,9 +308,9 @@ def post_reply():
     previous_page = SGET(session.get("previous_page"), "/")
     reply_contents["question_id"] = SGET(session.get("question_id"), 1)
     
-    # if the user typed nothing and clicked post, set err to 3
-    if (reply_contents["reply_content"] == ""):
-        err = 3
+    # if the user typed only spaces in the comment area
+    if len( reply_contents["reply_content"].replace(' ', '').replace('　', '') ) == 0:
+        err = 3   
     # if the user hasn't logged in, set err to 2
     elif (username == ""):
         err = 2
@@ -394,8 +394,8 @@ def register():
             return redirect(url_for("register"))
         else:
             # if the user already exists
-            if db.check_username_exists(connection, username) == "True":
-                session["register_default_message"] = "Username already exists."
+            if db.check_username_exists(connection, username) == "True" or db.check_email_exists(connection, email) == "True":
+                session["register_default_message"] = "Username or email already exists."
                 return redirect(url_for("register"))
             # if the user doesn't exist
             elif db.check_username_exists(connection, username) == "DNE":
@@ -476,10 +476,10 @@ def profile():
 def FOF():
     return render_template("404.html")
 
-@app.route("/rules")
-def rules():
+@app.route("/FAQs")
+def FAQs():
     username = SGET(session.get("username"), "")
-    return render_template("rules.html", username = username)
+    return render_template("FAQs.html", username = username)
 
 @app.route("/about")
 def about():
@@ -491,4 +491,4 @@ def error_handler(_):
     return redirect(url_for("FOF"))
 
 if __name__ == "__main__":
-    app.run(debug = False)
+    app.run(debug = True)
