@@ -3,10 +3,12 @@ from flask_session import Session
 from databaseUtils import databaseUtils
 import comsci as cs
 import os
+from bert_utils import SentenceCleanser, translate
 
 app = Flask(__name__, template_folder = "templates")
 
 # connecting to database
+"""
 db = databaseUtils(
     os.environ.get('CLEARDB_DATABASE_HOST'),
     os.environ.get('CLEARDB_DATABASE_USER'),
@@ -20,6 +22,21 @@ connection = db.connect(
     os.environ.get('CLEARDB_DATABASE_PASSWORD'),
     os.environ.get('CLEARDB_DATABASE_DB')
 )
+"""
+
+db = databaseUtils(
+    "127.0.0.1",
+    "root",
+    "",
+    "csieplus"
+)
+
+connection = db.connect(
+    "127.0.0.1",
+    "root",
+    "",
+    "csieplus"
+)
 
 app.secret_key = "super secret key"
 app.config["SESSION_TYPE"] = "filesystem"
@@ -29,13 +46,23 @@ __session = Session(app)
 # global variable
 tags_list = ["General", "Freshman", "Sophomore", "Junior", "Multimedia", "Network"]
 
+def get_tag_tuple(request_values):
+    tags_tuple = tuple(  (tag in request_values) * "checked" for tag in tags_list  )
+    return tags_tuple
+
 """
     Error Code:
         (1) -1 => internal error (MySQL)
         (2)  1 => success
         (3)  2 => login warning 
         (4)  3 => blank field warning
+        (5)  4 => not related to CSIE
+        (6)  5 => tag not selected
+        (7)  6 => sensitive words detected
+        (8)  7 => translation error
 """
+
+sentence_cleanser = SentenceCleanser()
 
 # SGET stands for "session get"
 def SGET(value, default):
@@ -100,11 +127,12 @@ def log_out():
 @app.route("/ask_question")
 def ask_question():
     # fetch all the informations from the ask question page
-    title_default_value          = SGET(session.get("title_default_value"),          "")
-    content_default_value        = SGET(session.get("content_default_value"),        "")
-    anonymous_checked            = SGET(session.get("anonymous_checked"),            "")
-    default_message              = SGET(session.get("default_message"),              "")
-    ask_question_default_message = SGET(session.get("ask_question_default_message"), "")
+    title_default_value          = SGET(session.get("title_default_value"),                        "")
+    content_default_value        = SGET(session.get("content_default_value"),                      "")
+    anonymous_checked            = SGET(session.get("anonymous_checked"),                          "")
+    default_message              = SGET(session.get("default_message"),                            "")
+    ask_question_default_message = SGET(session.get("ask_question_default_message"),               "")
+    tags_tuple                   = SGET(session.get("tags_tuple"), tuple([ 0 ] * tags_list.__len__()))
     
     # set all the session variables to None
     session["title_default_value"]          = None
@@ -112,6 +140,7 @@ def ask_question():
     session["anonymous_checked"]            = None
     session["default_message"]              = None
     session["ask_question_default_message"] = None
+    session["tags_tuple"]                   = None
     
     return render_template("ask.html", 
         username = SGET(session.get("username"), ""),
@@ -119,7 +148,8 @@ def ask_question():
         content_default_value = content_default_value,
         anonymous_checked     = anonymous_checked,
         message               = default_message,
-        tagMessage            = ask_question_default_message
+        tagMessage            = ask_question_default_message,
+        tags_tuple            = tags_tuple
     )
 
 @app.route("/search", methods = [ "GET", "POST" ])
@@ -160,7 +190,8 @@ def post_question():
     question_dict = {
         "question"  : request.values["question-title"],
         "content"   : request.values["question-content"],
-        "asker"     : SGET(session.get("username"), "")
+        "asker"     : SGET(session.get("username"), ""),
+        "tags_tuple" : get_tag_tuple(request.values)
     }
     
     # store the username for points subtraction
@@ -175,30 +206,39 @@ def post_question():
     # if the question title is not empty and the user has logged in, set err to 1 or -1 according to the MySql connection result
     else:
         # determine the content or the title is realted to CSIE
-        pre_pre_processed_str = question_dict['question'] + " " + question_dict['content']
-        pre_processed_str = cs.pre_process(pre_pre_processed_str)
-        print(pre_processed_str)
-        err = 4
-        if len(pre_processed_str):
-            vectorized_data = cs.vectorize_str(pre_processed_str)
-            # get the confident score of the content or the title
-            relation_score = cs.get_relation_score(vectorized_data)
-            print(relation_score)
-            if relation_score * 100 >= 80:
-                request_list = list(request.values.keys())
-                tags_count = 0
-                targetTag = ""
-                for tag in tags_list:
-                    if (tag in request_list):
-                        targetTag = tag
-                        tags_count += 1
-                # the user checked over 1 tags or no tags
-                if (tags_count != 1):
-                    session["ask_question_default_message"] = "You can only choose 1 tag."
-                    return redirect(url_for("ask_question"))
-                if ("anonymous" in request_list):
-                    question_dict["asker"] = ""
-                err, qid = db.insert_question(connection, question_dict, targetTag, asker_username)
+        user_question_merged = question_dict['question'] + " " + question_dict['content']
+        print("\n\nMERGED: {}\n\n".format(user_question_merged))        
+        user_question_translated, translate_success = translate(user_question_merged) 
+        user_question_cleansed   = sentence_cleanser.cleanse(user_question_translated)        
+        print("\n\nCLEANSED: {}\n\n".format(user_question_cleansed))        
+        if not (translate_success):            
+            print("\n\nCOULD NOT TRANSLATE SENTENCE\n\n")            
+            err = 7        
+        elif (user_question_cleansed[1]):            
+            print("\n\nDETECTED SENSITIVE WORDS\n\n")            
+            err = 6            
+        else:            
+            user_question_formatted = user_question_cleansed[0]
+            print("\n\nFORMATTED: {}\n\n".format(user_question_formatted))
+            err = 4            
+            if (user_question_formatted.__len__()):                
+                user_question_rejoined = " ".join(user_question_formatted)                
+                print("\n\nREJOINED: {}\n\n".format(user_question_rejoined))                
+                user_question_vectorized = cs.preprocess_vectorize_without_translate(user_question_rejoined)                
+                print("\n\nVECTORIZED SHAPE: {}\n\n".format(user_question_vectorized.shape))
+                relation_score = float(cs.get_relation_score(user_question_vectorized)) * 100                
+                print("\n\nPREDICTED SCORE: {:.4f}%\n\n".format(relation_score))                
+                if (relation_score >= 50):
+                    request_set = set(request.values.keys())
+                    tags_count  = sum(  (tag in request_set)  for tag in tags_list  )
+                    target_tag  = (  list(  set(tags_list).intersection(request_set)  ) or [ None ]  )[-1]                    
+                    print("\n\nTARGET TAG: {}\n\n".format(target_tag))                    
+                    if (tags_count != 1):
+                        err = 5                        
+                    else:
+                        if ("anonymous" in request_set):
+                            question_dict["asker"] = ""
+                        err, qid = db.insert_question(connection, question_dict, target_tag, asker_username)
 
     # if err is 1, redirect to the question page that the user just posted
     if (err == 1):
@@ -210,6 +250,7 @@ def post_question():
         session["title_default_value"]   = question_dict["question"]
         session["content_default_value"] = question_dict["content"]
         session["anonymous_checked"]     = ("checked" if (question_dict["asker"] == "") else None) 
+        session["tags_tuple"] = question_dict["tags_tuple"]
         # if something went wrong about the MySQL connection
         if (err == -1):
             print("\n\nMYSQL ERROR\n\n")
@@ -227,8 +268,20 @@ def post_question():
             session["default_message"] = "Question title must not be blank!"
             redirect_to = url_for("ask_question")
         elif (err == 4):
-            print("\n\nNot related to CSIE!!!\n\n")
+            print("\n\nUNRELATED TO CSIE\n\n")
             session["default_message"] = "Your post is not related to CSIE! Please contact us if you think this is a mistake."
+            redirect_to = url_for("ask_question")
+        elif (err == 5):
+            print("\n\nINVALID TAG SELECTION\n\n")
+            session["ask_question_default_message"] = "You can only choose 1 tag."
+            redirect_to = url_for("ask_question")
+        elif (err == 6):
+            print("\n\nSENSITIVE WORDS DETECTED\n\n")
+            session["default_message"] = "Woah! There appear to be sensitive words in your question. Please check your wording."
+            redirect_to = url_for("ask_question")
+        elif (err == 7):
+            print("\n\nTRANSLATION ERROR\n\n")
+            session["default_message"] = "The website is under maintenance. Please post in English or try again later!"
             redirect_to = url_for("ask_question")
         else:
             redirect_to = url_for("FOF")
@@ -454,4 +507,4 @@ def error_handler(_):
     return redirect(url_for("FOF"))
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug = False)

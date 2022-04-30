@@ -6,7 +6,7 @@ import numpy as np
 import requests
 from langid.langid import LanguageIdentifier, model
 import json
-nltk.download('all')
+# nltk.download('punkt')
 
 identifier = LanguageIdentifier.from_modelstring(model, norm_probs=True)
 
@@ -73,6 +73,30 @@ def pre_process(string):
     del string
     del lower_string
     return result
+
+def preprocess_vectorize_without_translate(string):
+
+    string = nltk.tokenize.word_tokenize(string)
+    string = nltk.pos_tag(string)
+    result = []
+    
+    lower_string = [  (x[0].lower(), x[1]) for x in string  ]
+    for i in range(len(string)):
+        if not(string[i][0] in stop_set or lower_string[i][0] in stop_set):
+            cute_word = lemm.lemmatize(string[i][0], pos = convert(string[i][1]))
+            bird_word = lemm.lemmatize(lower_string[i][0], pos = convert(lower_string[i][1]))
+            if cute_word in word_set:
+                result.append(cute_word)
+            elif bird_word in word_set:
+                result.append( bird_word )
+            else:
+                print("Not stopword: ", string[i], lower_string[i])
+        else:
+            print("Is stopword: ", string[i], lower_string[i])
+    del string
+    del lower_string
+    return vectorize_str(result)
+    #return result
 
 def vectorize_str(string_list):
     """
