@@ -11,6 +11,7 @@
 </button> {% endif %} {% endblock %} {% block content %} {% set asker = question_contents["question"]["question_data"]["asker"] %} {% set question_id = question_contents["question"]["question_id"] %} {% set question_content = question_contents["question"]["question_data"]["content"]
 %} {% set question_title = question_contents["question"]["question_data"]["question"] %} {% set question_date = question_contents["question"]["question_data"]["time"] %} {% set question_likes = question_contents["question"]["question_data"]["likes"] %}
 {% set question_replies = question_contents["question"]["question_data"]["replies"] %} {% set reply_list = question_contents["replies"] %}
+
 <div class="container backBlockMargin">
     <div class="row">
         <div class="bd-highlight d-flex flex-row col-12">
@@ -22,8 +23,18 @@
                     <div class="ms-3 bd-highlight Qbutton btn-sm justify-content-center">{{ tag }}</div>
                 </div>
             </div>
-            <div class="d-flex flex-column bd-highlight ">
+            <div class="d-flex flex-column bd-highlight">
+                {% if question_likes > 75 %}
+                <div class="justify-content-center"><a style="text-decoration: none" href="{{  url_for('upvote_question')  }}" class="bd-highlight heartSize "> 💘</a></div>
+                {% elif question_likes >  50 %}
+                <div class="justify-content-center"><a style="text-decoration: none" href="{{  url_for('upvote_question')  }}" class="bd-highlight heartSize "> 💖</a></div>
+                {% elif question_likes >  25 %}
                 <div class="justify-content-center"><a style="text-decoration: none" href="{{  url_for('upvote_question')  }}" class="bd-highlight heartSize "> ❤️</a></div>
+                {% elif question_likes >  0 %}
+                <div class="justify-content-center"><a style="text-decoration: none" href="{{  url_for('upvote_question')  }}" class="bd-highlight heartSize "> 💗</a></div>
+                {% else %}
+                <div class="justify-content-center"><a style="text-decoration: none" href="{{  url_for('upvote_question')  }}" class="bd-highlight heartSize "> 🤍</a></div>
+                {% endif %}
                 <div class="bd-highlight likeTimes justify-content-center ">{{ question_likes }}</div>
             </div>
         </div>

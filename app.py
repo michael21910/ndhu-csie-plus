@@ -1,4 +1,5 @@
 from flask import Flask, render_template, session, request, redirect, url_for
+from regex import R
 from flask_session import Session
 from databaseUtils import databaseUtils
 import comsci as cs
@@ -8,6 +9,7 @@ from bert_utils import SentenceCleanser, translate
 app = Flask(__name__, template_folder = "templates")
 
 # connecting to database
+"""
 db = databaseUtils(
     os.environ.get('CLEARDB_DATABASE_HOST'),
     os.environ.get('CLEARDB_DATABASE_USER'),
@@ -20,6 +22,21 @@ connection = db.connect(
     os.environ.get('CLEARDB_DATABASE_USER'),
     os.environ.get('CLEARDB_DATABASE_PASSWORD'),
     os.environ.get('CLEARDB_DATABASE_DB')
+)
+"""
+
+db = databaseUtils(
+    '127.0.0.1',
+    'root',
+    '',
+    'csieplus'
+)
+
+connection = db.connect(
+    '127.0.0.1',
+    'root',
+    '',
+    'csieplus'
 )
 
 app.secret_key = "super secret key"
@@ -474,7 +491,8 @@ def profile():
 
 @app.route("/404")
 def FOF():
-    return render_template("404.html")
+    username = SGET(session.get("username"), "")
+    return render_template("404.html", username = username)
 
 @app.route("/FAQs")
 def FAQs():
@@ -485,6 +503,11 @@ def FAQs():
 def about():
     username = SGET(session.get("username"), "")
     return render_template("about.html", username = username)
+
+@app.route("/TOS")
+def TOS():
+    username = SGET(session.get("username"), "")
+    return render_template("TOS.html",username = username)
 
 @app.errorhandler(404)
 def error_handler(_):

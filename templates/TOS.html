@@ -1,0 +1,84 @@
+{% extends "base.html" %} {% block linkCSS %}
+<link rel="stylesheet" href="{{  url_for('static', filename = 'about&rule.css')  }}">
+<link rel="stylesheet" href="{{  url_for('static', filename = 'index.css')  }}"> {% endblock %} {% block login %} {% if username == "" %}
+<button class="btn "><a href="{{ url_for('login') }}" class="loginbuttonstyle justify-content-center p-md-3 px-4 px-md-0" id="login">Login</a></button>
+<button class="btn "><a href="{{ url_for('register') }}" class="registerbuttonstyle justify-content-center p-md-3  px-5 px-md-0" id="register">Register</a></button> {% endif %} {% if username != "" %}
+<button class="btn ">
+    <a href="{{  url_for('profile')  }}" class="hiMember justify-content-center" id="member">{{ username }}</a>
+</button>
+<button class="btn ">
+    <a href="{{  url_for('log_out')  }}" class="registerbuttonstyle justify-content-center p-3" id="logout">Logout</a>
+</button> {% endif %} {% endblock %} {% block content %}
+<div class="container mt-5">
+    <div class="Qstyle">
+        Register 
+    </div>
+    <div class="Astyle">
+        - The maximum length of your username is 20 characters
+        <br>- The email you register has to be your NDHU email
+        <br>- Each email can be only registered once
+        <br>- The maximum length of your password is 16 characters
+        <br>- You will get a token after registeration, please save the token in case you need to change your password 
+    </div>
+    <div class="Qstyle mt-2">
+        Forgot Password
+    </div>
+    <div class="Astyle">
+        - Type in your username 
+        <br>- Type in the token given after registration 
+        <br>- Type in your new password and repeat it in the following block.
+        <br>- Click the reset button to update your password
+    </div>
+    <div class="Qstyle mt-2">
+        Search bar
+    </div>
+    <div class="Astyle">
+        - Type the keyword in the search bar in order to find related questions
+        <br>- Type # with the tags as follows to find questions with a specific tag: general, freshman, sophomore, junior, multimedia, and network
+    </div>
+    <div class="Qstyle mt-2">
+        Home page
+    </div>
+    <div class="Astyle">
+        - Click on the question block to direct to the question page
+    </div>
+    <div class="Qstyle mt-2">
+        Question page
+    </div>
+    <div class="Astyle">
+        - Click on the heart icon to like this question
+        <br>- Write down your comments by clicking the "post" button after typing in your comments
+    </div>
+    <div class="Qstyle mt-2">
+        Ask
+    </div>
+    <div class="Astyle">
+        - Type in the title of your question in the "Title of question..." block, the maximum length is 200 characters
+        <br>- Type in the content of your question in the "Content of question..." block, the maximum length is 500 characters
+        <br>- You can only choose one tag for your question
+        <br>- You can decide to post the question as anonymous, but we encourage you to post it with your name
+        <br>- Click on the post button to submit your question
+    </div>
+    <div class="Qstyle mt-2">
+        Profile
+    </div>
+    <div class="Astyle">
+        - You can check out your personal information on this page
+        <br>- Password will be in *** format to keep your password from exposed
+    </div>
+    <div class="Qstyle mt-2">
+        Leaderboard
+    </div>
+    <div class="Astyle">
+        - You can check your rank among all users here
+        <br>- Top 3 users will be displayed in special colors
+        <br>- Your rank will be marked with a green bar
+    </div>
+    <div class="Qstyle mt-2">
+        About
+    </div>
+    <div class="Astyle">
+        - Learn the information about this website and detail about our team members
+    </div>
+</div>
+{% endblock %}

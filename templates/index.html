@@ -47,7 +47,11 @@
                 </div>
                 <div id=question-{{loop.index}}-right class="flex-shrink-1 bd-highlight d-flex flex-column justify-content-center me-md-4 me-sm-5">
                     <div id=question-{{loop.index}}-right-top class="bd-highlight ">
-                        <div class="heart mx-auto">❤️</div>
+                        {% if question_likes > 30 %}<div class="heart mx-auto" style="opacity: 1;">🤍</div>
+                        {% elif question_likes > 20 %}<div class="heart mx-auto" style="opacity: 0.7;">🤍</div>
+                        {% elif question_likes > 10 %}<div class="heart mx-auto" style="opacity: 0.4;">🤍</div>
+                        {% elif question_likes >= 0 %}<div class="heart mx-auto" style="opacity: 0.1;">🤍</div>
+                        {% endif %}
                     </div>
                     <div id=question-{{loop.index}}-right-bot class=" bd-highlight ">
                         <div class="heartNumber mx-auto "> <div class="mx-auto">{{ question_likes }}</div></div>
@@ -58,4 +62,3 @@
     </div>
 </div>
 {% endblock %}
-<img src="https://picsum.photos/100/100?random=50" class="heart shadow me-5">

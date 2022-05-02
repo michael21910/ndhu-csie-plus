@@ -76,6 +76,7 @@
 .heart {
     font-size: 5.4021vmin;
     background-color: transparent;
+    border-color: transparent;
 }
 
 .heartNumber {
