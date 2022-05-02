@@ -7,6 +7,8 @@ import requests
 from langid.langid import LanguageIdentifier, model
 import json
 
+nltk.download('all')
+
 identifier = LanguageIdentifier.from_modelstring(model, norm_probs=True)
 
 word_set = set(nltk.corpus.words.words())
