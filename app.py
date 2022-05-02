@@ -9,7 +9,6 @@ from bert_utils import SentenceCleanser, translate
 app = Flask(__name__, template_folder = "templates")
 
 # connecting to database
-"""
 db = databaseUtils(
     os.environ.get('CLEARDB_DATABASE_HOST'),
     os.environ.get('CLEARDB_DATABASE_USER'),
@@ -22,21 +21,6 @@ connection = db.connect(
     os.environ.get('CLEARDB_DATABASE_USER'),
     os.environ.get('CLEARDB_DATABASE_PASSWORD'),
     os.environ.get('CLEARDB_DATABASE_DB')
-)
-"""
-
-db = databaseUtils(
-    '127.0.0.1',
-    'root',
-    '',
-    'csieplus'
-)
-
-connection = db.connect(
-    '127.0.0.1',
-    'root',
-    '',
-    'csieplus'
 )
 
 app.secret_key = "super secret key"
