@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request, redirect, url_for
-from regex import R
 from flask_session import Session
+from flask_bcrypt import Bcrypt
 from databaseUtils import databaseUtils
 import comsci as cs
 import os
@@ -27,6 +27,7 @@ app.secret_key = "super secret key"
 app.config["SESSION_TYPE"] = "filesystem"
 
 __session = Session(app)
+bcrypt = Bcrypt(app)
 
 # global variable
 tags_list = ["General", "Freshman", "Sophomore", "Junior", "Multimedia", "Network"]
@@ -72,27 +73,34 @@ def index():
         # fetch user username and password
         username = request.values["username"]
         password = request.values["password"]
-        
-        # if the user exists (the user input is correct)
-        if db.login_user_check(connection, username, password) == "True":
-            # stores the username in session
-            session["username"] = username
-            # get the last page before logging in
-            previous_page = SGET(session.get("previous_page"), "/")
-            # set previous_page to None
-            session["previous_page"] = None
-            # redirect to the last page before logging in
-            return redirect(previous_page)
+        # store the length of the password
+        session["password_length"] = len(password)
+        encryped_password = db.get_user_info(connection, username)[2]
+        if bcrypt.check_password_hash(encryped_password, password):
+            # if the user exists (the user input is correct)
+            if db.login_user_check(connection, username, encryped_password) == "True":
+                # stores the username in session
+                session["username"] = username
+                # get the last page before logging in
+                previous_page = SGET(session.get("previous_page"), "/")
+                # set previous_page to None
+                session["previous_page"] = None
+                # redirect to the last page before logging in
+                return redirect(previous_page)
 
-        # if the user does not exist (the user input is incorrect)
-        elif db.login_user_check(connection, username, password) == "DNE":
+            # if the user does not exist (the user input is incorrect)
+            elif db.login_user_check(connection, username, encryped_password) == "DNE":
+                # set login warning message
+                session["login_default_message"] = "Username or password is incorrect."
+                return redirect(url_for("login"))
+            
+            # if there is an internal error (MySQL)
+            elif db.login_user_check(connection, username, encryped_password) == "False":
+                return redirect(url_for("FOF"))
+        else:
             # set login warning message
             session["login_default_message"] = "Username or password is incorrect."
             return redirect(url_for("login"))
-        
-        # if there is an internal error (MySQL)
-        elif db.login_user_check(connection, username, password) == "False":
-            return redirect(url_for("FOF"))
     
     # general case
     else:
@@ -192,32 +200,32 @@ def post_question():
     else:
         # determine the content or the title is realted to CSIE
         user_question_merged = question_dict['question'] + " " + question_dict['content']
-        print("\n\nMERGED: {}\n\n".format(user_question_merged))        
+        # print("\n\nMERGED: {}\n\n".format(user_question_merged))        
         user_question_translated, translate_success = translate(user_question_merged) 
         user_question_cleansed   = sentence_cleanser.cleanse(user_question_translated)        
-        print("\n\nCLEANSED: {}\n\n".format(user_question_cleansed))        
+        # print("\n\nCLEANSED: {}\n\n".format(user_question_cleansed))        
         if not (translate_success):            
-            print("\n\nCOULD NOT TRANSLATE SENTENCE\n\n")            
+            # print("\n\nCOULD NOT TRANSLATE SENTENCE\n\n")            
             err = 7        
         elif (user_question_cleansed[1]):            
-            print("\n\nDETECTED SENSITIVE WORDS\n\n")            
+            # print("\n\nDETECTED SENSITIVE WORDS\n\n")            
             err = 6            
         else:            
             user_question_formatted = user_question_cleansed[0]
-            print("\n\nFORMATTED: {}\n\n".format(user_question_formatted))
+            # print("\n\nFORMATTED: {}\n\n".format(user_question_formatted))
             err = 4            
             if (user_question_formatted.__len__()):                
                 user_question_rejoined = " ".join(user_question_formatted)                
-                print("\n\nREJOINED: {}\n\n".format(user_question_rejoined))                
+                # print("\n\nREJOINED: {}\n\n".format(user_question_rejoined))                
                 user_question_vectorized = cs.preprocess_vectorize_without_translate(user_question_rejoined)                
-                print("\n\nVECTORIZED SHAPE: {}\n\n".format(user_question_vectorized.shape))
+                # print("\n\nVECTORIZED SHAPE: {}\n\n".format(user_question_vectorized.shape))
                 relation_score = float(cs.get_relation_score(user_question_vectorized)) * 100                
                 print("\n\nPREDICTED SCORE: {:.4f}%\n\n".format(relation_score))                
                 if (relation_score >= 50):
                     request_set = set(request.values.keys())
                     tags_count  = sum(  (tag in request_set)  for tag in tags_list  )
                     target_tag  = (  list(  set(tags_list).intersection(request_set)  ) or [ None ]  )[-1]                    
-                    print("\n\nTARGET TAG: {}\n\n".format(target_tag))                    
+                    # print("\n\nTARGET TAG: {}\n\n".format(target_tag))                    
                     if (tags_count != 1):
                         err = 5                        
                     else:
@@ -227,7 +235,7 @@ def post_question():
 
     # if err is 1, redirect to the question page that the user just posted
     if (err == 1):
-        print("\n\nSUCCESS\n\n")
+        # print("\n\nSUCCESS\n\n")
         redirect_to = "/question?qid={}".format(qid)
     # else, do the following
     else:
@@ -238,34 +246,34 @@ def post_question():
         session["tags_tuple"] = question_dict["tags_tuple"]
         # if something went wrong about the MySQL connection
         if (err == -1):
-            print("\n\nMYSQL ERROR\n\n")
+            # print("\n\nMYSQL ERROR\n\n")
             session["default_message"] = "Your request cannot be processed right now, please try again later!"
             redirect_to = url_for("ask_question")
         # if the user hasn't logged in
         elif (err == 2):
-            print("\n\nUSER NOT LOGGED IN\n\n")
+            # print("\n\nUSER NOT LOGGED IN\n\n")
             session["previous_page"] = url_for("ask_question")
             session["login_default_message"] = "You must login before posting!"
             redirect_to = url_for("login")
         # if the question title is empty
         elif (err == 3):
-            print("\n\nEMPTY FIELD DETECTED\n\n")
+            # print("\n\nEMPTY FIELD DETECTED\n\n")
             session["default_message"] = "Question title must not be blank!"
             redirect_to = url_for("ask_question")
         elif (err == 4):
-            print("\n\nUNRELATED TO CSIE\n\n")
+            # print("\n\nUNRELATED TO CSIE\n\n")
             session["default_message"] = "Your post is not related to CSIE! Please contact us if you think this is a mistake."
             redirect_to = url_for("ask_question")
         elif (err == 5):
-            print("\n\nINVALID TAG SELECTION\n\n")
+            # print("\n\nINVALID TAG SELECTION\n\n")
             session["ask_question_default_message"] = "You can only choose 1 tag."
             redirect_to = url_for("ask_question")
         elif (err == 6):
-            print("\n\nSENSITIVE WORDS DETECTED\n\n")
+            # print("\n\nSENSITIVE WORDS DETECTED\n\n")
             session["default_message"] = "Woah! There appear to be sensitive words in your question. Please check your wording."
             redirect_to = url_for("ask_question")
         elif (err == 7):
-            print("\n\nTRANSLATION ERROR\n\n")
+            # print("\n\nTRANSLATION ERROR\n\n")
             session["default_message"] = "The website is under maintenance. Please post in English or try again later!"
             redirect_to = url_for("ask_question")
         else:
@@ -321,20 +329,20 @@ def post_reply():
     
     # if something went wrong about the MySQL connection
     if (err == -1):
-        print("\n\nMYSQL ERROR\n\n")
+        # print("\n\nMYSQL ERROR\n\n")
         redirect_to = previous_page
     # if the user posts his/her answers successfly
     elif (err == 1):
-        print("\n\nSUCCESS\n\n")
+        # print("\n\nSUCCESS\n\n")
         redirect_to = previous_page
     # if the user hasn't logged in
     elif (err == 2):
-        print("\n\nUSER NOT LOGGED IN\n\n")
+        # print("\n\nUSER NOT LOGGED IN\n\n")
         session["reply_default_value"] = reply_contents["reply_content"]
         redirect_to = url_for("login")
     # if the user typed nothing
     elif (err == 3):
-        print("\n\nBLANK FIELD DETECTED\n\n")
+        # print("\n\nBLANK FIELD DETECTED\n\n")
         redirect_to = previous_page
     else:
         redirect_to = url_for("FOF")
@@ -357,15 +365,15 @@ def upvote_question():
     
     # if something went wrong about the MySQL connection
     if (err == -1):
-        print("\n\nMYSQL ERROR\n\n")
+        # print("\n\nMYSQL ERROR\n\n")
         redirect_to = previous_page
     # if the user has logged in and upvoted the question successfully
     elif (err == 1):
-        print("\n\nSUCCESS\n\n")
+        # print("\n\nSUCCESS\n\n")
         redirect_to = previous_page
     # if the user hasn't logged in
     elif (err == 2):
-        print("\n\nUSER NOT LOGGED IN\n\n")
+        # print("\n\nUSER NOT LOGGED IN\n\n")
         redirect_to = url_for("login")
     else:
         redirect_to = url_for("FOF")
@@ -402,6 +410,7 @@ def register():
             elif db.check_username_exists(connection, username) == "DNE":
                 # if the password and repeat password are the same, insert the user into the database
                 if password == repeatPassword:
+                    password = bcrypt.generate_password_hash(password)
                     db.add_user(connection, username, email, password)
                     session["login_default_message"] = "You have successfully registered."
                     return redirect(url_for("login"))
@@ -435,9 +444,10 @@ def forgotpassword():
                 # if the new password and repeat new password are the same
                 if newPassword == repeatNewPassword:
                     user_previous_password = db.get_user_info(connection, username)[2]
-                    if user_previous_password == newPassword:
+                    if bcrypt.check_password_hash(user_previous_password, newPassword) == True:
                         session["login_default_message"] = "Your new password is the same as your previous password."
                         return redirect(url_for("login"))
+                    newPassword = bcrypt.generate_password_hash(newPassword)
                     db.update_password(connection, username, newPassword)
                     session["login_default_message"] = "You have successfully changed your password."
                     return redirect(url_for("login"))
@@ -457,6 +467,7 @@ def forgotpassword():
 def profile():
     # get the username and the previous page
     username = SGET(session.get("username"), "")
+    password_length = SGET(session.get("password_length"), "")
 
     # if the user hasn't logged in, redirect to login page
     if username == "":
@@ -467,7 +478,7 @@ def profile():
         return render_template("profile.html",
             username = username,
             email = email,
-            password = len(password) * "*",
+            password = password_length * "*",
             points = points, 
             posts = posts,
             answers = answers
