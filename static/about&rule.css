@@ -16,9 +16,13 @@
     font-size: 2.1608vmin;
     line-height: 3.2412vmin;
     padding: 2vh 0;
-    border-bottom: 0.1vh solid #3F3F3F;
     color: #484848;
     text-align: justify;
+}
+
+.Astyle-border {
+    border-bottom: 0.1vh solid #3F3F3F;
+    margin-bottom: 2vh;
 }
 
 img {
